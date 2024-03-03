@@ -11,10 +11,10 @@ const xmlhttp = new XMLHttpRequest();
 xmlhttp.onload = function() {
   const myArr = JSON.parse(this.responseText);
   let text = "";
-  for (let i = 0; i < myArr.length; i++) {
-  text += myArr[i] + "<br>";
-}
-  document.getElementById("demo").innerHTML = "cj";
+//   for (let i = 0; i < myArr.length; i++) {
+//   text += myArr[i] + "<br>";
+// }
+  document.getElementById("demo").innerHTML = myArr["Name"];
 }
 xmlhttp.open("GET", "info.json", true);
 xmlhttp.send();
