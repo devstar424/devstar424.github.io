@@ -1,0 +1,10 @@
+#EXTM3U
+
+#EXTINF:0 tvg-id="@thenayeemparvez" group-title="Join Telegram - @AllLiveSportsLinks" tvg-logo="https://telegra.ph/file/94ab5e7bfc223f2cd8c53.png", Join Telegram - @AllLiveSportsLinks
+https://t.me/AllLiveSportsLinks
+
+#EXTINF:0 tvg-id="0-9-zeecinemahd" group-title="2024PL" tvg-logo="https://akamaividz2.zee5.com/image/upload/resources/0-9-zeecinemahd/channel_web/1170x658withlogo167952257.png",2024PL 
+https://prod-ent-live-gm.jiocinema.com/hls/live/2100323/hd_akamai_androidmob_avc_hin_ipl_s1_m1220324/master.m3u8
+
+#EXTINF:0 tvg-id="0-9-zeecinemalu" group-title="Nayeem's Zee5 { Movie }" tvg-logo="https://akamaividz2.zee5.com/image/upload/resources/0-9-zeecinemalu/channel_web/1170x6581642453232.png",Zee Cinemalu HD 
+https://nayeem-parvez.tk/zeppytv/m3u8.php?c=0-9-zeecinemalu
