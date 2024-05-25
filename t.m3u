@@ -1,7 +1,4 @@
 #EXTM3U
 
 #EXTINF:0 tvg-id="0-9-zeecinemahd" group-title="IPL 2024" tvg-logo="https://www.iplt20.com/assets/images/ipl-og-image-new.jpg",SRH vs DD 
-https://prod-ent-live-gm.jiocinema.com/hls/live/2100323/hd_akamai_iosmob_avc_hin_ipl_s1_m1230324/master.m3u8
-
-#EXTINF:0 group-title="T20" tvg-logo="https://www.iplt20.com/assets/images/ipl-og-image-new.jpg",England vs Pakistan
 https://pubads.g.doubleclick.net/ssai/event/QNEZiPzpTXucyrbpCjdZTw/master.m3u8
