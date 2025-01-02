@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kucoin Audit</title>
+    <style>
+        #loader {
+            display: none;
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Kucoin Audit</h1>
+    </header>
+    <main>
+        <p>This is a basic HTML template for the Kucoin Audit project.</p>
+        <input type="file" id="fileInput" accept=".csv">
+        <pre id="fileContent"></pre>
+        <div id="loader"></div>
+    </main>
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const loader = document.getElementById('loader');
+                loader.style.display = 'block';
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const content = e.target.result;
+                    const lines = content.split('\n');
+                    const header = lines[0].split(',');
+                    const columns = header.length;
+
+                    let countSell = 0;
+                    let countBuy = 0;
+                    // let inrTotalSell = 0;
+                    // let inrTotalBuy = 0;
+                    let inrUsdtTotalSell = 0;
+                    let inrUsdtTotalBuy = 0;
+                    let usdtTotalSell = 0;
+                    let usdtTotalBuy = 0;
+                    let usdtTds = 0;
+                    let inrOtherCryptoTotalSell = 0;
+                    let inrOtherCryptoTotalBuy = 0;
+                    let otherCryptoTotalSell = 0;
+                    let otherCryptoTotalBuy = 0;
+                    let otherCryptoTds = 0;
+                    for(let i = 1; i < lines.length; i++) {
+                        const line = lines[i].split(',');
+                        if(line.length == columns){
+                            const side = line[1];
+                            const pair = line[3];
+                            const inr = parseFloat(line[4]);
+                            const rate = parseFloat(line[5]);
+                            const crypto = parseFloat(line[6]);
+                            if(side == 'SELL'){
+                                countSell++;
+                                const tds = parseFloat(line[7]);
+                                if(pair == 'INR/USDT'){
+                                    inrUsdtTotalSell += inr;
+                                    usdtTotalSell += crypto;
+                                    usdtTds += tds;
+                                } else {
+                                    inrOtherCryptoTotalSell += inr;
+                                    otherCryptoTotalSell += crypto;
+                                    otherCryptoTds += tds;
+                                }
+                            } else if(side == 'BUY'){
+                                countBuy++;
+                                if(pair == 'INR/USDT'){
+                                    inrUsdtTotalBuy += inr;
+                                    usdtTotalBuy += crypto;
+                                } else {
+                                    inrOtherCryptoTotalBuy += inr;
+                                    otherCryptoTotalBuy += crypto;
+                                }
+                            }
+                        }
+                    }
+                    let rateAverageSell = inrUsdtTotalSell / usdtTotalSell;
+                    let rateAverageBuy = inrUsdtTotalBuy / usdtTotalBuy;
+                    let profitPerUsdt = rateAverageSell - rateAverageBuy - 2;
+
+                    let totalProfit = 0;
+                    if(usdtTotalBuy > usdtTotalSell){
+                        totalProfit = usdtTotalSell*profitPerUsdt;
+                    }else{
+                        totalProfit = usdtTotalBuy*profitPerUsdt;
+                    }
+                    const result = `
+                        <br><br>
+                        <h2>Summary</h2>
+                        <p>Count SELL: ${countSell}</p>
+                        <p>Count BUY: ${countBuy}</p>
+                        <p>Total SELL: ${inrUsdtTotalSell + inrOtherCryptoTotalSell} INR</p>
+                        <p>Total BUY: ${inrUsdtTotalBuy + inrOtherCryptoTotalBuy} INR</p>
+                        <br>
+                        <h2>INR/USDT</h2>
+                        <p>Total SELL: ${inrUsdtTotalSell} INR</p>
+                        <p>Total BUY: ${inrUsdtTotalBuy} INR</p>
+                        <p>Total SELL: ${usdtTotalSell} USDT</p>
+                        <p>Total BUY: ${usdtTotalBuy} USDT</p>
+                        <p>Total TDS: ${usdtTds} USDT</p>
+                        <p>
+                        Average Sell Rate: ${rateAverageSell} INR/USDT
+                        Average Buy Rate: ${rateAverageBuy} INR/USDT
+                        Profit per USDT: ${profitPerUsdt} INR/USDT
+                        Total Profit: ${totalProfit}
+                        </p>
+                        <br>
+                        <h2>INR/Other Crypto</h2>
+                        <p>Total SELL: ${inrOtherCryptoTotalSell} INR</p>
+                        <p>Total BUY: ${inrOtherCryptoTotalBuy} INR</p>
+                        <p>Total SELL: ${otherCryptoTotalSell} Crypto</p>
+                        <p>Total BUY: ${otherCryptoTotalBuy} Crypto</p>
+                        <p>Total TDS: ${otherCryptoTds} Crypto</p>
+                    `;
+                    document.getElementById('fileContent').innerHTML = result;
+                    loader.style.display = 'none';
+                };
+                reader.readAsText(file);
+            }
+        });
+    </script>
+</body>
+</html>
