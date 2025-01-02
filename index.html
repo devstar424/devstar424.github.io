@@ -1,24 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STAR DEV</title>
+    <style>
+        body{
+            background: black;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+</head>
 <body>
-
-<h2>Fetch a JSON file with XMLHttpRequest</h2>
-<p>Content written as an JSON array will be converted into a JavaScript array.</p>
-<p id="demo"></p>
-
- <script>
-const xmlhttp = new XMLHttpRequest();
-xmlhttp.onload = function() {
-  const myArr = JSON.parse(this.responseText);
-  let text = "";
-//   for (let i = 0; i < myArr.length; i++) {
-//   text += myArr[i] + "<br>";
-// }
-  document.getElementById("demo").innerHTML = myArr["Name"];
-}
-xmlhttp.open("GET", "info.json", true);
-xmlhttp.send();
-</script>
-
+    <br>
+   <h1 style="text-align: center; font-weight: 700;">STAR PRODUCTION</h1>
+   
 </body>
 </html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Fetch a JSON file with XMLHttpRequest</h2>
+<p>Content written as an JSON array will be converted into a JavaScript array.</p>
+<p id="demo"></p>
+
+ <script>
+const xmlhttp = new XMLHttpRequest();
+xmlhttp.onload = function() {
+  const myArr = JSON.parse(this.responseText);
+  let text = "";
+//   for (let i = 0; i < myArr.length; i++) {
+//   text += myArr[i] + "<br>";
+// }
+  document.getElementById("demo").innerHTML = myArr["Name"];
+}
+xmlhttp.open("GET", "info.json", true);
+xmlhttp.send();
+</script>
+
+</body>
+</html>
