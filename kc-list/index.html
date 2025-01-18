@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KUCOIN LIST</title>
+    <style>
+        body{
+            background: black;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <br>
+   <h1 style="text-align: center; font-weight: 700;">KUCOIN LIST</h1>
+   <br><br>
+   <h3>BUY</h3>
+   <div id="buy"></div>
+   <h3>SELL</h3>
+   <div id="sell"></div>
+
+   <script>
+
+    const options = {method: 'GET'};
+    fetch('https://www.kucoin.com/_api/otc/ad/list?status=PUTUP&currency=USDT&legal=INR&page=1&pageSize=10&side=BUY&amount=&payTypeCodes=&sortCode=PRICE&highQualityMerchant=0&lang=en_US', options)
+    .then(response => response.json())
+    .then(response => onRes(response))
+    .catch(err => console.error(err));
+
+    function onRes(response){
+        const res = response.success;
+        if(res){
+            const items = response.items;
+            items.forEach(element => {
+                const bx = `<p>
+                        ${element.nickName} | ${element.floatPrice} | ${element.currencyBalanceQuantity} | ${element.limitMinQuote}-${element.limitMaxQuote} | ${element.dealOrderNum} - ${element.dealOrderRate}
+                    </p>`;
+                document.getElementById('buy').insertAdjacentHTML('beforeend', bx);
+            });
+        }
+    }
+   </script>
+</body>
+</html>
