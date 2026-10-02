@@ -1,0 +1,7 @@
+@page{size:A4 portrait;margin:0}
+html,body{background:#fff!important;margin:0!important;padding:0!important}
+.study-toolbar{display:none!important}
+.paper-root{padding:0!important}
+.paper{width:210mm!important;height:297mm!important;min-height:297mm!important;margin:0!important;box-shadow:none!important;overflow:hidden!important;break-after:page;page-break-after:always}
+.paper:last-child{break-after:auto;page-break-after:auto}
+.error-box{display:none!important}
