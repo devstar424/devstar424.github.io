@@ -1,0 +1,263 @@
+{
+  "project": {
+    "name": "Quran Deep Study",
+    "pdf_id": "QURAN-DEEP-001",
+    "version": "3.0-web-only",
+    "created_at": "2026-10-02",
+    "file_name": "QURAN-DEEP-001_Al-Fatihah_1-7",
+    "created_by": {"type":"AI","platform":"ChatGPT","model":"GPT-5.6 Luna","role":"Research, structuring and study-content generation","human_review":false},
+    "human_review_note":"Ye study AI-generated research/teaching material hai. Quran Arabic ko source se cross-check kiya gaya hai, lekin is document ko formal scholarly fatwa ya final tafsir edition na samjhein.",
+    "generation_profile": {"effort_level":10,"depth_label":"Deep Research Study","depth_rule":"Simple + Deep only; Deep mein detailed samajh included hai.","language_rule":"Natural Hinglish; English technical/jargon terms ko context mein simple meaning ke saath explain kiya gaya hai.","evidence_rule":"Quran/Hadith, historical evidence, scientific evidence aur modern application ko separate rakha gaya hai."}
+  },
+  "study_range": {"surah_number":1,"surah_name":"Al-Fatihah","ayah_start":1,"ayah_end":7,"range":"1:1–7","is_complete_surah":true,"completed_through":"1:7","next_start":"2:1"},
+  "surah_info": {
+    "name_meaning":"Al-Fatihah = The Opener / opening chapter",
+    "classification":{"makki_or_madani":"Makki","ayat_count":7},
+    "introduction":"Al-Fatihah Quran ki opening Surah hai aur sirf introduction jaisi heading nahi; ye praise, Allah ki pehchaan, accountability, worship, dependence aur hidayat ki dua ko ek compact flow mein rakhti hai. Prayer mein iska central role Sahih Muslim aur Sahih al-Bukhari ki riwayaton se bhi clear hota hai.",
+    "what":"Banda Allah ko Rabb, Rahman, Rahim aur Day of Judgment ke Malik ke taur par recognize karta hai; phir apni ibadat aur madad ka focus Allah par rakhta hai aur akhir mein seedhe raaste ki dua karta hai.",
+    "why":"Quran ko samajhne wale insan ki starting posture batati hai: praise + humility + dependence + guidance-seeking. Isliye study se pehle aur prayer mein iska repeated role meaningful hai.",
+    "when_where":"Quran.com Surah info isey Makkah aur 7 ayat wali Surah list karta hai. Exact chronological date/order ko simple fixed calendar date samajhna sahi nahi; early-revelation status broadly accepted hai, jabki first-complete-surah chronology ke details riwayat/chronology discussions mein aate hain.",
+    "how_to_study":"Har ayah mein 4 layers pehle dekho: Arabic → transliteration → meaning → context. Uske baad Arabic words, Quran cross-links, Hadith aur application ko alag-alag evaluate karo. Modern example ko ayah ka original meaning na samjho.",
+    "known_vs_debated":"Known: Surah 1, 7 ayat, Makkah classification in Quran.com, and its identification as the seven oft-repeated verses in 15:87/Hadith. Debated/nuanced: exact chronological placement and some details about whether/how Bismillah is counted as an ayah across recitation/numbering traditions. This project follows the common 7-ayah numbering used by the cited Quran source.",
+    "themes":["Hamd / praise","Rabb and creation","Mercy","Accountability","Worship","Dependence on Allah","Hidayah / guidance","Straight path","Moral direction"]
+  },
+  "complete_passage": {
+    "title":"Pehle poora passage ek saath padho",
+    "instruction":"Pehle Arabic ko flow mein padho. Phir meaning dekho. Detailed analysis baad mein.",
+    "ayahs":[
+      {"ayah":1,"reference":"1:1","arabic":"بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ ١","transliteration":"Bismillāhir-Raḥmānir-Raḥīm","roman_urdu":"Allah ke naam se, jo nihayat meherban, baar-baar rahm farmane wala hai.","english_meaning":"In the name of Allah, the Universally Merciful, the Especially Merciful."},
+      {"ayah":2,"reference":"1:2","arabic":"ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَـٰلَمِينَ ٢","transliteration":"Al-ḥamdu lillāhi rabbil-ʿālamīn","roman_urdu":"Sab hamd Allah ke liye hai, jo tamam jahano ka Rabb hai.","english_meaning":"All praise belongs to Allah, Lord of all realms/worlds."},
+      {"ayah":3,"reference":"1:3","arabic":"ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ ٣","transliteration":"Ar-Raḥmānir-Raḥīm","roman_urdu":"Jo nihayat meherban aur baar-baar rahm farmane wala hai.","english_meaning":"The Universally Merciful, the Especially Merciful."},
+      {"ayah":4,"reference":"1:4","arabic":"مَـٰلِكِ يَوْمِ ٱلدِّينِ ٤","transliteration":"Māliki yawmid-dīn","roman_urdu":"Badle/Jaza ke din ka Malik.","english_meaning":"Master of the Day of Recompense/Judgment."},
+      {"ayah":5,"reference":"1:5","arabic":"إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ٥","transliteration":"Iyyāka naʿbudu wa iyyāka nastaʿīn","roman_urdu":"Hum sirf Teri ibadat karte hain aur sirf Tujh se madad maangte hain.","english_meaning":"You alone we worship, and You alone we seek for help."},
+      {"ayah":6,"reference":"1:6","arabic":"ٱهْدِنَا ٱلصِّرَٰطَ ٱلْمُسْتَقِيمَ ٦","transliteration":"Ihdinaṣ-ṣirāṭal-mustaqīm","roman_urdu":"Humein seedhe raaste par hidayat de.","english_meaning":"Guide us to the Straight Path."},
+      {"ayah":7,"reference":"1:7","arabic":"صِرَٰطَ ٱلَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ ٱلْمَغْضُوبِ عَلَيْهِمْ وَلَا ٱلضَّآلِّينَ ٧","transliteration":"Ṣirāṭallaḏīna anʿamta ʿalayhim ghayril-maghḍūbi ʿalayhim wa laḍ-ḍāllīn","roman_urdu":"Un logon ka raasta jin par Tu ne inaam kiya; unka nahi jin par ghazab hua, aur na unka jo bhatak gaye.","english_meaning":"The path of those You have blessed—not those under displeasure, nor those who are astray."}
+    ]
+  },
+  "sections":[
+    {"title":"Allah ki pehchaan","ayah_range":"1–4","theme":"Allah ke naam, hamd, Rabbubiyyah, mercy aur final accountability.","flow":"Bismillah se start hota hai → praise → Allah as Rabb → mercy → Day of Recompense. Yani banda pehle apni position aur Allah ki position samajhta hai.","summary":"Allah sirf powerful creator ke concept tak limited nahi: ayat Allah ko Rabb, Rahman, Rahim aur Day of Recompense ke Malik ke taur par frame karti hain.","study_note":"Praise aur accountability ek saath aate hain: na sirf fear, na sirf comfort."},
+    {"title":"Bande ka ahd","ayah_range":"5","theme":"Worship aur help ka exclusive orientation.","flow":"Pehli 4 ayat Allah ke baare mein thi; ayat 5 mein suddenly 'hum' aur 'Tu' ka direct relationship aa jata hai.","summary":"Banda apni ultimate worship ko Allah ke liye commit karta hai aur dependence bhi Allah se seekhta hai. Iska matlab practical causes ko reject karna nahi; ultimate reliance ka direction Allah ki taraf rakhna hai.","study_note":"'Tawakkul' ko effort chhod dena samajhna mistake hai; dua aur responsible effort saath chal sakte hain."},
+    {"title":"Sabse badi dua: Hidayat","ayah_range":"6–7","theme":"Straight Path aur us par chalne walon ka model.","flow":"'Guide us' → 'Straight Path' → kis type ke logon ka path? → blessed people; aur do negative trajectories se distance.","summary":"Hidayat sirf information nahi; right direction, recognition aur action ka concept hai. Ayat 7 path ko lived examples se concrete banati hai.","study_note":"Ayat 7 kisi modern individual/group ko automatically 'maghdub' ya 'dallin' label karne ka license nahi deti. Application mein evidence aur humility zaroori hai."}
+  ],
+  "ayahs":[
+    {
+      "ayah":1,"reference":"1:1","markers":{"sajdah":{"is_sajdah_ayah":false,"type":null,"ruling_note":null},"special_markers":[],"special_notes":[]},
+      "arabic":"بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ ١","transliteration":"Bismillāhir-Raḥmānir-Raḥīm","roman_urdu":"Allah ke naam se, jo nihayat meherban, baar-baar rahm farmane wala hai.","english_meaning":"In the name of Allah, the Universally Merciful, the Especially Merciful.",
+      "simple":"Kaam Allah ke naam se start karna sirf ek phrase bolna nahi; intention ko reset karna hai: main ye kaam kis ke naam aur kis direction mein kar raha hoon?",
+      "deep":"Bismillah action se pehle orientation set karta hai. 'Allah' proper divine name hai, jabki Ar-Raḥmān aur Ar-Raḥīm mercy ke dimensions ko foreground karte hain. Practical samajh: koi kaam technically successful ho sakta hai, lekin Bismillah ki spirit tumse poochti hai ki kaam halal/ethical hai ya nahi aur tumhara intention kya hai. Ye ayah business, study, eating, travel—har cheez ko ritual banane ka claim nahi karti; balke conscious starting posture create karti hai.",
+      "main_message":"Start with conscious remembrance of Allah and a clean intention.","why_it_matters":"Starting intention behavior ko direction de sakti hai; insan ko impulsive action se ek second ka pause milta hai.",
+      "important_arabic_words":[
+        {"arabic":"بِسْمِ","transliteration":"bismi","meaning":"in/by the name of","root":"ا س م (ism)","word_form":"prepositional phrase: bi + ism","literal_meaning":"with/in the name","contextual_meaning":"Allah ka naam lekar action start karna"},
+        {"arabic":"ٱلرَّحْمَـٰنِ","transliteration":"ar-Raḥmān","meaning":"the Universally/abundantly Merciful","root":"ر ح م","word_form":"intensive adjective pattern","literal_meaning":"one characterized by vast mercy","contextual_meaning":"Allah ki encompassing mercy ko foreground karta hai"},
+        {"arabic":"ٱلرَّحِيمِ","transliteration":"ar-Raḥīm","meaning":"the Especially/continually Merciful","root":"ر ح م","word_form":"intensive adjective","literal_meaning":"merciful / repeatedly merciful","contextual_meaning":"mercy ki continuing/relational dimension ko foreground karta hai"}
+      ],
+      "grammar_rhetoric":"Bi-ismi ka structure action ko 'Allah ke naam' se connect karta hai. Do mercy names opening ko harsh command se pehle mercy-centered orientation dete hain.",
+      "historical_context":"Bismillah Quran mein recurring formula hai. Exact counting/placement discussions ko Quranic text aur recitation traditions ke saath separate rakhna chahiye; is project mein 1:1 ko Quran.com ke cited 7-ayah presentation ke mutabiq display kiya gaya hai.",
+      "common_misunderstandings":"Iska matlab ye nahi ki sirf Bismillah bol dene se koi haram/zulm wala kaam righteous ho jata hai.","what_it_does_not_mean":"It does not mean planning, skill or material causes are unnecessary.",
+      "connected_ayat":"27:30 also opens a letter with Bismillah; 96:1 begins revelation with 'Read in the name of your Lord'. These connections reinforce conscious God-oriented action without making them identical contexts.",
+      "hadith":{"summary":"Al-Fatihah ka prayer role Sahih Muslim 395a mein detailed hai; Bismillah-specific point is not the central wording of that Hadith.","reference":"Sahih Muslim 395a","status":"Sahih; relevant for Al-Fatihah as prayer dialogue"},
+      "history_evidence":"No special archaeology claim is needed for this ayah.","science":{"summary":"No scientific proof-claim is needed here.","status":"Not applicable","status_class":""},
+      "real_life_example":"Gym start karne se pehle 2 seconds ruk kar socho: goal kya hai, method clean hai kya, aur main apne body ko amanah samajhkar train kar raha hoon ya sirf ego ke liye?",
+      "modern_world_connection":"Application, tafsir nahi: notifications, social media aur impulse buying ke beech 'pause before action' habit Bismillah ki conscious-start spirit se compatible example ho sakti hai.",
+      "future_or_forward_looking_context":"No specific future prediction is made. Forward-looking lesson: repeated intentional starts can become a stable behavioral habit.",
+      "knowledge_status":"Known: wording and placement are part of the Quranic text presentation. Nuanced: counting of Bismillah in ayah numbering differs across traditions.",
+      "qa":[{"q":"Kya Bismillah sirf formal opening hai?","a":"Nahi; study level par ye intention/orientation ka reminder bhi ban sakti hai."},{"q":"Kya isse har kaam automatically blessed ho jata hai?","a":"Nahi; action ka ethical nature aur actual conduct matter karte hain."}],
+      "night_reflection":"Aaj maine kitne kaam bina soche start kiye?","personal_action":"Roz kisi ek important kaam se pehle 2-second intentional pause practice karo."
+    },
+    {
+      "ayah":2,"reference":"1:2","markers":{"sajdah":{"is_sajdah_ayah":false,"type":null,"ruling_note":null},"special_markers":[],"special_notes":[]},
+      "arabic":"ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَـٰلَمِينَ ٢","transliteration":"Al-ḥamdu lillāhi rabbil-ʿālamīn","roman_urdu":"Sab hamd Allah ke liye hai, jo tamam jahano ka Rabb hai.","english_meaning":"All praise belongs to Allah, Lord of all realms/worlds.",
+      "simple":"Hamd ka matlab sirf 'thank you' nahi. Allah ki perfection, goodness aur favors ki wajah se praise Allah ke liye hai. Rabb ka matlab owner/sustainer/nurturer/manager ke broad sense mein samjha ja sakta hai.",
+      "deep":"'Al-ḥamd' praise ka broad concept hai; shukr specifically received favor ke response ko highlight karta hai. Ayat Allah ko 'Rabb al-ʿālamīn' kehti hai: Allah ki rububiyyah kisi ek tribe, region ya social class tak limited nahi. Isse insan ki self-sufficiency ki illusion break hoti hai: body, time, knowledge, relationships aur natural conditions mein dependence layers hoti hain. Lekin dependence ka matlab human effort useless hona nahi.",
+      "main_message":"Recognize Allah as the source and sustainer of all realms and direct ultimate praise to Him.","why_it_matters":"Gratitude/praise attention ko scarcity se blessings aur dependence ki reality ki taraf shift kar sakti hai.",
+      "important_arabic_words":[
+        {"arabic":"ٱلْحَمْدُ","transliteration":"al-ḥamd","meaning":"the praise","root":"ح م د","word_form":"verbal noun (maṣdar)","literal_meaning":"praise / commendation","contextual_meaning":"Allah ki perfection aur favors dono ke recognition ke saath praise"},
+        {"arabic":"رَبِّ","transliteration":"rabb","meaning":"Lord; sustainer; master","root":"ر ب ب","word_form":"noun","literal_meaning":"one who nurtures/manages/owns","contextual_meaning":"Allah as creator-owner-sustainer whose care and authority encompass creation"},
+        {"arabic":"ٱلْعَـٰلَمِينَ","transliteration":"al-ʿālamīn","meaning":"the worlds/realms","root":"ع ل م","word_form":"sound masculine plural","literal_meaning":"worlds/realms","contextual_meaning":"created realms/communities/worlds; scope is intentionally broad"}
+      ],
+      "grammar_rhetoric":"Fronting 'al-ḥamd' gives the statement a strong focus on praise; 'lillāh' identifies its ultimate ownership/direction. Rabb is in genitive relation to Allah and ʿālamīn is genitive as part of the construction 'Rabb of the worlds'.",
+      "historical_context":"The wording presents a universal God concept rather than a deity limited to one locality. This is a theological claim of the Quran, not a claim that ancient societies lacked universal-god concepts.",
+      "common_misunderstandings":"Hamd ko sirf gratitude kehna too narrow hai; Rabb ko sirf 'creator' kehna bhi incomplete hai.","what_it_does_not_mean":"It does not mean humans should stop appreciating parents, teachers, doctors or other people; ultimate praise to Allah and human thanks can coexist.",
+      "connected_ayat":"2:255 describes Allah as living and sustaining; 6:1 begins with praise to Allah who created the heavens and earth. 55 repeatedly lists blessings and asks which favors will be denied.",
+      "hadith":{"summary":"Sahih Muslim 395a reports that when the worshipper says 'Al-hamdu lillahi Rabbil-'alamin', Allah says that His servant has praised Him.","reference":"Sahih Muslim 395a","status":"Sahih"},
+      "history_evidence":"No specific archaeology claim is required for the theological meaning of this ayah.","science":{"summary":"Science can describe interdependence in biological/ecological systems, but that does not scientifically prove the theological claim that Allah is Rabb. Keep the categories separate.","status":"Limited / category distinction","status_class":"status-limited"},
+      "real_life_example":"Social media par sab apni achievement dikhate hain. 'Alhamdulillah' tumhe achievement ko deny karne nahi, balki 'mere effort ke saath mujhe kitni cheezein mili hui thi' dekhne ki training de sakta hai.",
+      "modern_world_connection":"Application, tafsir nahi: daily gratitude journal mein sirf objects nahi, abilities, people, opportunities aur protection bhi note karo.",
+      "future_or_forward_looking_context":"A long-term habit of recognizing dependence can reduce the illusion that every success is purely self-created; this is a behavioral application, not a scientific prediction.",
+      "knowledge_status":"Known: Arabic wording and Quranic cross-links. Debated/nuanced: exact semantic boundaries of 'ʿālamīn' across translation traditions; safest is broad 'worlds/realms'.",
+      "qa":[{"q":"Hamd aur shukr same hain?","a":"Related hain, lekin identical nahi. Hamd praise ko broader way mein cover karta hai; shukr received favor ke response ko especially highlight karta hai."},{"q":"Rabb ka matlab sirf Lord hai?","a":"English 'Lord' useful hai, lekin Rabb ke care, nurturing, ownership aur governance ke shades bhi hain."}],
+      "night_reflection":"Aaj mujhe kis cheez ko 'meri achievement' kehne se pehle uske hidden supports yaad rakhne chahiye?","personal_action":"Aaj 5 specific cheezein likho jinke liye Alhamdulillah keh sakte ho."
+    },
+    {
+      "ayah":3,"reference":"1:3","markers":{"sajdah":{"is_sajdah_ayah":false,"type":null,"ruling_note":null},"special_markers":[],"special_notes":[]},
+      "arabic":"ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ ٣","transliteration":"Ar-Raḥmānir-Raḥīm","roman_urdu":"Jo nihayat meherban aur baar-baar rahm farmane wala hai.","english_meaning":"The Universally Merciful, the Especially Merciful.",
+      "simple":"Ayat 2 ke baad Allah ki mercy dobara highlight hoti hai. Quran ka God-picture sirf power aur punishment ka picture nahi hai.",
+      "deep":"Same two mercy names repeat karna emotional balance create karta hai. Ayat 4 mein accountability aayegi, isliye 3 mein mercy ka reminder important hai. Mercy ko 'anything goes' bhi nahi samajhna: Quran ke overall structure mein mercy aur accountability dono exist karte hain. Human level par iska lesson hai: hope without denial, fear without despair.",
+      "main_message":"Keep Allah’s mercy central while remembering that mercy does not erase moral responsibility.","why_it_matters":"Insan ya to over-guilt mein collapse kar sakta hai ya over-confidence mein careless ho sakta hai; mercy-accountability balance dono extremes ko challenge karta hai.",
+      "important_arabic_words":[
+        {"arabic":"ٱلرَّحْمَـٰنِ","transliteration":"ar-Raḥmān","meaning":"the Universally/abundantly Merciful","root":"ر ح م","word_form":"intensive adjective","literal_meaning":"characterized by vast mercy","contextual_meaning":"broad, encompassing mercy"},
+        {"arabic":"ٱلرَّحِيمِ","transliteration":"ar-Raḥīm","meaning":"the Especially/continually Merciful","root":"ر ح م","word_form":"intensive adjective","literal_meaning":"merciful","contextual_meaning":"mercy in an ongoing/relational sense"}
+      ],
+      "grammar_rhetoric":"The two coordinated adjectives repeat the mercy theme. Repetition gives the quality prominence rather than treating mercy as a side note.",
+      "historical_context":"No specific historical event is required to understand this ayah; it functions inside Al-Fatihah's theological progression.",
+      "common_misunderstandings":"Mercy ka matlab consequence-free living nahi. Aur accountability ka matlab mercy absent hona bhi nahi.","what_it_does_not_mean":"It does not authorize knowingly continuing harmful behavior on the assumption that forgiveness is automatic.",
+      "connected_ayat":"39:53 strongly emphasizes not despairing of Allah's mercy. 7:156 describes Allah's mercy as encompassing all things. These are broader Quranic connections, not replacements for this ayah's immediate context.",
+      "hadith":{"summary":"Sahih Muslim 395a reports Allah's response to the worshipper reciting 'Ar-Rahmanir-Rahim' as 'My servant has lauded Me.'","reference":"Sahih Muslim 395a","status":"Sahih"},
+      "history_evidence":"No archaeology claim is needed.","science":{"summary":"No scientific proof-claim is needed; divine mercy is theological, not a laboratory variable.","status":"Not applicable","status_class":""},
+      "real_life_example":"Agar tumse serious mistake ho gayi, do extremes hain: 'main khatam ho gaya' ya 'koi problem nahi'. Mercy-based thinking says: mistake acknowledge karo, repair karo, return karo.",
+      "modern_world_connection":"Application, tafsir nahi: self-improvement mein shame se zyada constructive accountability use karna—mistake → correction → next attempt.",
+      "future_or_forward_looking_context":"Forward-looking application: repeated repentance and correction can change a person's trajectory, but exact future outcome Allah ke ilm ka matter hai.",
+      "knowledge_status":"Known: repeated mercy names. Nuanced: English translations cannot capture every morphological shade of Rahman/Rahim, so the project gives contextual rather than one-word-only glosses.",
+      "qa":[{"q":"Kya Allah ki mercy ki wajah se punishment impossible hai?","a":"Nahi. Ayat 4 immediately accountability introduce karti hai; Quranic framework mercy and judgment dono ko hold karta hai."}],
+      "night_reflection":"Kya meri spirituality mein hope aur accountability dono balanced hain?","personal_action":"Ek past mistake identify karo aur guilt mein atakne ke bajaye ek repair action decide karo."
+    },
+    {
+      "ayah":4,"reference":"1:4","markers":{"sajdah":{"is_sajdah_ayah":false,"type":null,"ruling_note":null},"special_markers":[],"special_notes":[]},
+      "arabic":"مَـٰلِكِ يَوْمِ ٱلدِّينِ ٤","transliteration":"Māliki yawmid-dīn","roman_urdu":"Badle/Jaza ke din ka Malik.","english_meaning":"Master of the Day of Recompense/Judgment.",
+      "simple":"Ek aisa final day jahan actions ka accountability hoga. Isliye jo koi dekh nahi raha, wahan bhi integrity ka question important hai.",
+      "deep":"Ayat 2–3 mein Rabb aur mercy ke baad ayat 4 accountability add karti hai. 'Yawm ad-Dīn' ko recompense/judgment ka day samjha ja sakta hai. Ye moral universe ka claim hai: actions ultimately meaningless nahi hain. Real-life mein isko ek 'internal auditor' analogy se samajh sakte ho—camera na ho, log na ho, tab bhi tumhara standard same rahe. Analogy original ayah ka literal meaning nahi, application aid hai.",
+      "main_message":"Ultimate accountability belongs to Allah, so private integrity matters.","why_it_matters":"Agar morality sirf public reputation par depend kare, to hidden behavior ka standard collapse ho sakta hai.",
+      "important_arabic_words":[
+        {"arabic":"مَـٰلِكِ","transliteration":"Mālik","meaning":"Master / owner","root":"م ل ك","word_form":"active participle noun","literal_meaning":"one possessing authority/ownership","contextual_meaning":"ultimate authority/mastery over the Day of Recompense"},
+        {"arabic":"يَوْمِ","transliteration":"yawm","meaning":"day","root":"ي و م","word_form":"noun","literal_meaning":"day / period","contextual_meaning":"the specified Day of final recompense"},
+        {"arabic":"ٱلدِّينِ","transliteration":"ad-dīn","meaning":"recompense / judgment / way of accountability","root":"د ي ن","word_form":"noun","literal_meaning":"religion, judgment, recompense, debt depending context","contextual_meaning":"here the Day associated with recompense/judgment"}
+      ],
+      "grammar_rhetoric":"Māliki is linked to Yawm ad-Dīn in an iḍāfah construction, giving the compact sense 'Master of the Day of Recompense'. The phrase is short but conceptually heavy.",
+      "historical_context":"Belief in judgment after death is a major Quranic theme. This ayah states the theological claim directly; archaeology can investigate historical beliefs, but cannot empirically test the metaphysical Day itself.",
+      "common_misunderstandings":"Isko sirf 'God will punish' tak reduce karna incomplete hai; recompense includes accountability and justice, while mercy remains part of the larger framework.","what_it_does_not_mean":"It does not mean humans should stop using earthly justice systems or accountability mechanisms.",
+      "connected_ayat":"82:10–12 describes recording angels in Quranic narrative; 99:7–8 describes even tiny deeds being encountered in recompense. These connections deepen the accountability theme.",
+      "hadith":{"summary":"Sahih Muslim 395a reports that when the worshipper says 'Master of the Day of Judgment', Allah says His servant has glorified Him (with another wording reported as entrusting affairs to Him).","reference":"Sahih Muslim 395a","status":"Sahih"},
+      "history_evidence":"Historical cultures have many forms of afterlife/judgment beliefs, but that comparative fact neither proves nor disproves the Quranic metaphysical claim.",
+      "science":{"summary":"Science can model future physical events, but it cannot experimentally verify the Quranic metaphysical Day of Judgment. For example, astronomical models about the far future of the Sun are not evidence that Qiyamah will occur in a specific physical scenario.","status":"Unsupported as a scientific proof of Qiyamah","status_class":"status-unsupported"},
+      "real_life_example":"Ek aisi jagah jahan koi dekh nahi raha: camera nahi, koi poochne wala nahi. Kya tum phir bhi same standard rakhoge? Ye internal auditor wali integrity hai.",
+      "modern_world_connection":"Application, tafsir nahi: private digital behavior, expense reporting, promises aur anonymous online conduct mein 'public image' ke bina bhi same ethical standard maintain karna.",
+      "future_or_forward_looking_context":"Separate scientific note: astronomy predicts major changes to the Sun over billions of years, but those models do not establish the timing or mechanism of Qiyamah. Keep natural-future models and theological eschatology separate.",
+      "knowledge_status":"Known: Quranic claim of a Day of Recompense. Unknown by science: when/how the theological event occurs. Do not manufacture a scientific date.",
+      "qa":[{"q":"Agar koi mujhe nahi dekh raha to kya matter karta hai?","a":"Ayat 4 ke framework mein yes—ultimate accountability public visibility se independent hai."},{"q":"Kya science Qiyamah prove kar sakti hai?","a":"No. Science can investigate physical processes; it cannot establish this theological claim as an empirical date/event prediction."}],
+      "night_reflection":"Agar mujhe pata ho ki koi mujhe kabhi expose nahi karega, to main kya choose karunga?","personal_action":"Ek hidden habit identify karo jahan tum public image ke bina bhi integrity improve kar sakte ho."
+    },
+    {
+      "ayah":5,"reference":"1:5","markers":{"sajdah":{"is_sajdah_ayah":false,"type":null,"ruling_note":null},"special_markers":[],"special_notes":[]},
+      "arabic":"إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ٥","transliteration":"Iyyāka naʿbudu wa iyyāka nastaʿīn","roman_urdu":"Hum sirf Teri ibadat karte hain aur sirf Tujh se madad maangte hain.","english_meaning":"You alone we worship, and You alone we seek for help.",
+      "simple":"Ab tak Allah ke attributes describe ho rahe the; yahan banda directly Allah se baat karta hai. Worship aur ultimate dependence dono ek saath declare hote hain.",
+      "deep":"Arabic mein 'iyyāka' ko pehle lana exclusivity/focus ko strong karta hai: You alone. 'Naʿbudu' plural hai—ye individual ke saath community dimension bhi rakhta hai. 'Nastaʿīn' help seek karna hai. Iska mature application ye hai ki insan practical means use kare—doctor, teacher, tools, planning, teammates—lekin ultimate reliance Allah par rakhe. Tawakkul ka matlab passivity nahi.",
+      "main_message":"Worship is exclusive to Allah, while ultimate dependence is also directed to Him.","why_it_matters":"Ye identity ko clear karta hai: main kis ke liye jee raha hoon aur difficulty mein ultimate refuge kahan samajhta hoon?",
+      "important_arabic_words":[
+        {"arabic":"إِيَّاكَ","transliteration":"iyyāka","meaning":"You alone / You specifically","root":"not a triliteral root; independent object-pronoun form","word_form":"detached object pronoun","literal_meaning":"You (object)","contextual_meaning":"fronted object gives strong exclusivity/focus"},
+        {"arabic":"نَعْبُدُ","transliteration":"naʿbudu","meaning":"we worship/serve","root":"ع ب د","word_form":"Form I imperfect, 1st plural","literal_meaning":"we worship / serve","contextual_meaning":"worshipful servitude to Allah"},
+        {"arabic":"نَسْتَعِينُ","transliteration":"nastaʿīn","meaning":"we seek help","root":"ع و ن","word_form":"Form X imperfect, 1st plural","literal_meaning":"we seek assistance","contextual_meaning":"we seek Allah's help while acting through lawful means"}
+      ],
+      "grammar_rhetoric":"Fronting the object 'iyyāka' before the verb is a classic Arabic way to create emphasis/exclusivity. The shift from third-person descriptions to direct second-person address is rhetorically powerful.",
+      "historical_context":"The ayah sits at the midpoint of Al-Fatihah: description becomes direct covenant/prayer.",
+      "common_misunderstandings":"'Only Allah se help' ko practical human help reject karna samajhna zaroori nahi. Context ultimate dependence ko establish karta hai.","what_it_does_not_mean":"It does not mean refusing doctors, teachers, tools, contracts, teamwork or planning.",
+      "connected_ayat":"29:69 links striving with guidance; 8:60 commands preparation. Together they illustrate effort + reliance rather than effortlessness.",
+      "hadith":{"summary":"Sahih Muslim 395a says when the servant recites 'You alone we worship and You alone we ask for help', Allah says: 'This is between Me and My servant, and My servant will receive what he asks.'","reference":"Sahih Muslim 395a","status":"Sahih"},
+      "history_evidence":"No special archaeology claim is needed.","science":{"summary":"No scientific proof-claim is needed. Human dependence on tools/others is an empirical fact, while ultimate reliance on Allah is theological.","status":"Category distinction","status_class":"status-limited"},
+      "real_life_example":"Exam ke liye dua karo, phir syllabus banao, practice tests do, sleep manage karo. Dua effort ko replace nahi karti; effort dua ke saath chal sakta hai.",
+      "modern_world_connection":"Application, tafsir nahi: work/business mein planning + delegation + risk management karo, lekin outcome ko completely apni control ki property na samjho.",
+      "future_or_forward_looking_context":"This ayah gives a durable decision model: intention/values → effort → ask for help → accept limits of control → continue responsible action.",
+      "knowledge_status":"Known: grammatical emphasis through fronted object; Hadith explicitly connects the phrase to servant-Allah dialogue. Nuanced: practical application boundaries require context and ethical judgment.",
+      "qa":[{"q":"Kya Allah se help maangna means kisi insaan se help nahi leni?","a":"Nahi. Ultimate dependence Allah par aur practical assistance people/means se lena compatible ho sakta hai."}],
+      "night_reflection":"Main apni life ke kaunse area ko '100% mere control mein' samajh raha hoon?","personal_action":"Kal ke ek important task ke liye dua + concrete action plan dono likho."
+    },
+    {
+      "ayah":6,"reference":"1:6","markers":{"sajdah":{"is_sajdah_ayah":false,"type":null,"ruling_note":null},"special_markers":[],"special_notes":[]},
+      "arabic":"ٱهْدِنَا ٱلصِّرَٰطَ ٱلْمُسْتَقِيمَ ٦","transliteration":"Ihdinaṣ-ṣirāṭal-mustaqīm","roman_urdu":"Humein seedhe raaste par hidayat de.","english_meaning":"Guide us to the Straight Path.",
+      "simple":"Banda ye nahi kehta 'mujhe knowledge de aur bas'. Wo direction maangta hai—sahi raasta samajhne aur us par chalne ki hidayat.",
+      "deep":"Hidayah ko information ke equal karna too narrow hai. Ek insan ko facts pata ho sakte hain, phir bhi priorities, choices aur behavior wrong direction mein ja sakte hain. 'Ihdina' mein guide us ka request hai; 'ṣirāṭ' path/route ka concept deta hai; 'mustaqīm' straight/upright direction ka sense deta hai. Isliye dua mein cognition + direction + action ka combined orientation samajhna useful hai.",
+      "main_message":"Ask continuously for guidance toward an upright, straight course.","why_it_matters":"Insan har decision mein sirf information nahi, direction bhi need karta hai.",
+      "important_arabic_words":[
+        {"arabic":"ٱهْدِنَا","transliteration":"ihdinā","meaning":"guide us","root":"ه د ي","word_form":"Form I imperative, 2nd singular + object pronoun nā","literal_meaning":"guide us","contextual_meaning":"grant and lead us toward right guidance"},
+        {"arabic":"ٱلصِّرَٰطَ","transliteration":"aṣ-ṣirāṭ","meaning":"the path","root":"ص ر ط","word_form":"noun","literal_meaning":"path/road","contextual_meaning":"the divinely approved course of life"},
+        {"arabic":"ٱلْمُسْتَقِيمَ","transliteration":"al-mustaqīm","meaning":"straight/upright","root":"ق و م","word_form":"Form X active participle/adjective","literal_meaning":"standing upright/straight","contextual_meaning":"sound, upright, non-deviating path"}
+      ],
+      "grammar_rhetoric":"The imperative/request 'ihdinā' directly asks Allah for guidance. The definite phrase 'aṣ-ṣirāṭ al-mustaqīm' presents a known/defined path rather than any arbitrary path.",
+      "historical_context":"The ayah itself does not name a specific historical road or place; the path is moral/spiritual and is further specified by ayah 7.",
+      "common_misunderstandings":"Straight Path ka matlab sirf ek abstract feeling nahi; ayat 7 immediately gives a moral/community model for the path.","what_it_does_not_mean":"It does not mean once you know the answer, guidance is permanently 'done' and no further asking is needed.",
+      "connected_ayat":"2:2 calls the Quran guidance for the mindful; 17:9 describes the Quran as guiding to what is most upright. These make the Quran-guidance relationship explicit.",
+      "hadith":{"summary":"Sahih Muslim 395a reports that when the worshipper recites the request for the Straight Path and those blessed, Allah says: 'This is for My servant, and My servant will receive what he asks for.'","reference":"Sahih Muslim 395a","status":"Sahih"},
+      "history_evidence":"No archaeology claim is needed.","science":{"summary":"No scientific proof-claim is needed. Decision science may study navigation/behavior, but that does not scientifically define the theological Straight Path.","status":"Not applicable","status_class":""},
+      "real_life_example":"Google Maps tumhe route batata hai, lekin destination galat choose kiya to perfect navigation bhi useless hai. Hidayah mein destination/values aur route dono matter karte hain.",
+      "modern_world_connection":"Application, tafsir nahi: career, money, relationships aur online choices mein sirf 'what can I do?' ke bajaye 'what should I become?' bhi poochna.",
+      "future_or_forward_looking_context":"Guidance is repeatedly requested because life decisions continue. The ayah supports a posture of ongoing correction rather than one-time certainty.",
+      "knowledge_status":"Known: request for guidance to the Straight Path. Nuanced: 'hidayah' has multiple Quranic contexts; this study focuses on its prayer context here.",
+      "qa":[{"q":"Agar mujhe already pata hai right kya hai to phir hidayat kyun maangu?","a":"Knowledge aur consistent action same cheez nahi. Dua ongoing guidance and steadfastness ko recognize karti hai."}],
+      "night_reflection":"Kya main sirf answers chahta hoon, ya right direction bhi?","personal_action":"Ek current life decision likho aur uske liye facts ke saath values-based direction bhi define karo."
+    },
+    {
+      "ayah":7,"reference":"1:7","markers":{"sajdah":{"is_sajdah_ayah":false,"type":null,"ruling_note":null},"special_markers":[],"special_notes":[]},
+      "arabic":"صِرَٰطَ ٱلَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ ٱلْمَغْضُوبِ عَلَيْهِمْ وَلَا ٱلضَّآلِّينَ ٧","transliteration":"Ṣirāṭallaḏīna anʿamta ʿalayhim ghayril-maghḍūbi ʿalayhim wa laḍ-ḍāllīn","roman_urdu":"Un logon ka raasta jin par Tu ne inaam kiya; unka nahi jin par ghazab hua, aur na unka jo bhatak gaye.","english_meaning":"The path of those You have blessed—not those under displeasure, nor those who are astray.",
+      "simple":"Ayat 6 mein 'Straight Path' abstract tha. Ayat 7 usko concrete banati hai: blessed people ka path maango aur do negative trajectories se bachne ki dua karo.",
+      "deep":"Ayat 7 ko sirf labels ki list samajhna kam hai. 'Those You have blessed' ko Quran 4:69 explicitly prophets, truthful, martyrs and righteous ke saath connect karta hai. Isliye positive model clear hai: truth + obedience + righteousness. 'Maghḍūb' aur 'ḍāllīn' ke broad concepts ko apne aas-paas ke har person/group par casually chipkana dangerous simplification hai. Ayat 7 khud kisi modern group ka naam nahi deti. Traditional tafsir literature mein specific historical referents ke reports milte hain, lekin un reports ko Quranic wording se distinguish karna chahiye. Core moral pattern ko aise samjho: knowing/recognizing truth but turning away is one failure mode; direction/guidance se bhatakna another. Individual life mein dono patterns overlap bhi kar sakte hain.",
+      "main_message":"Seek the path of people blessed by Allah and ask to avoid trajectories of rebellion/displeasure and misguidance.","why_it_matters":"Direction ko people/examples se concrete banata hai; insan ko role models aur failure modes dono dekhne padte hain.",
+      "important_arabic_words":[
+        {"arabic":"أَنْعَمْتَ","transliteration":"anʿamta","meaning":"You blessed / bestowed favor","root":"ن ع م","word_form":"Form IV perfect, 2nd singular","literal_meaning":"You bestowed favor","contextual_meaning":"Allah ki blessing/grace dena"},
+        {"arabic":"ٱلْمَغْضُوبِ","transliteration":"al-maghḍūb","meaning":"the one/ones subject to anger/displeasure","root":"غ ض ب","word_form":"passive participle","literal_meaning":"one upon whom anger is brought","contextual_meaning":"those characterized here by being under divine displeasure"},
+        {"arabic":"ٱلضَّآلِّينَ","transliteration":"aḍ-ḍāllīn","meaning":"those who are astray","root":"ض ل ل","word_form":"active participle plural","literal_meaning":"those who have gone astray","contextual_meaning":"people who have deviated/lost the right direction"}
+      ],
+      "grammar_rhetoric":"The path is specified positively first, then by two exclusions. This gives both a target and boundaries. The passive form al-maghḍūb focuses on the state of receiving displeasure, while aḍ-ḍāllīn is active and highlights the state of going astray.",
+      "historical_context":"Quran 4:69 provides a direct cross-link for 'those blessed': prophets, truthful, martyrs and righteous. Historical reports in tafsir traditions sometimes identify particular communities with the two negative descriptions, but this ayah itself does not name modern groups.",
+      "common_misunderstandings":"Sabse common mistake: apne disagreement wale har group ko 'maghḍūb' ya 'ḍāllīn' declare kar dena. Ayat 7 self-reflection aur moral trajectory ka lesson bhi hai.","what_it_does_not_mean":"It does not mean every person in a named community automatically has the same spiritual status, nor does it give permission for casual takfir/condemnation.",
+      "connected_ayat":"4:69 identifies the blessed categories. 2:142 onward discusses direction and the change of qiblah; 17:9 describes the Quran as guiding to what is most upright. 15:87 identifies seven oft-repeated verses, widely understood as Al-Fatihah in the cited Hadith tradition.",
+      "hadith":{"summary":"Sahih Muslim 395a closes the prayer dialogue with this request and Allah's response that this is for the servant and the servant will receive what he asks. Bukhari 5006 calls Al-Fatihah seven repeatedly recited verses and a magnificent surah.","reference":"Sahih Muslim 395a; Sahih al-Bukhari 5006","status":"Sahih"},
+      "history_evidence":"The historical value here is mainly textual/interpretive: 4:69 gives the positive categories directly in Quran. Archaeology cannot determine which modern individuals fall into metaphysical categories such as divine displeasure.",
+      "science":{"summary":"No scientific test can classify people into Quranic categories of divine displeasure or guidance. Psychology may study decision patterns, but it cannot establish Allah's judgment over an individual.","status":"Unsupported as a scientific classification","status_class":"status-unsupported"},
+      "real_life_example":"Agar tum career mein sirf knowledge collect karte raho lekin repeatedly unethical shortcut choose karo, knowledge alone tumhe straight path par guarantee nahi karta. Dusri taraf, sincere intention ho lekin facts check na karo to direction bhi distort ho sakti hai.",
+      "modern_world_connection":"Application, tafsir nahi: apne role models ko sirf success se nahi, truthfulness, responsibility, humility aur long-term character se judge karo. Aur apne aap ko bhi isi test par dekho.",
+      "future_or_forward_looking_context":"Repeated choices can shape a person's trajectory, but the ayah is not a scientific forecast of an individual's future. The practical lesson is to monitor direction before small deviations become stable patterns.",
+      "knowledge_status":"Known: 4:69 explicitly identifies several categories of those blessed. Debated: details of historical referents for the two negative categories in traditional commentary. Unknown: Allah's final judgment over specific modern individuals; humans should not pretend certainty.",
+      "qa":[{"q":"Kya ayat 7 kisi modern group ka naam leti hai?","a":"Nahi. Ayat general categories use karti hai. Modern labeling ko automatically ayah ka direct identification samajhna unwarranted hai."},{"q":"'Those blessed' ka Quranic cross-reference kya hai?","a":"4:69 names prophets, truthful, martyrs and righteous among those Allah has blessed."},{"q":"Kya sirf knowledge enough hai?","a":"Ayat ka flow knowledge + direction + lived path ko emphasize karta hai; information alone ko complete hidayah samajhna narrow hai."}],
+      "night_reflection":"Main kis type ke logon ko role model bana raha hoon—and kya unka character meri direction improve kar raha hai?","personal_action":"Ek role model choose karo aur uski ek character quality ko next 7 days consciously practice karo."
+    }
+  ],
+  "pdf_range_conclusion": {
+    "complete_summary":"Al-Fatihah 1–7 ka complete flow: Allah ka naam aur mercy → Allah ki hamd aur Rabbubiyyah → mercy → final accountability → worship aur dependence → hidayat ki dua → blessed path aur wrong trajectories se protection. Ye ek compact spiritual decision framework ki tarah bhi padhi ja sakti hai, lekin modern application ko original tafsir ka replacement nahi banana chahiye.",
+    "what_it_teaches":"Allah ko praise, mercy, authority aur accountability ke saath pehchano; phir apni worship aur direction ko Allah ke saath align karo.",
+    "why_it_matters":"Human life mein knowledge, intention, action, accountability aur direction sab linked hain.",
+    "what_i_should_do":"Namaz mein Al-Fatihah ko autopilot recitation ke bajaye meaning-aware dua ke taur par padhna seekho; daily decisions mein intention, ethical means aur guidance-seeking ko consciously use karo.",
+    "how_to_apply":"Har major decision: pause → intention check → facts → halal/ethical route → dua → action → outcome ko Allah par chhodna → mistakes par correction.",
+    "what_to_avoid":"Public-image morality, self-sufficiency illusion, hopelessness, careless labeling of other people, aur dua ko effort ka substitute samajhna.",
+    "one_sentence_reminder":"Pehle Allah ko pehchano, phir apni position pehchano, phir seedhe raaste ki dua karo aur us par chalne ki koshish karo."
+  },
+  "surah_conclusion": {
+    "complete_summary":"Al-Fatihah ek short Surah mein Quranic worldview ka doorway kholti hai: Allah kaun hai, banda kaun hai, relationship kya hai, accountability kahan hai, aur sabse basic human request kya honi chahiye—hidayat. Isliye isey sirf opening recitation nahi, ek repeated orientation prayer ke taur par study karna powerful hai.",
+    "what_it_teaches":"Praise, mercy, accountability, worship, dependence, guidance aur moral examples ko ek coherent flow mein jodta hai.",
+    "why_it_matters":"Ye Surah har prayer mein repeatedly aati hai aur Sahih Muslim 395a mein prayer ko servant-Allah dialogue ke roop mein present kiya gaya hai.",
+    "what_i_should_understand":"Mujhe har baar sirf information nahi, right direction bhi chahiye. Aur right direction ko character aur choices mein translate karna padega.",
+    "what_i_should_do":"Al-Fatihah ko meaning ke saath padhna, hidayat ki dua ko consciously feel karna, aur daily life mein integrity + effort + reliance practice karna.",
+    "how_to_apply":"Morning/day start mein intention, decision points par guidance, mistakes par correction, success par hamd, difficulty mein dua + action, aur night mein self-audit.",
+    "what_to_avoid":"Despair, arrogance, purely self-made success illusion, mechanical recitation, aur ayat 7 ko doosron ko casually condemn karne ke tool mein convert karna.",
+    "mindset_changes":["Success = effort plus many dependencies, not pure self-creation.","Mercy = hope with responsibility, not carelessness.","Tawakkul = reliance with responsible action, not passivity.","Hidayah = direction and lived practice, not information alone.","Accountability = private integrity matters even when no one is watching."],
+    "character_lessons":["humility","gratitude","integrity","responsibility","hope","discipline","self-correction"],
+    "action_plan":[
+      {"action":"Al-Fatihah meaning-aware recitation","how":"Har ayah ka basic meaning yaad karke namaz mein consciously connect karo","why":"Mechanical repetition ko reflective prayer mein convert karne ke liye","frequency":"Daily"},
+      {"action":"Private integrity check","how":"Roz ek hidden choice ko honestly review karo","why":"Ayat 4 ke accountability theme ko behavior mein lane ke liye","frequency":"Daily"},
+      {"action":"Dua + action pairing","how":"Important task ke liye dua ke saath written next step banao","why":"Ayat 5 ko passivity se bachakar responsible reliance mein translate karne ke liye","frequency":"As needed"},
+      {"action":"Role-model audit","how":"Ek person ki character quality choose karke practice karo","why":"Ayat 7 ke 'blessed path' ko concrete behavior se connect karne ke liye","frequency":"Weekly"}
+    ],
+    "one_sentence_lesson":"Al-Fatihah mujhe Allah ko pehchanne, apni dependence samajhne aur seedhe raaste par guidance maangne ka complete starting framework deti hai.",
+    "one_sentence_action":"Har din praise, honest self-audit, dua aur ek concrete right action ko pair karo."
+  },
+  "sources":[
+    {"type":"Quran text","title":"Quran.com · Surah Al-Fatihah","reference":"1:1–7; Arabic text and Surah info","url":"https://quran.com/1"},
+    {"type":"Quran cross-link","title":"Quran.com · An-Nisa 4:69","reference":"Those blessed: prophets, truthful, martyrs, righteous","url":"https://quran.com/4:69"},
+    {"type":"Quran cross-link","title":"Quran.com · Al-Hijr 15:87","reference":"Seven often-repeated verses and the great Quran","url":"https://quran.com/15:87"},
+    {"type":"Hadith","title":"Sahih Muslim 395a","reference":"Prayer divided between Allah and servant; responses to Al-Fatihah","url":"https://sunnah.com/muslim/4/41"},
+    {"type":"Hadith","title":"Sahih al-Bukhari 5006","reference":"Al-Fatihah as seven repeatedly recited verses and a magnificent surah","url":"https://sunnah.com/bukhari/66/28"},
+    {"type":"Hadith","title":"Sahih al-Bukhari 5736","reference":"Narration involving recitation of Al-Fatihah as ruqyah; included as separate Hadith context, not as a scientific efficacy claim","url":"https://sunnah.com/bukhari/76/51"}
+  ],
+  "quality_control": {
+    "quran_arabic_cross_checked":true,
+    "quran_text_source":"Quran.com Surah Al-Fatihah 1:1–7",
+    "ayah_count_checked":true,
+    "makki_classification_source_checked":true,
+    "hadith_sources_separated":true,
+    "copyright_safe_meanings":"Original Roman Urdu and English study meanings/paraphrases used rather than reproducing a full copyrighted translation.",
+    "science_claims_separated_from_theology":true,
+    "modern_application_labeled":true,
+    "common_misunderstandings_included":true,
+    "sajdah_markers_present":true,
+    "notes":"This JSON is designed for the reusable web renderer. Future PDFs can be added as new JSON files plus one manifest entry in data/library.json."
+  },
+  "progress": {"current_pdf":"QURAN-DEEP-001","completed_range":"1:1–7","next_pdf_suggested":"QURAN-DEEP-002","next_range_suggested":"2:1–20","surah_complete":true}
+}
