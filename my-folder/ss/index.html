@@ -506,10 +506,56 @@
 
   /* ============ PRINT / A4 ============ */
   @media print{
-    @page{
-      size: A4;
-      margin: 13mm 12mm 15mm 12mm;
+    
+  @page{
+    size: A4;
+    margin: 13mm 12mm 20mm 12mm;   /* bottom margin badhaya footer ke liye */
+
+    /* ✅ PAGE NUMBER — bottom center me */
+    @bottom-center{
+      content: "Page " counter(page) " of " counter(pages);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 9pt;
+      color: #64748b;
+      letter-spacing: .3px;
     }
+
+    /* ✅ Left side pe study title (optional but useful) */
+    @bottom-left{
+      content: "Quran Deep Study";
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 8.5pt;
+      color: #94a3b8;
+    }
+
+    /* ✅ Right side pe file id (optional) */
+    @bottom-right{
+      content: "AI-generated study · not a fatwa";
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 8pt;
+      color: #94a3b8;
+    }
+  }
+
+ .print-footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  /* ⚠️ Ye trick: position fixed print me har page pe repeat hota hai */
+  position: fixed;
+  bottom: -14mm;          /* page ke bottom margin area me le jao */
+  left: 0;
+  right: 0;
+
+  padding: 2mm 12mm 0 12mm;
+  font-size: 8.5pt;
+  color: #94a3b8;
+  font-family: 'Inter', system-ui, sans-serif;
+  border-top: 1px solid #e2e8f0;
+}
+.print-footer .pf-left{ color:#64748b; font-weight:600; }
+.print-footer .pf-right{ color:#94a3b8; }
     html,body{
       background:#fff !important;
       font-size:10.5pt;
@@ -610,7 +656,12 @@
 <div class="container" id="app">
   <div class="loading">Loading…</div>
 </div>
-
+<!-- Print-only footer (Chrome ke liye fallback branding) -->
+<div class="print-footer" aria-hidden="true">
+  <span class="pf-left">Quran Deep Study</span>
+  <span class="pf-mid"></span>
+  <span class="pf-right">AI-generated study · not a fatwa</span>
+</div>
 <footer class="foot no-print">
   Quran Deep Study · AI-generated research/teaching material — formal fatwa ya final tafsir edition nahi.
 </footer>
