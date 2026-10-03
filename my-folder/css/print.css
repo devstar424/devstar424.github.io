@@ -1,7 +1,118 @@
-@page{size:A4 portrait;margin:0}
-html,body{background:#fff!important;margin:0!important;padding:0!important}
-.study-toolbar{display:none!important}
-.paper-root{padding:0!important}
-.paper{width:210mm!important;height:297mm!important;min-height:297mm!important;margin:0!important;box-shadow:none!important;overflow:hidden!important;break-after:page;page-break-after:always}
-.paper:last-child{break-after:auto;page-break-after:auto}
-.error-box{display:none!important}
+/* =========================================
+   PRINT / SAVE AS PDF
+   EXACT A4
+   ========================================= */
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+
+  html,
+  body {
+    width: 210mm;
+    margin: 0;
+    padding: 0;
+    background: #ffffff !important;
+  }
+
+  /* Hide website controls */
+  .toolbar,
+  .topbar,
+  .navigation,
+  .nav-buttons,
+  .print-button,
+  .home-button,
+  .back-button,
+  button,
+  .screen-only {
+    display: none !important;
+  }
+
+  /* Every page = exactly one A4 */
+  .paper {
+    width: 210mm !important;
+    height: 297mm !important;
+
+    min-width: 210mm !important;
+    max-width: 210mm !important;
+
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+
+    margin: 0 !important;
+    padding:
+      16mm
+      16mm
+      18mm
+      16mm !important;
+
+    background: #ffffff !important;
+
+    box-shadow: none !important;
+
+    overflow: hidden !important;
+
+    position: relative;
+
+    page-break-after: always;
+    break-after: page;
+
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Last page doesn't need forced blank page after it */
+  .paper:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  /* Do not let content create another page */
+  .paper-content {
+    height: 100% !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* Don't split cards */
+  .study-block,
+  .ayah-card,
+  .info-card,
+  .word-card,
+  .qna-card,
+  .reflection-card,
+  .section-card {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Footer */
+  .page-footer {
+    position: absolute !important;
+
+    left: 16mm !important;
+    right: 16mm !important;
+    bottom: 7mm !important;
+
+    height: 7mm !important;
+
+    display: flex !important;
+
+    border-top: 0.3mm solid #d8dde3;
+  }
+
+  /* Images must never overflow */
+  img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+  }
+
+  /* Links should look normal in PDF */
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+}
