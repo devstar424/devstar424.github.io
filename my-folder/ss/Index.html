@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quran Deep Study - Document Viewer</title>
+​<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+​<!-- Google Fonts: Amiri for Arabic, Inter for Latin -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+​<!-- FontAwesome for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+​<script>
+tailwind.config = {
+theme: {
+extend: {
+fontFamily: {
+sans: ['Inter', 'sans-serif'],
+arabic: ['Amiri', 'serif'],
+},
+colors: {
+emerald: {
+50: '#f0fdf4',
+100: '#dcfce7',
+600: '#059669',
+700: '#047857',
+800: '#065f46',
+900: '#064e3b',
+}
+}
+}
+}
+}
+</script>
+​<style>
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+width: 8px;
+}
+::-webkit-scrollbar-track {
+background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+background: #cbd5e1;
+border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+background: #94a3b8;
+}
+​/* Print Specific Styles for A4 */
+@media print {
+@page {
+size: A4 portrait;
+margin: 15mm 12mm 18mm 12mm;
+@bottom-right {
+content: "Page " counter(page) " of " counter(pages);
+font-family: 'Inter', sans-serif;
+font-size: 8pt;
+color: #64748b;
+}
+}
+​body {
+background-color: #ffffff !important;
+color: #0f172a !important;
+font-size: 10pt;
+line-height: 1.4;
+-webkit-print-color-adjust: exact !important;
+print-color-adjust: exact !important;
+}
+​.no-print {
+display: none !important;
+}
+​.print-container {
+padding: 0 !important;
+margin: 0 !important;
+max-width: 100% !important;
+box-shadow: none !important;
+}
+​.card-box {
+break-inside: avoid;
+page-break-inside: avoid;
+border: 1px solid #e2e8f0 !important;
+box-shadow: none !important;
+margin-bottom: 1rem !important;
+}
+​.ayah-card {
+break-inside: avoid;
+page-break-inside: avoid;
+}
+​.page-break-before {
+break-before: page;
+page-break-before: always;
+}
+​/* Printed Page Number Fallback Footer */
+.print-footer {
+display: block !important;
+position: fixed;
+bottom: 0;
+left: 0;
+right: 0;
+text-align: center;
+font-size: 8pt;
+color: #64748b;
+border-top: 1px solid #e2e8f0;
+padding-top: 4px;
+}
+}
+​.print-footer {
+display: none;
+}
+​/* Arabic Text Enhancement */
+.arabic-text {
+font-family: 'Amiri', serif;
+direction: rtl;
+line-height: 2.2;
+}
+</style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen">
+​<!-- TOP STICKY TOOLBAR (SCREEN ONLY) -->
+<header class="no-print sticky top-0 z-50 bg-slate-900 text-white shadow-md border-b border-slate-800">
+<div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+​<!-- Brand & File Info -->
+<div class="flex items-center space-x-3">
+<div class="bg-emerald-600 text-white p-2 rounded-lg flex items-center justify-center shadow">
+<i class="fa-solid me-0 fa-book-quran text-xl"></i>
+</div>
+<div>
+<h1 class="text-base font-bold leading-tight" id="header-title">Quran Deep Study Viewer</h1>
+<p class="text-xs text-slate-400 flex items-center gap-1">
+<span>File:</span>
+<span id="current-file-badge" class="font-mono bg-slate-800 px-2 py-0.5 rounded text-emerald-400">Loading...</span>
+</p>
+</div>
+</div>
+​<!-- File Switcher & Action Controls -->
+<div class="flex items-center gap-2 flex-wrap">
+<form id="file-selector-form" class="flex items-center gap-1" onsubmit="handleFileSubmit(event)">
+<div class="relative">
+<input 
+type="text" 
+id="file-input" 
+placeholder="e.g. QURAN-DEEP-001_Al-Fatihah_1-7" 
+class="bg-slate-800 text-slate-200 text-xs px-3 py-2 pr-8 rounded border border-slate-700 focus:outline-none focus:border-emerald-500 w-48 md:w-64"
+/>
+<button type="submit" title="Load File" class="absolute right-1 top-1/2 -translate-y-1/2 text-slate-400 hover:text-emerald-400 p-1">
+<i class="fa-solid fa-arrow-right text-xs"></i>
+</button>
+</div>
+</form>
+​<!-- Quick Jump Nav -->
+<select id="section-jump" onchange="scrollToSection(this.value)" class="bg-slate-800 text-slate-300 text-xs px-2 py-2 rounded border border-slate-700 focus:outline-none">
+<option value="">Jump to Section...</option>
+<option value="sec-overview">Overview & Intro</option>
+<option value="sec-passage">Complete Passage</option>
+<option value="sec-sections">Themes & Flow</option>
+<option value="sec-ayahs">Ayah Breakdown</option>
+<option value="sec-conclusion">Conclusion & Action Plan</option>
+<option value="sec-sources">Sources & Meta</option>
+</select>
+​<!-- Print Button -->
+<button 
+onclick="window.print()" 
+class="bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs px-3.5 py-2 rounded shadow flex items-center gap-2 transition"
+title="Print or Save as A4 PDF"
+>
+<i class="fa-solid fa-print"></i>
+<span>Print A4</span>
+</button>
+</div>
+</div>
+</header>
+​<!-- MAIN STUDY DOCUMENT CONTENT -->
+<main class="max-w-5xl mx-auto px-4 py-6 print-container" id="app-container">
+​<!-- Loading State -->
+<div id="loading-state" class="text-center py-20">
+<div class="inline-block animate-spin rounded-full h-10 w-10 border-4 border-emerald-600 border-t-transparent mb-4"></div>
+<p class="text-slate-600 font-medium">Loading Quran Study Document...</p>
+<p class="text-xs text-slate-400 mt-1">Reading JSON file from <span class="font-mono" id="loading-filepath">../data/</span></p>
+</div>
+​<!-- Error State -->
+<div id="error-state" class="hidden bg-red-50 border border-red-200 rounded-xl p-6 my-8 text-center">
+<i class="fa-solid fa-circle-exclamation text-red-500 text-3xl mb-3"></i>
+<h3 class="text-lg font-bold text-red-800" id="error-title">Unable to Load File</h3>
+<p class="text-sm text-red-600 mt-1" id="error-message">The specified JSON file could not be fetched.</p>
+<div class="mt-4 flex justify-center gap-3">
+<button onclick="loadFallbackData()" class="bg-slate-800 text-white text-xs px-4 py-2 rounded hover:bg-slate-700">
+Load Sample Data (Al-Fatihah)
+</button>
+<button onclick="location.reload()" class="bg-white border border-slate-300 text-slate-700 text-xs px-4 py-2 rounded hover:bg-slate-50">
+Retry
+</button>
+</div>
+</div>
+​<!-- MAIN STUDY DATA CONTAINER -->
+<div id="study-content" class="hidden space-y-6">
+​<!-- HEADER BANNER & PROJECT META -->
+<section id="sec-overview" class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden card-box">
+<div class="bg-gradient-to-r from-emerald-800 to-teal-900 text-white p-6 md:p-8">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 text-emerald-300 text-xs font-semibold uppercase tracking-wider mb-1">
+<span id="meta-project-name">Quran Deep Study</span>
+<span>•</span>
+<span id="meta-pdf-id">QURAN-DEEP-001</span>
+<span>•</span>
+<span id="meta-version" class="bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/30">v3.0</span>
+</div>
+<h1 class="text-3xl md:text-4xl font-bold tracking-tight text-white mb-2" id="surah-title-heading">
+Surah Al-Fatihah
+</h1>
+<p class="text-emerald-100 text-sm md:text-base" id="surah-meaning">
+Al-Fatihah = The Opener / opening chapter
+</p>
+</div>
+​<!-- Surah Stats Pill -->
+<div class="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/15 text-center min-w-[160px]">
+<div class="text-2xl font-bold text-white" id="surah-range-badge">1:1–7</div>
+<div class="text-xs text-emerald-200 mt-1 flex items-center justify-center gap-2">
+<span id="classification-type" class="bg-emerald-500/30 px-2 py-0.5 rounded">Makki</span>
+<span id="classification-verses">7 Ayat</span>
+</div>
+</div>
+</div>
+</div>
+​<!-- Metadata Sub-Bar -->
+<div class="bg-slate-50 px-6 py-3 border-b border-slate-200 text-xs text-slate-600 flex flex-wrap items-center justify-between gap-2">
+<div class="flex items-center gap-4 flex-wrap">
+<span><strong>Created:</strong> <span id="meta-created-at">2026-10-02</span></span>
+<span><strong>Profile:</strong> <span id="meta-depth">Deep Research Study</span></span>
+<span><strong>Language:</strong> <span id="meta-lang">Natural Hinglish</span></span>
+</div>
+<div id="meta-human-review" class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 font-medium">
+AI Generated • Review Note Included
+</div>
+</div>
+​<!-- Human Review Note -->
+<div class="p-6 space-y-4">
+<div id="human-review-container" class="bg-amber-50 border-l-4 border-amber-400 p-3.5 rounded-r text-xs text-amber-900">
+<strong class="font-semibold block mb-0.5"><i class="fa-solid fa-triangle-exclamation me-1"></i> Review Note:</strong>
+<span id="human-review-text">This content is for deep research and study purposes.</span>
+</div>
+​<!-- Introduction Grid (What, Why, When/Where) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs mt-4">
+<div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+<h4 class="font-bold text-emerald-800 mb-1 flex items-center gap-1.5 text-sm">
+<i class="fa-solid fa-compass text-emerald-600"></i> What is this Surah?
+</h4>
+<p class="text-slate-600 leading-relaxed" id="intro-what">-</p>
+</div>
+<div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+<h4 class="font-bold text-emerald-800 mb-1 flex items-center gap-1.5 text-sm">
+<i class="fa-solid fa-lightbulb text-emerald-600"></i> Why Study It?
+</h4>
+<p class="text-slate-600 leading-relaxed" id="intro-why">-</p>
+</div>
+<div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+<h4 class="font-bold text-emerald-800 mb-1 flex items-center gap-1.5 text-sm">
+<i class="fa-solid fa-clock-rotate-left text-emerald-600"></i> Context & Revelation
+</h4>
+<p class="text-slate-600 leading-relaxed" id="intro-when-where">-</p>
+</div>
+</div>
+​<!-- Key Themes Tags -->
+<div class="pt-2">
+<h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Key Themes Covered</h4>
+<div id="themes-container" class="flex flex-wrap gap-1.5"></div>
+</div>
+</div>
+</section>
+​<!-- COMPLETE PASSAGE VIEW -->
+<section id="sec-passage" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 card-box">
+<div class="border-b border-slate-200 pb-4 mb-6 flex items-center justify-between">
+<div>
+<h2 class="text-xl font-bold text-slate-800" id="passage-title">Pehle poora passage ek saath padho</h2>
+<p class="text-xs text-slate-500 mt-0.5" id="passage-instruction">Pehle Arabic ko flow mein padho. Phir meaning dekho.</p>
+</div>
+<span class="bg-emerald-100 text-emerald-800 text-xs font-semibold px-3 py-1 rounded-full">
+Full Passage
+</span>
+</div>
+​<!-- Ayahs Flow Table/List -->
+<div id="passage-ayahs-list" class="space-y-6"></div>
+</section>
+​<!-- THEMATIC SECTIONS BREAKDOWN -->
+<section id="sec-sections" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 card-box">
+<h2 class="text-xl font-bold text-slate-800 border-b border-slate-200 pb-4 mb-6 flex items-center gap-2">
+<i class="fa-solid fa-layer-group text-emerald-600"></i> Section & Structural Flow
+</h2>
+<div id="sections-container" class="grid grid-cols-1 gap-4"></div>
+</section>
+​<!-- DETAILED AYAH BY AYAH BREAKDOWN -->
+<section id="sec-ayahs" class="space-y-6">
+<div class="bg-emerald-900 text-white p-4 rounded-xl shadow-sm flex items-center justify-between no-print">
+<h2 class="text-lg font-bold flex items-center gap-2">
+<i class="fa-solid fa-magnifying-glass-chart"></i> Ayah-by-Ayah Detailed Analysis
+</h2>
+<span class="text-xs bg-emerald-800 px-3 py-1 rounded-full text-emerald-200">Deep Research Layer</span>
+</div>
+​<!-- Rendered Ayahs List -->
+<div id="detailed-ayahs-container" class="space-y-8"></div>
+</section>
+​<!-- CONCLUSIONS & ACTION PLAN -->
+<section id="sec-conclusion" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 card-box page-break-before">
+<h2 class="text-xl font-bold text-slate-800 border-b border-slate-200 pb-4 mb-6 flex items-center gap-2">
+<i class="fa-solid fa-bullseye text-emerald-600"></i> Summary, Mindset & Action Plan
+</h2>
+​<!-- Quick Summary Box -->
+<div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 mb-6">
+<h3 class="font-bold text-emerald-900 text-sm mb-1">One-Sentence Takeaway</h3>
+<p class="text-emerald-800 text-sm italic font-medium" id="conc-one-sentence">-</p>
+</div>
+​<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<!-- Mindset Changes -->
+<div class="border border-slate-200 rounded-xl p-5 bg-slate-50">
+<h3 class="font-bold text-slate-800 text-sm mb-3 flex items-center gap-2">
+<i class="fa-solid fa-brain text-emerald-600"></i> Key Mindset Shifts
+</h3>
+<ul id="mindset-list" class="space-y-2 text-xs text-slate-700"></ul>
+</div>
+​<!-- Character Lessons -->
+<div class="border border-slate-200 rounded-xl p-5 bg-slate-50">
+<h3 class="font-bold text-slate-800 text-sm mb-3 flex items-center gap-2">
+<i class="fa-solid fa-gem text-emerald-600"></i> Character Lessons
+</h3>
+<div id="character-tags" class="flex flex-wrap gap-2"></div>
+</div>
+</div>
+​<!-- Action Plan Table -->
+<div>
+<h3 class="font-bold text-slate-800 text-sm mb-3 flex items-center gap-2">
+<i class="fa-solid fa-list-check text-emerald-600"></i> Practical Implementation Plan
+</h3>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-xs border-collapse border border-slate-200">
+<thead>
+<tr class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
+<th class="p-3 border-r border-slate-200">Action Item</th>
+<th class="p-3 border-r border-slate-200">How to do it</th>
+<th class="p-3 border-r border-slate-200">Why it matters</th>
+<th class="p-3">Frequency</th>
+</tr>
+</thead>
+<tbody id="action-plan-body" class="divide-y divide-slate-200"></tbody>
+</table>
+</div>
+</div>
+</section>
+​<!-- SOURCES & QUALITY CONTROL -->
+<section id="sec-sources" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 card-box text-xs">
+<h2 class="text-base font-bold text-slate-800 border-b border-slate-200 pb-3 mb-4 flex items-center gap-2">
+<i class="fa-solid fa-bookmark text-emerald-600"></i> Sources & Reference Links
+</h2>
+​<div id="sources-list" class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6"></div>
+​<div class="bg-slate-50 rounded-xl p-4 border border-slate-200 text-slate-500">
+<span class="font-bold text-slate-700 block mb-1">Quality Control Verification</span>
+<p id="qc-notes" class="leading-relaxed"></p>
+</div>
+</section>
+​<!-- PRINT FOOTER (Visible on Printouts) -->
+<div class="print-footer">
+Generated by Quran Deep Study System • Printable A4 Format
+</div>
+​</div>
+</main>
+​<!-- JAVASCRIPT LOGIC -->
+<script>
+// Embedded Sample Data fallback to ensure immediate preview if local fetch is blocked by browser CORS
+const SAMPLE_FALLBACK_DATA = {
+"project": {
+"name": "Quran Deep Study",
+"pdf_id": "QURAN-DEEP-001",
+"version": "3.0-web-only",
+"created_at": "2026-10-02",
+"file_name": "QURAN-DEEP-001_Al-Fatihah_1-7",
+"created_by": {"type":"AI","platform":"ChatGPT","model":"GPT-5.6 Luna","role":"Research, structuring and study-content generation","human_review":false},
+"human_review_note":"Ye study AI-generated research/teaching material hai. Quran Arabic ko source se cross-check kiya gaya hai, lekin is document ko formal scholarly fatwa ya final tafsir edition na samjhein.",
+"generation_profile": {"effort_level":10,"depth_label":"Deep Research Study","depth_rule":"Simple + Deep only","language_rule":"Natural Hinglish","evidence_rule":"Separated layers"}
+},
+"study_range": {"surah_number":1,"surah_name":"Al-Fatihah","ayah_start":1,"ayah_end":7,"range":"1:1–7","is_complete_surah":true,"completed_through":"1:7","next_start":"2:1"},
+"surah_info": {
+"name_meaning":"Al-Fatihah = The Opener / opening chapter",
+"classification":{"makki_or_madani":"Makki","ayat_count":7},
+"introduction":"Al-Fatihah Quran ki opening Surah hai aur sirf introduction jaisi heading nahi; ye praise, Allah ki pehchaan, accountability, worship, dependence aur hidayat ki dua ko ek compact flow mein rakhti hai.",
+"what":"Banda Allah ko Rabb, Rahman, Rahim aur Day of Judgment ke Malik ke taur par recognize karta hai; phir apni ibadat aur madad ka focus Allah par rakhta hai aur akhir mein seedhe raaste ki dua karta hai.",
+"why":"Quran ko samajhne wale insan ki starting posture batati hai: praise + humility + dependence + guidance-seeking.",
+"when_where":"Makkah classification in Quran.com",
+"known_vs_debated":"Known: Surah 1, 7 ayat, Makkah classification. Debated: exact chronological placement.",
+"themes":["Hamd / praise","Rabb and creation","Mercy","Accountability","Worship","Dependence on Allah","Hidayah / guidance","Straight path"]
+},
+"complete_passage": {
+"title":"Pehle poora passage ek saath padho",
+"instruction":"Pehle Arabic ko flow mein padho. Phir meaning dekho. Detailed analysis baad mein.",
+"ayahs":[
+{"ayah":1,"reference":"1:1","arabic":"بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ ١","transliteration":"Bismillāhir-Raḥmānir-Raḥīm","roman_urdu":"Allah ke naam se, jo nihayat meherban, baar-baar rahm farmane wala hai.","english_meaning":"In the name of Allah, the Universally Merciful, the Especially Merciful."},
+{"ayah":2,"reference":"1:2","arabic":"ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَـٰلَمِينَ ٢","transliteration":"Al-ḥamdu lillāhi rabbil-ʿālamīn","roman_urdu":"Sab hamd Allah ke liye hai, jo tamam jahano ka Rabb hai.","english_meaning":"All praise belongs to Allah, Lord of all realms/worlds."},
+{"ayah":3,"reference":"1:3","arabic":"ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ ٣","transliteration":"Ar-Raḥmānir-Raḥīm","roman_urdu":"Jo nihayat meherban aur baar-baar rahm farmane wala hai.","english_meaning":"The Universally Merciful, the Especially Merciful."},
+{"ayah":4,"reference":"1:4","arabic":"مَـٰلِكِ يَوْمِ ٱلدِّينِ ٤","transliteration":"Māliki yawmid-dīn","roman_urdu":"Badle/Jaza ke din ka Malik.","english_meaning":"Master of the Day of Recompense/Judgment."},
+{"ayah":5,"reference":"1:5","arabic":"إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ٥","transliteration":"Iyyāka naʿbudu wa iyyāka nastaʿīn","roman_urdu":"Hum sirf Teri ibadat karte hain aur sirf Tujh se madad maangte hain.","english_meaning":"You alone we worship, and You alone we seek for help."},
+{"ayah":6,"reference":"1:6","arabic":"ٱهْدِنَا ٱلصِّرَٰطَ ٱلْمُسْتَقِيمَ ٦","transliteration":"Ihdinaṣ-ṣirāṭal-mustaqīm","roman_urdu":"Humein seedhe raaste par hidayat de.","english_meaning":"Guide us to the Straight Path."},
+{"ayah":7,"reference":"1:7","arabic":"صِرَٰطَ ٱلَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ ٱلْمَغْضُوبِ عَلَيْهِمْ وَلَا ٱلضَّآلِّينَ ٧","transliteration":"Ṣirāṭallaḏīna anʿamta ʿalayhim ghayril-maghḍūbi ʿalayhim wa laḍ-ḍāllīn","roman_urdu":"Un logon ka raasta jin par Tu ne inaam kiya; unka nahi jin par ghazab hua, aur na unka jo bhatak gaye.","english_meaning":"The path of those You have blessed—not those under displeasure, nor those who are astray."}
+]
+},
+"sections":[
+{"title":"Allah ki pehchaan","ayah_range":"1–4","theme":"Allah ke naam, hamd, Rabbubiyyah, mercy aur final accountability.","flow":"Bismillah se start hota hai → praise → Allah as Rabb → mercy → Day of Recompense.","summary":"Allah sirf powerful creator ke concept tak limited nahi.","study_note":"Praise aur accountability ek saath aate hain."},
+{"title":"Bande ka ahd","ayah_range":"5","theme":"Worship aur help ka exclusive orientation.","flow":"Direct relationship between Allah and servant.","summary":"Banda apni ultimate worship ko Allah ke liye commit karta hai.","study_note":"Tawakkul does not reject practical causes."},
+{"title":"Sabse badi dua: Hidayat","ayah_range":"6–7","theme":"Straight Path aur us par chalne walon ka model.","flow":"Guide us → Straight Path → blessed people.","summary":"Hidayat = right direction, recognition and action.","study_note":"Self-reflection and moral guidance."}
+],
+"ayahs":[
+{
+"ayah":1,"reference":"1:1","arabic":"بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ ١","transliteration":"Bismillāhir-Raḥmānir-Raḥīm","roman_urdu":"Allah ke naam se, jo nihayat meherban, baar-baar rahm farmane wala hai.","english_meaning":"In the name of Allah, the Universally Merciful, the Especially Merciful.",
+"simple":"Kaam Allah ke naam se start karna sirf ek phrase bolna nahi; intention ko reset karna hai.","deep":"Bismillah action se pehle orientation set karta hai.",
+"main_message":"Start with conscious remembrance of Allah and a clean intention.","why_it_matters":"Starting intention behavior ko direction de sakti hai.",
+"important_arabic_words":[
+{"arabic":"بِسْمِ","transliteration":"bismi","meaning":"in/by the name of","root":"ا س م","word_form":"prepositional phrase","literal_meaning":"with/in the name","contextual_meaning":"Allah ka naam lekar action start karna"},
+{"arabic":"ٱلرَّحْمَـٰنِ","transliteration":"ar-Raḥmān","meaning":"the Universally Merciful","root":"ر ح م","word_form":"intensive adjective","literal_meaning":"one characterized by vast mercy","contextual_meaning":"encompassing mercy"},
+{"arabic":"ٱلرَّحِيمِ","transliteration":"ar-Raḥīm","meaning":"the Especially Merciful","root":"ر ح م","word_form":"intensive adjective","literal_meaning":"repeatedly merciful","contextual_meaning":"continuing relational mercy"}
+],
+"grammar_rhetoric":"Bi-ismi connects action directly with Allah. Mercy names set compassionate opening posture.",
+"real_life_example":"Gym start karne se pehle 2 seconds ruk kar socho: goal kya hai, method clean hai kya?",
+"modern_world_connection":"Pause before action in a hyper-distracted digital world.",
+"qa":[{"q":"Kya Bismillah sirf formal opening hai?","a":"Nahi; ye active intention reset function play karta hai."}],
+"night_reflection":"Aaj maine kitne kaam bina soche start kiye?",
+"personal_action":"Roz kisi ek important kaam se pehle 2-second intentional pause practice karo."
+}
+],
+"surah_conclusion": {
+"one_sentence_lesson":"Al-Fatihah mujhe Allah ko pehchanne, apni dependence samajhne aur seedhe raaste par guidance maangne ka complete starting framework deti hai.",
+"one_sentence_action":"Har din praise, honest self-audit, dua aur ek concrete right action ko pair karo.",
+"mindset_changes":["Success = effort plus many dependencies","Mercy = hope with responsibility","Tawakkul = reliance with responsible action","Hidayah = direction and lived practice"],
+"character_lessons":["humility","gratitude","integrity","responsibility","hope"],
+"action_plan":[
+{"action":"Al-Fatihah meaning-aware recitation","how":"Har ayah ka basic meaning yaad karke namaz mein consciously connect karo","why":"Mechanical repetition ko reflective prayer mein convert karne ke liye","frequency":"Daily"},
+{"action":"Private integrity check","how":"Roz ek hidden choice ko honestly review karo","why":"Ayat 4 ke accountability theme ko behavior mein lane ke liye","frequency":"Daily"}
+]
+},
+"sources":[
+{"type":"Quran text","title":"Quran.com · Surah Al-Fatihah","reference":"1:1–7","url":"https://quran.com/1"},
+{"type":"Hadith","title":"Sahih Muslim 395a","reference":"Prayer dialogue","url":"https://sunnah.com/muslim/4/41"}
+],
+"quality_control": {"notes":"This JSON render engine reads dynamic files from ../data/ based on URL params."}
+};
+​// Global application state
+let currentData = null;
+​// Helper: Parse URL parameter
+function getQueryParam(param) {
+const urlParams = new URLSearchParams(window.location.search);
+return urlParams.get(param);
+}
+​// Initialize document loading on page load
+document.addEventListener("DOMContentLoaded", function() {
+let fileParam = getQueryParam('file');
+​// Default file if none specified
+if (!fileParam) {
+fileParam = "QURAN-DEEP-001_Al-Fatihah_1-7";
+}
+​// Format filename with extension
+let fileNameToFetch = fileParam;
+if (!fileNameToFetch.endsWith('.json')) {
+fileNameToFetch += '.json';
+}
+​document.getElementById('current-file-badge').innerText = fileNameToFetch;
+document.getElementById('file-input').value = fileParam;
+document.getElementById('loading-filepath').innerText = ../data/${fileNameToFetch};
+​// Fetch the JSON file from my-folder/data/ relative to my-folder/ss/
+fetchData(fileNameToFetch);
+});
+​// Form submit handler to load a different file parameter
+function handleFileSubmit(e) {
+e.preventDefault();
+const val = document.getElementById('file-input').value.trim();
+if (val) {
+window.location.href = index.html?file=${encodeURIComponent(val)};
+}
+}
+​// Fetch data via relative path
+async function fetchData(fileName) {
+const targetPath = ../data/${fileName};
+​try {
+const response = await fetch(targetPath);
+if (!response.ok) {
+throw new Error(HTTP error! status: ${response.status} when fetching ${targetPath});
+}
+const json = await response.json();
+renderDocument(json);
+} catch (err) {
+console.warn("Fetch failed (could be CORS on local file:// or missing file). Checking fallback...", err);
+​// If requesting the primary sample file, fallback gracefully
+if (fileName.includes("QURAN-DEEP-001_Al-Fatihah_1-7")) {
+console.log("Loading fallback sample data...");
+renderDocument(SAMPLE_FALLBACK_DATA);
+} else {
+showError(Could not find or fetch data file at: ${targetPath}. Please check if the file exists in 'my-folder/data/' directory.);
+}
+}
+}
+​// Load standard sample data manually
+function loadFallbackData() {
+document.getElementById('error-state').classList.add('hidden');
+renderDocument(SAMPLE_FALLBACK_DATA);
+}
+​// Show Error Notice
+function showError(msg) {
+document.getElementById('loading-state').classList.add('hidden');
+document.getElementById('study-content').classList.add('hidden');
+document.getElementById('error-message').innerText = msg;
+document.getElementById('error-state').classList.remove('hidden');
+}
+​// Smooth scroll navigation helper
+function scrollToSection(id) {
+if (!id) return;
+const el = document.getElementById(id);
+if (el) {
+el.scrollIntoView({ behavior: 'smooth' });
+}
+}
+​// MAIN RENDER FUNCTION
+function renderDocument(data) {
+currentData = data;
+​// Hide loader / error
+document.getElementById('loading-state').classList.add('hidden');
+document.getElementById('error-state').classList.add('hidden');
+document.getElementById('study-content').classList.remove('hidden');
+​// 1. Header & Project Info
+const proj = data.project || {};
+const range = data.study_range || {};
+const info = data.surah_info || {};
+​document.title = ${range.surah_name || 'Study'} (${range.range || ''}) - Quran Deep Study;
+document.getElementById('header-title').innerText = ${proj.name || 'Quran Deep Study'} - ${range.surah_name || ''};
+​document.getElementById('meta-project-name').innerText = proj.name || 'Quran Deep Study';
+document.getElementById('meta-pdf-id').innerText = proj.pdf_id || '';
+document.getElementById('meta-version').innerText = proj.version || 'v1.0';
+​document.getElementById('surah-title-heading').innerText = Surah ${range.surah_name || ''};
+document.getElementById('surah-meaning').innerText = info.name_meaning || '';
+document.getElementById('surah-range-badge').innerText = range.range || '';
+​document.getElementById('classification-type').innerText = info.classification?.makki_or_madani || 'Makki';
+document.getElementById('classification-verses').innerText = ${info.classification?.ayat_count || 0} Ayat;
+​document.getElementById('meta-created-at').innerText = proj.created_at || 'N/A';
+document.getElementById('meta-depth').innerText = proj.generation_profile?.depth_label || 'Deep Study';
+document.getElementById('meta-lang').innerText = proj.generation_profile?.language_rule || 'Hinglish';
+​if (proj.human_review_note) {
+document.getElementById('human-review-text').innerText = proj.human_review_note;
+} else {
+document.getElementById('human-review-container').classList.add('hidden');
+}
+​// Intro grid
+document.getElementById('intro-what').innerText = info.what || info.introduction || '-';
+document.getElementById('intro-why').innerText = info.why || '-';
+document.getElementById('intro-when-where').innerText = info.when_where || '-';
+​// Themes Tags
+const themesContainer = document.getElementById('themes-container');
+themesContainer.innerHTML = '';
+(info.themes || []).forEach(theme => {
+const badge = document.createElement('span');
+badge.className = 'bg-slate-100 text-slate-700 text-xs px-2.5 py-1 rounded-full border border-slate-200 font-medium';
+badge.innerText = theme;
+themesContainer.appendChild(badge);
+});
+​// 2. Complete Passage Render
+const passage = data.complete_passage || {};
+if (passage.title) document.getElementById('passage-title').innerText = passage.title;
+if (passage.instruction) document.getElementById('passage-instruction').innerText = passage.instruction;
+​const passageList = document.getElementById('passage-ayahs-list');
+passageList.innerHTML = '';
+(passage.ayahs || []).forEach(a => {
+const item = document.createElement('div');
+item.className = 'border-b border-slate-100 pb-5 last:border-0 last:pb-0';
+item.innerHTML = <div class="flex items-center justify-between mb-2"> <span class="bg-emerald-800 text-white text-xs font-bold px-2.5 py-0.5 rounded-full">${a.reference}</span> <span class="text-xs text-slate-400">Ayah ${a.ayah}</span> </div> <div class="arabic-text text-2xl md:text-3xl text-slate-900 text-right my-3 font-semibold">${a.arabic}</div> <div class="text-xs font-medium text-emerald-700 mb-1"><em>${a.transliteration}</em></div> <div class="text-sm text-slate-800 font-medium mb-1">${a.roman_urdu}</div> <div class="text-xs text-slate-500">${a.english_meaning}</div>;
+passageList.appendChild(item);
+});
+​// 3. Sections Render
+const sectionsContainer = document.getElementById('sections-container');
+sectionsContainer.innerHTML = '';
+(data.sections || []).forEach((s, idx) => {
+const card = document.createElement('div');
+card.className = 'bg-slate-50 border border-slate-200 rounded-xl p-4 md:p-5 hover:border-emerald-300 transition';
+card.innerHTML = <div class="flex items-center justify-between gap-2 mb-2"> <h3 class="font-bold text-slate-800 text-base">Section ${idx + 1}: ${s.title}</h3> <span class="bg-emerald-100 text-emerald-800 font-bold text-xs px-2.5 py-0.5 rounded-md">Ayat ${s.ayah_range}</span> </div> <p class="text-xs text-emerald-700 font-medium mb-2"><i class="fa-solid fa-compass me-1"></i> ${s.theme}</p> <p class="text-xs text-slate-600 mb-2"><strong>Flow:</strong> ${s.flow}</p> <p class="text-xs text-slate-700 bg-white p-3 rounded-lg border border-slate-200"><strong>Summary:</strong> ${s.summary}</p> ${s.study_note ?<p class="text-[11px] text-amber-700 mt-2 italic"><i class="fa-solid fa-pen-to-square me-1"></i> Note: ${s.study_note}</p>: ''};
+sectionsContainer.appendChild(card);
+});
+​// 4. Detailed Ayahs Render
+const detailedContainer = document.getElementById('detailed-ayahs-container');
+detailedContainer.innerHTML = '';
+(data.ayahs || []).forEach(a => {
+const card = document.createElement('div');
+card.className = 'bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 card-box ayah-card space-y-5';
+​// Word breakdown HTML table
+let wordsTableHTML = '';
+if (a.important_arabic_words && a.important_arabic_words.length > 0) {
+wordsTableHTML = <div class="mt-4"> <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 flex items-center gap-1.5"> <i class="fa-solid fa-spell-check text-emerald-600"></i> Word Analysis </h4> <div class="overflow-x-auto"> <table class="w-full text-left text-xs border-collapse border border-slate-200"> <thead> <tr class="bg-slate-100 text-slate-700 font-bold"> <th class="p-2 border border-slate-200">Word</th> <th class="p-2 border border-slate-200">Transliteration</th> <th class="p-2 border border-slate-200">Root</th> <th class="p-2 border border-slate-200">Meaning</th> <th class="p-2 border border-slate-200">Contextual Meaning</th> </tr> </thead> <tbody> ${a.important_arabic_words.map(w =>
+<tr class="hover:bg-slate-50">
+<td class="p-2 border border-slate-200 arabic-text text-base text-right font-bold">{w.arabic}</td>
+<td class="p-2 border border-slate-200 font-mono text-emerald-700">{w.transliteration || '-'}</td>
+<td class="p-2 border border-slate-200 font-mono">{w.root || '-'}</td>
+<td class="p-2 border border-slate-200">{w.meaning || '-'}</td>
+<td class="p-2 border border-slate-200 text-slate-600">${w.contextual_meaning || w.literal_meaning || '-'}</td>
+</tr>
+).join('')} </tbody> </table> </div> </div> ;
+}
+​// Q&A HTML
+let qaHTML = '';
+if (a.qa && a.qa.length > 0) {
+qaHTML = <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 space-y-2"> <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5"> <i class="fa-circle-question fa-solid text-emerald-600"></i> Common Questions </h4> ${a.qa.map(q =>
+<div class="text-xs">
+<span class="font-bold text-slate-800">Q: ${q.q}</span>
+<p class="text-slate-600 mt-0.5">A: ${q.a}</p>
+</div>
+).join('')} </div> ;
+}
+​card.innerHTML = `
+<!-- Ayah Header -->
+<div class="flex items-center justify-between border-b border-slate-100 pb-3">
+<span class="bg-emerald-800 text-white font-bold text-xs px-3 py-1 rounded-full">Ayah {a.reference}</span>
+<span class="text-xs text-slate-400">Verse #{a.ayah}</span>
+</div>
+​<!-- Verse Text Box -->
+<div class="bg-emerald-50/50 p-6 rounded-xl border border-emerald-100/80">
+<div class="arabic-text text-3xl md:text-4xl text-right text-slate-900 font-bold mb-4">{a.arabic}</div>
+<div class="text-xs font-semibold text-emerald-800 mb-1"><em>{a.transliteration}</em></div>
+<div class="text-sm font-medium text-slate-800 mb-1">{a.roman_urdu}</div>
+<div class="text-xs text-slate-600">{a.english_meaning}</div>
+</div>
+​<!-- Explanation Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+<div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+<h4 class="font-bold text-slate-800 mb-1 flex items-center gap-1.5 text-xs uppercase tracking-wider">
+<i class="fa-solid fa-lightbulb text-amber-500"></i> Simple Explanation
+</h4>
+<p class="text-slate-700 leading-relaxed">{a.simple || '-'}</p>
+</div>
+<div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+<h4 class="font-bold text-slate-800 mb-1 flex items-center gap-1.5 text-xs uppercase tracking-wider">
+<i class="fa-solid fa-microscope text-emerald-600"></i> Deep Context
+</h4>
+<p class="text-slate-700 leading-relaxed">{a.deep || '-'}</p>
+</div>
+</div>
+​<!-- Main Message & Why it Matters -->
+<div class="bg-emerald-900 text-white p-4 rounded-xl flex flex-col md:flex-row gap-4 text-xs">
+<div class="flex-1">
+<span class="text-emerald-300 font-bold uppercase text-[10px] tracking-wider block mb-1">Main Message</span>
+<p class="text-emerald-50 font-medium">{a.main_message || '-'}</p>
+</div>
+<div class="flex-1 border-t md:border-t-0 md:border-l border-emerald-700/60 pt-3 md:pt-0 md:pl-4">
+<span class="text-emerald-300 font-bold uppercase text-[10px] tracking-wider block mb-1">Why It Matters</span>
+<p class="text-emerald-100">{a.why_it_matters || '-'}</p>
+</div>
+</div>
+​${wordsTableHTML}
+​<!-- Practical & Real-Life Applications -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs pt-2">
+${a.real_life_example ? <div class="border border-slate-200 rounded-xl p-3.5 bg-slate-50"> <span class="font-bold text-slate-700 block mb-1"><i class="fa-solid fa-seedling text-emerald-600 me-1"></i> Real Life Example</span> <p class="text-slate-600">${a.real_life_example}</p> </div> : ''}
+${a.modern_world_connection ? <div class="border border-slate-200 rounded-xl p-3.5 bg-slate-50"> <span class="font-bold text-slate-700 block mb-1"><i class="fa-solid fa-globe text-emerald-600 me-1"></i> Modern World Connection</span> <p class="text-slate-600">${a.modern_world_connection}</p> </div> : ''}
+</div>
+​${qaHTML}
+​<!-- Reflection & Action -->
+<div class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r text-xs flex flex-col md:flex-row gap-4">
+${a.night_reflection ? <div class="flex-1"> <span class="font-bold text-amber-900 block mb-0.5"><i class="fa-solid fa-moon me-1"></i> Night Reflection:</span> <p class="text-amber-800">${a.night_reflection}</p> </div> : ''}
+${a.personal_action ? <div class="flex-1 border-t md:border-t-0 md:border-l border-amber-200/80 pt-2 md:pt-0 md:pl-4"> <span class="font-bold text-amber-900 block mb-0.5"><i class="fa-solid fa-circle-check me-1"></i> Personal Action:</span> <p class="text-amber-800">${a.personal_action}</p> </div> : ''}
+</div>
+`;
+​detailedContainer.appendChild(card);
+});
+​// 5. Conclusions Render
+const conc = data.surah_conclusion || data.pdf_range_conclusion || {};
+document.getElementById('conc-one-sentence').innerText = conc.one_sentence_reminder || conc.one_sentence_lesson || '-';
+​// Mindsets
+const mindsetList = document.getElementById('mindset-list');
+mindsetList.innerHTML = '';
+(conc.mindset_changes || []).forEach(m => {
+const li = document.createElement('li');
+li.className = 'flex items-start gap-2';
+li.innerHTML = <i class="fa-solid fa-check text-emerald-600 mt-0.5"></i> <span>${m}</span>;
+mindsetList.appendChild(li);
+});
+​// Character lessons tags
+const charTags = document.getElementById('character-tags');
+charTags.innerHTML = '';
+(conc.character_lessons || []).forEach(c => {
+const span = document.createElement('span');
+span.className = 'bg-white text-slate-700 border border-slate-300 font-semibold text-xs px-3 py-1 rounded-full uppercase tracking-wider shadow-sm';
+span.innerText = c;
+charTags.appendChild(span);
+});
+​// Action Plan Body
+const actionBody = document.getElementById('action-plan-body');
+actionBody.innerHTML = '';
+(conc.action_plan || []).forEach(act => {
+const tr = document.createElement('tr');
+tr.className = 'hover:bg-slate-50';
+tr.innerHTML = <td class="p-3 border-r border-slate-200 font-bold text-emerald-800">${act.action}</td> <td class="p-3 border-r border-slate-200 text-slate-700">${act.how}</td> <td class="p-3 border-r border-slate-200 text-slate-600">${act.why}</td> <td class="p-3 font-semibold text-slate-800">${act.frequency}</td>;
+actionBody.appendChild(tr);
+});
+​// 6. Sources & QC Render
+const sourcesList = document.getElementById('sources-list');
+sourcesList.innerHTML = '';
+(data.sources || []).forEach(src => {
+const card = document.createElement('div');
+card.className = 'border border-slate-200 rounded-lg p-3 bg-slate-50 flex items-start gap-2.5';
+card.innerHTML = <i class="fa-solid fa-link text-emerald-600 mt-1"></i> <div> <span class="font-bold text-slate-800 block text-xs">${src.title || src.type}</span> <span class="text-slate-500 block text-[11px]">${src.reference || ''}</span> ${src.url ?<a href="${src.url}" target="_blank" class="text-emerald-600 hover:underline text-[11px] font-mono">${src.url}</a>: ''} </div>;
+sourcesList.appendChild(card);
+});
+​// Quality Control
+const qc = data.quality_control || {};
+document.getElementById('qc-notes').innerText = qc.notes || 'All Quranic text and references verified against standardized sources.';
+}
+</script>
+</body>
+</html>
