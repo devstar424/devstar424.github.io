@@ -1,1156 +1,236 @@
 <!DOCTYPE html>
-<html lang="ur">
+<html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Quran Deep Study</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
+<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#eef2f7;
-    --card:#ffffff;
-    --ink:#16202f;
-    --muted:#5c6a7e;
-    --line:#e2e8f0;
-    --soft:#f6f8fb;
-    --accent:#0f766e;
-    --accent-2:#14b8a6;
-    --accent-soft:#e6f5f3;
-    --gold:#b45309;
-    --gold-soft:#fdf3e3;
-    --red:#b91c1c;
-    --red-soft:#fdeceb;
-    --blue:#1d4ed8;
-    --blue-soft:#eaf0fe;
-    --radius:14px;
-    --shadow:0 1px 2px rgba(16,24,40,.04), 0 8px 24px rgba(16,24,40,.06);
-  }
-
-  *{box-sizing:border-box;}
-
-  html,body{margin:0;padding:0;}
-
-  body{
-    background:
-      radial-gradient(1200px 600px at 10% -10%, #dff3f0 0%, transparent 55%),
-      radial-gradient(1000px 500px at 100% 0%, #e8eefb 0%, transparent 50%),
-      var(--bg);
-    color:var(--ink);
-    font-family:'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-    font-size:15px;
-    line-height:1.65;
-    -webkit-font-smoothing:antialiased;
-  }
-
-  /* ============ TOOLBAR ============ */
-  .toolbar{
-    position:sticky;
-    top:0;
-    z-index:100;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    flex-wrap:wrap;
-    padding:10px 18px;
-    background:rgba(255,255,255,.85);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  .tb-brand{
-    display:flex;align-items:center;gap:9px;
-    font-weight:700;font-size:15px;letter-spacing:.2px;
-    color:var(--accent);
-    white-space:nowrap;
-  }
-  .tb-brand .dot{
-    width:10px;height:10px;border-radius:50%;
-    background:linear-gradient(135deg,var(--accent),var(--accent-2));
-    box-shadow:0 0 0 4px var(--accent-soft);
-  }
-  .tb-spacer{flex:1;}
-  .file-box{
-    display:flex;align-items:center;gap:8px;
-    background:#fff;border:1px solid var(--line);border-radius:10px;
-    padding:4px 6px 4px 12px;
-  }
-  .file-box label{font-size:12px;color:var(--muted);font-weight:600;white-space:nowrap;}
-  .file-box input{
-    border:0;outline:0;background:transparent;
-    font-family:'Inter',monospace;font-size:13px;color:var(--ink);
-    width:270px;padding:6px 0;
-  }
-  .btn{
-    border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:13.5px;
-    padding:9px 16px;border-radius:10px;
-    display:inline-flex;align-items:center;gap:7px;
-    transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
-    white-space:nowrap;
-  }
-  .btn:active{transform:translateY(1px);}
-  .btn-primary{
-    background:linear-gradient(135deg,var(--accent),var(--accent-2));
-    color:#fff;box-shadow:0 6px 16px rgba(15,118,110,.28);
-  }
-  .btn-primary:hover{box-shadow:0 8px 22px rgba(15,118,110,.36);}
-  .btn-ghost{
-    background:#fff;color:var(--ink);border:1px solid var(--line);
-  }
-  .btn-ghost:hover{background:var(--soft);}
-
-  /* ============ LAYOUT ============ */
-  .container{
-    max-width:1020px;
-    margin:0 auto;
-    padding:26px 20px 90px;
-  }
-
-  .hero{
-    background:linear-gradient(140deg,#0f766e 0%, #0d9488 45%, #115e59 100%);
-    color:#fff;
-    border-radius:22px;
-    padding:30px 30px 26px;
-    box-shadow:0 18px 40px -18px rgba(13,148,136,.65);
-    position:relative;
-    overflow:hidden;
-  }
-  .hero::after{
-    content:"";
-    position:absolute;inset:auto -60px -120px auto;
-    width:300px;height:300px;border-radius:50%;
-    background:rgba(255,255,255,.07);
-  }
-  .hero::before{
-    content:"";
-    position:absolute;top:-90px;left:-70px;
-    width:220px;height:220px;border-radius:50%;
-    background:rgba(255,255,255,.06);
-  }
-  .hero-top{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;position:relative;z-index:1;}
-  .chip{
-    font-size:11.5px;font-weight:600;letter-spacing:.4px;
-    background:rgba(255,255,255,.18);
-    border:1px solid rgba(255,255,255,.28);
-    color:#fff;padding:4px 11px;border-radius:999px;
-    text-transform:uppercase;
-  }
-  .hero h1{
-    margin:0 0 6px;
-    font-family:'Amiri', serif;
-    font-size:44px;
-    line-height:1.15;
-    font-weight:700;
-    position:relative;z-index:1;
-  }
-  .hero h1 .range{
-    font-family:'Inter',sans-serif;
-    font-size:17px;font-weight:600;
-    opacity:.85;
-    display:inline-block;
-    margin-left:8px;
-    vertical-align:middle;
-    letter-spacing:.5px;
-  }
-  .hero .sub{
-    margin:0 0 14px;opacity:.92;font-size:14.5px;
-    position:relative;z-index:1;
-  }
-  .hero-meta{
-    display:flex;flex-wrap:wrap;gap:8px;
-    position:relative;z-index:1;
-  }
-  .hero-meta span{
-    font-size:12.5px;background:rgba(255,255,255,.14);
-    border:1px solid rgba(255,255,255,.2);
-    padding:5px 11px;border-radius:8px;
-  }
-
-  .note{
-    margin-top:14px;
-    background:var(--gold-soft);
-    border:1px solid #f3ddb6;
-    border-left:4px solid var(--gold);
-    border-radius:10px;
-    padding:12px 16px;
-    font-size:13.5px;
-    color:#7c4a08;
-  }
-
-  /* ============ CARDS ============ */
-  .card{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    padding:22px 24px;
-    margin-top:18px;
-    box-shadow:var(--shadow);
-  }
-
-  .section-head{
-    display:flex;align-items:center;gap:11px;
-    margin:34px 0 4px;
-  }
-  .section-head .bar{
-    width:5px;height:22px;border-radius:3px;
-    background:linear-gradient(180deg,var(--accent),var(--accent-2));
-  }
-  .section-head h2{
-    margin:0;font-size:19px;font-weight:700;letter-spacing:-.2px;
-  }
-  .section-head .count{
-    margin-left:auto;font-size:12px;font-weight:600;color:var(--muted);
-    background:var(--soft);border:1px solid var(--line);
-    padding:3px 10px;border-radius:999px;
-  }
-
-  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-  @media(max-width:760px){
-    .grid-2,.grid-3{grid-template-columns:1fr;}
-    .hero h1{font-size:34px;}
-    .file-box input{width:170px;}
-  }
-
-  /* Info blocks */
-  .info{
-    background:var(--soft);
-    border:1px solid var(--line);
-    border-radius:11px;
-    padding:13px 15px;
-  }
-  .info-title{
-    font-size:12px;font-weight:700;letter-spacing:.5px;
-    text-transform:uppercase;color:var(--accent);
-    margin-bottom:5px;
-    display:flex;align-items:center;gap:6px;
-  }
-  .info-body{font-size:14px;color:#28323f;}
-  .info.plain{background:#fff;}
-
-  .info.gold{background:var(--gold-soft);border-color:#f3ddb6;}
-  .info.gold .info-title{color:var(--gold);}
-  .info.red{background:var(--red-soft);border-color:#f6cfcc;}
-  .info.red .info-title{color:var(--red);}
-  .info.blue{background:var(--blue-soft);border-color:#d3e0fd;}
-  .info.blue .info-title{color:var(--blue);}
-  .info.green{background:var(--accent-soft);border-color:#c7e9e4;}
-  .info.green .info-title{color:var(--accent);}
-
-  /* ============ PASSAGE ============ */
-  .passage-item{
-    border-bottom:1px dashed var(--line);
-    padding:16px 0;
-    display:grid;
-    grid-template-columns:52px 1fr;
-    gap:16px;
-  }
-  .passage-item:last-child{border-bottom:0;padding-bottom:0;}
-  .passage-num{
-    width:44px;height:44px;border-radius:12px;
-    background:var(--accent-soft);color:var(--accent);
-    display:flex;align-items:center;justify-content:center;
-    font-weight:700;font-size:15px;
-    border:1px solid #c7e9e4;
-  }
-  .arabic{
-    font-family:'Amiri', serif;
-    direction:rtl;
-    text-align:right;
-    font-size:30px;
-    line-height:1.9;
-    color:#0b2a28;
-    margin:0 0 8px;
-  }
-  .translit{
-    font-style:italic;color:var(--accent);font-size:14px;
-    margin:0 0 4px;font-weight:500;
-  }
-  .roman{color:#334155;font-size:14.5px;margin:0 0 4px;}
-  .english{color:var(--muted);font-size:14px;margin:0;}
-
-  /* ============ AYAH CARD ============ */
-  .ayah-card{
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:16px;
-    margin-top:22px;
-    box-shadow:var(--shadow);
-    overflow:hidden;
-  }
-  .ayah-head{
-    display:flex;align-items:center;gap:14px;
-    padding:16px 24px;
-    background:linear-gradient(135deg,#0f766e,#0d9488);
-    color:#fff;
-  }
-  .ayah-head .num{
-    width:40px;height:40px;border-radius:11px;
-    background:rgba(255,255,255,.18);
-    border:1px solid rgba(255,255,255,.3);
-    display:flex;align-items:center;justify-content:center;
-    font-weight:700;font-size:16px;
-    flex-shrink:0;
-  }
-  .ayah-head .t{font-weight:700;font-size:16px;}
-  .ayah-head .r{font-size:12.5px;opacity:.85;letter-spacing:.4px;}
-  .ayah-head .markers{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;}
-  .ayah-head .mk{
-    font-size:11px;font-weight:600;
-    background:rgba(255,255,255,.2);
-    border:1px solid rgba(255,255,255,.3);
-    padding:3px 9px;border-radius:999px;
-  }
-  .ayah-body{padding:22px 24px 24px;}
-  .ayah-arabic-wrap{
-    background:linear-gradient(180deg,#f2fbf9,#ffffff);
-    border:1px solid #d7efe9;
-    border-radius:13px;
-    padding:18px 22px 14px;
-    margin-bottom:16px;
-  }
-  .ayah-arabic-wrap .arabic{font-size:34px;margin-bottom:12px;}
-  .ayah-arabic-wrap .translit{margin-bottom:6px;}
-
-  .simple-box{
-    background:var(--accent-soft);
-    border-left:4px solid var(--accent);
-    border-radius:10px;
-    padding:14px 17px;
-    margin-bottom:14px;
-    font-size:15px;
-    color:#0c3f3b;
-  }
-  .simple-box .lbl{
-    font-size:11px;font-weight:700;letter-spacing:.7px;
-    text-transform:uppercase;color:var(--accent);display:block;margin-bottom:4px;
-  }
-  .deep-box{
-    background:#fbfcfe;
-    border:1px solid var(--line);
-    border-radius:10px;
-    padding:14px 17px;
-    margin-bottom:16px;
-    font-size:14.5px;
-    color:#28323f;
-  }
-  .deep-box .lbl{
-    font-size:11px;font-weight:700;letter-spacing:.7px;
-    text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px;
-  }
-
-  .msg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
-  @media(max-width:760px){.msg-row{grid-template-columns:1fr;}}
-
-  /* Word cards */
-  .words{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-bottom:16px;}
-  .word{
-    border:1px solid var(--line);
-    border-radius:12px;
-    overflow:hidden;
-    background:#fff;
-  }
-  .word-top{
-    background:var(--soft);
-    border-bottom:1px solid var(--line);
-    padding:12px 14px;
-    display:flex;align-items:center;justify-content:space-between;gap:10px;
-  }
-  .word-ar{
-    font-family:'Amiri',serif;
-    font-size:28px;
-    direction:rtl;
-    color:#0b2a28;
-    line-height:1.4;
-  }
-  .word-tr{font-size:13px;font-weight:700;color:var(--accent);font-style:italic;}
-  .word-body{padding:11px 14px;font-size:13px;color:#334155;}
-  .word-body div{margin-bottom:4px;}
-  .word-body b{color:var(--muted);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;}
-
-  /* Q&A */
-  .qa-list{display:grid;gap:10px;}
-  .qa-item{
-    border:1px solid var(--line);
-    border-radius:11px;
-    overflow:hidden;
-  }
-  .qa-q{
-    background:var(--soft);
-    padding:10px 15px;
-    font-weight:600;font-size:14px;
-    display:flex;gap:9px;
-  }
-  .qa-q .bullet{
-    color:var(--accent);font-weight:800;
-  }
-  .qa-a{
-    padding:11px 15px;
-    font-size:14px;color:#334155;
-    display:flex;gap:9px;
-  }
-  .qa-a .bullet{color:var(--gold);font-weight:800;}
-
-  .reflect{
-    display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;
-  }
-  @media(max-width:760px){.reflect{grid-template-columns:1fr;}}
-  .reflect .info-title{font-size:11.5px;}
-
-  /* Conclusion */
-  .concl-grid{display:grid;gap:12px;}
-
-  .mindset-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
-  .mindset-list span{
-    background:var(--accent-soft);
-    border:1px solid #c7e9e4;
-    color:#0c4f4a;
-    border-radius:8px;
-    padding:6px 12px;
-    font-size:13px;
-  }
-  .tag-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px;}
-  .tag{
-    background:var(--soft);
-    border:1px solid var(--line);
-    border-radius:999px;
-    padding:4px 12px;
-    font-size:12.5px;
-    color:#334155;
-    font-weight:500;
-  }
-
-  /* Action table */
-  .action-item{
-    display:grid;
-    grid-template-columns:26px 1fr auto;
-    gap:12px;
-    align-items:start;
-    padding:12px 0;
-    border-bottom:1px dashed var(--line);
-  }
-  .action-item:last-child{border-bottom:0;}
-  .action-idx{
-    width:24px;height:24px;border-radius:7px;
-    background:var(--accent);color:#fff;
-    font-size:12px;font-weight:700;
-    display:flex;align-items:center;justify-content:center;
-  }
-  .action-title{font-weight:600;font-size:14.5px;margin-bottom:3px;}
-  .action-how{font-size:13.5px;color:#334155;}
-  .action-why{font-size:12.5px;color:var(--muted);margin-top:3px;font-style:italic;}
-  .action-freq{
-    font-size:11.5px;font-weight:700;color:var(--accent);
-    background:var(--accent-soft);border:1px solid #c7e9e4;
-    padding:4px 10px;border-radius:999px;white-space:nowrap;
-  }
-
-  /* Sources */
-  .source-item{
-    display:flex;gap:12px;align-items:flex-start;
-    padding:11px 0;border-bottom:1px dashed var(--line);
-  }
-  .source-item:last-child{border-bottom:0;}
-  .source-type{
-    font-size:10.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;
-    background:var(--accent-soft);color:var(--accent);
-    border:1px solid #c7e9e4;
-    padding:3px 9px;border-radius:6px;
-    white-space:nowrap;margin-top:2px;
-  }
-  .source-title{font-weight:600;font-size:14px;}
-  .source-ref{font-size:13px;color:var(--muted);}
-  .source-item a{color:var(--accent);font-size:12.5px;text-decoration:none;word-break:break-all;}
-  .source-item a:hover{text-decoration:underline;}
-
-  /* QC */
-  .qc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:9px;}
-  .qc-item{
-    display:flex;gap:9px;align-items:flex-start;
-    background:var(--soft);border:1px solid var(--line);
-    border-radius:9px;padding:9px 13px;font-size:13.5px;
-  }
-  .qc-item .tick{color:#15803d;font-weight:800;}
-
-  .progress-bar{
-    display:flex;flex-wrap:wrap;gap:10px;
-    margin-top:10px;
-  }
-  .progress-bar div{
-    background:var(--soft);border:1px solid var(--line);
-    border-radius:9px;padding:9px 14px;font-size:13px;
-  }
-  .progress-bar b{color:var(--accent);}
-
-  .loading, .error{
-    text-align:center;padding:80px 20px;font-size:16px;color:var(--muted);
-  }
-  .error{
-    color:var(--red);
-    background:var(--red-soft);
-    border:1px solid #f6cfcc;
-    border-radius:14px;
-    margin-top:40px;
-  }
-  .error code{
-    background:#fff;padding:3px 8px;border-radius:6px;
-    border:1px solid #f6cfcc;font-size:13px;
-  }
-
-  footer.foot{
-    text-align:center;color:var(--muted);font-size:12.5px;
-    padding:34px 20px 10px;
-  }
-
-  /* ============ PRINT / A4 ============ */
-  @media print{
-    
-  @page{
-    size: A4;
-    margin: 13mm 12mm 20mm 12mm;   /* bottom margin badhaya footer ke liye */
-
-    /* ✅ PAGE NUMBER — bottom center me */
-    @bottom-center{
-      content: "Page " counter(page) " of " counter(pages);
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 9pt;
-      color: #64748b;
-      letter-spacing: .3px;
-    }
-
-    /* ✅ Left side pe study title (optional but useful) */
-    @bottom-left{
-      content: "Quran Deep Study";
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 8.5pt;
-      color: #94a3b8;
-    }
-
-    /* ✅ Right side pe file id (optional) */
-    @bottom-right{
-      content: "AI-generated study · not a fatwa";
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 8pt;
-      color: #94a3b8;
-    }
-  }
-
- .print-footer{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  /* ⚠️ Ye trick: position fixed print me har page pe repeat hota hai */
-  position: fixed;
-  bottom: -14mm;          /* page ke bottom margin area me le jao */
-  left: 0;
-  right: 0;
-
-  padding: 2mm 12mm 0 12mm;
-  font-size: 8.5pt;
-  color: #94a3b8;
-  font-family: 'Inter', system-ui, sans-serif;
-  border-top: 1px solid #e2e8f0;
+:root{--bg:#eef1f5;--card:#fff;--text:#1a2028;--muted:#5b6572;--soft:#7a8492;--primary:#0d6b4f;--psoft:#e6f3ee;--bd:#dde3ea;--bs:#eef1f5;--accent:#b8860b}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px}
+a{color:var(--primary)}
+.tb{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--bd);padding:10px 18px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.tb .brand{font-weight:700;color:var(--primary);margin-right:auto}
+.tb input{font:inherit;font-size:13px;padding:8px 12px;border:1px solid var(--bd);border-radius:8px;min-width:220px}
+.tb input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--psoft)}
+.btn{font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:8px;border:1px solid var(--bd);background:#fff;color:var(--text);cursor:pointer}
+.btn:hover{background:#f5f7fa}
+.btnp{background:var(--primary);border-color:var(--primary);color:#fff}
+.btnp:hover{background:#084d38}
+.wrap{max-width:920px;margin:0 auto;padding:22px 18px 90px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:20px 22px;margin-bottom:18px;box-shadow:0 1px 2px rgba(16,24,40,.04),0 6px 18px rgba(16,24,40,.05)}
+.card h3{font-size:12px;text-transform:uppercase;letter-spacing:1.2px;color:var(--primary);margin:0 0 14px;font-weight:700;display:flex;align-items:center;gap:10px}
+.card h3:after{content:"";flex:1;height:1px;background:var(--bd)}
+.dh{background:linear-gradient(135deg,#0d6b4f,#0a5942);color:#fff;border-radius:14px;padding:26px;margin-bottom:20px;box-shadow:0 8px 24px rgba(16,24,40,.08)}
+.dk{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;opacity:.85;font-weight:600;margin-bottom:4px}
+.dh h1{margin:0 0 6px;font-size:26px;line-height:1.2;letter-spacing:-.3px}
+.dr{font-size:14px;opacity:.95;margin-bottom:14px}
+.dm{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;opacity:.9;border-top:1px solid rgba(255,255,255,.18);padding-top:12px}
+.dn{margin-top:12px;background:rgba(255,255,255,.12);border-left:3px solid rgba(255,255,255,.5);padding:9px 12px;border-radius:6px;font-size:12px;line-height:1.55}
+.ar{font-family:Amiri,'Traditional Arabic',serif;direction:rtl;text-align:right;font-size:26px;line-height:1.9;color:#14231d;margin:6px 0 10px}
+.tr{font-style:italic;color:var(--soft);font-size:13px;margin-bottom:6px}
+.ru{color:#2c3a30;font-size:14.5px;margin-bottom:4px}
+.en{color:var(--muted);font-size:13.5px}
+.pass{padding:14px 0;border-bottom:1px dashed var(--bd)}
+.pass:last-child{border:none;padding-bottom:0}
+.ref{display:inline-block;font-size:11px;font-weight:700;color:var(--primary);background:var(--psoft);padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.ig{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:14px}
+.ii{background:var(--psoft);border-radius:10px;padding:11px 13px}
+.ii .k{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--primary);font-weight:700;margin-bottom:3px}
+.ii .v{font-size:13.5px;font-weight:500}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tag,.pill{background:var(--psoft);color:var(--primary);padding:4px 12px;border-radius:20px;font-size:12px;font-weight:500}
+.sec{padding:12px 0;border-bottom:1px solid var(--bs)}
+.sec:last-child{border:none;padding-bottom:0}
+.sec-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:5px;flex-wrap:wrap}
+.sec-t{font-size:15px;font-weight:700;color:var(--primary)}
+.sec-r{font-size:11px;font-weight:600;color:var(--primary);background:var(--psoft);padding:2px 10px;border-radius:12px}
+.sec-th{font-size:13px;color:var(--muted);font-style:italic;margin-bottom:6px}
+.sec p{margin:3px 0;font-size:13.5px}
+.sec p.note{background:#fafbfc;border-left:3px solid var(--accent);padding:7px 11px;border-radius:0 6px 6px 0;font-size:12.5px;margin-top:7px}
+.ac{background:var(--card);border:1px solid var(--bd);border-radius:12px;margin-bottom:22px;box-shadow:0 1px 2px rgba(16,24,40,.04),0 6px 18px rgba(16,24,40,.05);overflow:hidden}
+.ah{background:linear-gradient(135deg,#f5f9f7,#eef4f1);padding:14px 22px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--bd)}
+.an{width:38px;height:38px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0}
+.ah .rl{font-size:10.5px;text-transform:uppercase;letter-spacing:1px;color:var(--primary);font-weight:700}
+.ah .rv{font-size:17px;font-weight:700;color:var(--primary)}
+.ab{padding:20px 22px}
+.arb{background:#fbfdfc;border:1px solid var(--bs);border-radius:10px;padding:16px 20px;margin-bottom:16px}
+.arb .ar{margin:0 0 10px;font-size:27px}
+.arb .tr,.arb .ru,.arb .en{margin:0 0 6px}
+.arb .en{margin:0}
+.blk{margin-bottom:14px}
+.blk:last-child{margin-bottom:0}
+.blk h4{font-size:11.5px;text-transform:uppercase;letter-spacing:1px;color:var(--primary);margin:0 0 5px;font-weight:700}
+.blk p{margin:0 0 6px;font-size:13.5px}
+.blk p:last-child{margin:0}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:640px){.g2{grid-template-columns:1fr}}
+.blk.inset{background:#f8fafb;border-radius:8px;padding:11px 13px}
+.blk.mis{background:#fff8f0;border-left:3px solid #e8a33d;padding:11px 13px;border-radius:0 8px 8px 0}
+.blk.mis h4{color:#b06a10}
+.blk.ref{background:var(--psoft);border-left:3px solid var(--primary);padding:11px 13px;border-radius:0 8px 8px 0}
+.wl{display:flex;flex-direction:column;gap:8px}
+.wi{border:1px solid var(--bs);border-radius:9px;padding:10px 12px;background:#fcfdfe}
+.wh{display:flex;align-items:baseline;flex-wrap:wrap;gap:5px 10px;margin-bottom:6px}
+.wa{font-family:Amiri,serif;font-size:21px;color:var(--primary);direction:rtl}
+.wt{font-style:italic;color:var(--soft);font-size:13px}
+.wm{font-weight:600;font-size:13px}
+.wd{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:3px 14px;font-size:12px;color:var(--muted)}
+.wd b{color:var(--soft);font-weight:600}
+.qa{border-left:3px solid var(--primary);padding:3px 0 3px 11px;margin-bottom:9px}
+.qa:last-child{margin:0}
+.qq{font-weight:600;font-size:13px;color:var(--primary);margin-bottom:2px}
+.qa-a{font-size:13px;color:var(--muted)}
+.ev{border:1px solid var(--bs);border-radius:8px;padding:9px 11px;background:#fafbfc;margin-bottom:7px;font-size:13px}
+.ev:last-child{margin:0}
+.eh{display:flex;align-items:center;gap:7px;margin-bottom:3px;flex-wrap:wrap}
+.et{font-size:10px;text-transform:uppercase;letter-spacing:.8px;font-weight:700;color:var(--primary);background:var(--psoft);padding:2px 7px;border-radius:4px}
+.er{font-size:11.5px;color:var(--soft);font-style:italic}
+.es{font-size:10.5px;font-weight:600;color:var(--muted);margin-left:auto}
+.sl{color:#b06a10!important}.su{color:#b03030!important}
+.si{padding:11px 0;border-bottom:1px solid var(--bs)}
+.si:last-child{border:none;padding-bottom:0}
+.st{font-size:10px;text-transform:uppercase;letter-spacing:.8px;font-weight:700;color:var(--primary);margin-bottom:2px}
+.stt{font-weight:600;font-size:13.5px;margin-bottom:2px}
+.sr{font-size:12.5px;color:var(--muted);margin-bottom:2px}
+.su2{font-size:11.5px;color:var(--soft);word-break:break-all}
+.ai{border:1px solid var(--bs);border-radius:9px;padding:11px 13px;margin-bottom:9px;background:#fcfdfe}
+.ai:last-child{margin:0}
+.aih{display:flex;justify-content:space-between;gap:10px;margin-bottom:5px;flex-wrap:wrap}
+.ain{font-weight:700;color:var(--primary);font-size:13.5px}
+.aif{font-size:11px;font-weight:600;color:var(--primary);background:var(--psoft);padding:2px 10px;border-radius:10px}
+.ai p{margin:2px 0;font-size:13px;color:var(--muted)}
+.ai p b{color:var(--text)}
+.hb{background:linear-gradient(135deg,#0d6b4f,#0a5942);color:#fff;border-radius:11px;padding:16px 18px;margin-top:12px;font-size:14.5px;line-height:1.6;font-weight:500}
+.hb .hl{font-size:10.5px;text-transform:uppercase;letter-spacing:1.2px;opacity:.8;margin-bottom:5px;font-weight:700}
+.st2{max-width:520px;margin:70px auto;background:#fff;border-radius:14px;padding:34px 30px;box-shadow:0 8px 24px rgba(16,24,40,.08);text-align:center}
+.st2 h2{margin:0 0 8px;font-size:19px;color:var(--primary)}
+.st2 p{color:var(--muted);font-size:14px;margin:0 0 16px}
+.st2 input{width:100%;font:inherit;font-size:14px;padding:11px 14px;border:1px solid var(--bd);border-radius:10px;margin-bottom:11px}
+.st2 input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--psoft)}
+.hint{font-size:12px;color:var(--soft);margin-top:12px;line-height:1.6;text-align:left;background:#f8fafb;padding:11px 13px;border-radius:8px}
+.hint code{background:#eef1f5;padding:1px 5px;border-radius:3px;font-size:11.5px}
+.sp{width:34px;height:34px;border:3px solid var(--psoft);border-top-color:var(--primary);border-radius:50%;animation:sp .8s linear infinite;margin:0 auto 14px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.err{color:#b03030}
+.pf{display:none}
+@media print{
+@page{size:A4;margin:14mm 12mm 16mm 12mm}
+html,body{background:#fff!important;font-size:10pt;line-height:1.5;color:#000}
+.no-print{display:none!important}
+.wrap{max-width:none;padding:0;margin:0}
+.card,.ac,.dh{box-shadow:none!important}
+.card{border:1px solid #ccc;border-radius:6px;padding:11px 13px;margin-bottom:11px}
+.ac{border:1px solid #ccc;border-radius:6px;margin-bottom:13px;overflow:visible}
+.ah{padding:9px 13px;background:#f1f5f3!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.ab{padding:11px 13px 13px}
+.dh{background:#0d6b4f!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:16px 18px 13px;border-radius:6px;margin-bottom:13px}
+.dh h1{font-size:20px}.dr{font-size:11px;margin-bottom:9px}
+.dm{font-size:10px;padding-top:7px;gap:5px 12px}.dn{font-size:10px;padding:7px 9px;margin-top:9px}
+.card h3{font-size:10.5px;margin-bottom:9px}
+.ar{font-size:19px;line-height:1.7}
+.arb{padding:9px 13px;margin-bottom:11px}.arb .ar{font-size:21px;margin-bottom:7px}
+.tr,.en{font-size:10.5px}.ru{font-size:11.5px}
+.blk{margin-bottom:9px}.blk h4{font-size:10px;margin-bottom:3px}
+.blk p,.sec p{font-size:10.5px;margin-bottom:4px}
+.sec-t{font-size:12.5px}.sec-r{font-size:9.5px}.sec-th{font-size:10.5px}
+.sec{padding:7px 0}.sec p.note{font-size:10px;padding:5px 8px}
+.wi{padding:7px 9px}.wa{font-size:16px}.wt,.wm{font-size:10.5px}
+.wd{font-size:9.5px;gap:2px 10px}
+.ev{padding:6px 8px;font-size:10.5px;margin-bottom:5px}
+.et{font-size:8.5px;padding:1px 5px}.er{font-size:9.5px}.es{font-size:9px}
+.qq,.qa-a{font-size:10.5px}
+.si{padding:6px 0}.st{font-size:8.5px}.stt{font-size:11.5px}.sr{font-size:10.5px}.su2{font-size:9px}
+.ai{padding:7px 9px;margin-bottom:6px}.ain{font-size:11.5px}.aif{font-size:9px}.ai p{font-size:10.5px}
+.hb{padding:11px 13px;font-size:11.5px}.hb .hl{font-size:9px}
+.ii{padding:7px 9px}.ii .k{font-size:9px}.ii .v{font-size:11px}
+.tag,.pill{font-size:9.5px;padding:2px 8px}
+.avoid,.wi,.qa,.ev,.ai,.si,.sec,.ii,.pass{break-inside:avoid;page-break-inside:avoid}
+h1,h2,h3,h4{break-after:avoid;page-break-after:avoid}
+.ah{break-after:avoid}
+a{color:#000;text-decoration:none}
+.pf{display:block!important;position:fixed;bottom:0;left:0;right:0;text-align:center;font-size:9pt;color:#888;padding:3mm 0;background:#fff}
+.pf:after{content:"Page " counter(page)}
 }
-.print-footer .pf-left{ color:#64748b; font-weight:600; }
-.print-footer .pf-right{ color:#94a3b8; }
-    html,body{
-      background:#fff !important;
-      font-size:10.5pt;
-      line-height:1.5;
-      color:#000;
-    }
-    .no-print{display:none !important;}
-
-    .container{max-width:100%;padding:0;margin:0;}
-
-    .hero{
-      background:#0f766e !important;
-      -webkit-print-color-adjust:exact;
-      print-color-adjust:exact;
-      border-radius:12px;
-      padding:16px 18px;
-      box-shadow:none;
-      page-break-inside:avoid;
-    }
-    .hero h1{font-size:24pt;}
-    .hero h1 .range{font-size:11pt;}
-    .hero .sub{font-size:10pt;}
-    .hero-meta span{font-size:8.5pt;}
-
-    .card,
-    .ayah-card{
-      box-shadow:none !important;
-      border:1px solid #cfd8e3 !important;
-      border-radius:10px;
-      page-break-inside:auto;
-    }
-    .ayah-card{margin-top:12px;}
-    .ayah-head{
-      -webkit-print-color-adjust:exact;
-      print-color-adjust:exact;
-      padding:9px 14px;
-      border-radius:0;
-    }
-    .ayah-head .num{width:26px;height:26px;font-size:11pt;border-radius:7px;}
-    .ayah-head .t{font-size:11pt;}
-    .ayah-head .r{font-size:8.5pt;}
-    .ayah-body{padding:12px 14px 14px;}
-
-    .ayah-arabic-wrap{
-      padding:10px 12px;
-      -webkit-print-color-adjust:exact;
-      print-color-adjust:exact;
-    }
-    .arabic{font-size:20pt;line-height:1.85;}
-
-    .simple-box,.deep-box,.info,.word,.qa-item,.source-item,.action-item,.qc-item{
-      page-break-inside:avoid;
-    }
-
-    .simple-box, .deep-box, .info{
-      -webkit-print-color-adjust:exact;
-      print-color-adjust:exact;
-    }
-
-    .section-head{margin-top:18px;page-break-after:avoid;}
-    .section-head h2{font-size:13pt;}
-
-    .ayah-card + .ayah-card{page-break-before:auto;}
-
-    .grid-2,.grid-3,.words,.msg-row,.reflect,.qc-grid{
-      grid-template-columns:1fr 1fr !important;
-    }
-    .words{grid-template-columns:1fr 1fr !important;}
-
-    .info-body,.qa-a,.deep-box,.word-body{font-size:9.5pt;}
-    .translit,.roman,.english,.source-ref{font-size:9pt;}
-
-    a{color:#000;text-decoration:none;}
-    a[href]::after{content:"";}
-
-    footer.foot{font-size:8.5pt;padding:14px 0 0;}
-  }
 </style>
 </head>
 <body>
 
-<!-- ================= TOOLBAR ================= -->
-<div class="toolbar no-print">
-  <div class="tb-brand"><span class="dot"></span> Quran Deep Study</div>
-
-  <div class="file-box">
-    <label for="fileInput">File</label>
-    <input id="fileInput" type="text" spellcheck="false" placeholder="QURAN-DEEP-001_Al-Fatihah_1-7" />
-  </div>
-  <button class="btn btn-ghost" id="loadBtn">Load</button>
-
-  <div class="tb-spacer"></div>
-
-  <button class="btn btn-primary" id="printBtn">🖨️ Print / Save PDF</button>
+<div class="tb no-print">
+  <div class="brand">Quran Deep Study</div>
+  <input id="fi" placeholder="filename e.g. QURAN-DEEP-001_Al-Fatihah_1-7 (1).json">
+  <button class="btn" id="lb">Load</button>
+  <button class="btn btnp" id="pb">🖨 Print / Save PDF</button>
 </div>
 
-<!-- ================= APP ================= -->
-<div class="container" id="app">
-  <div class="loading">Loading…</div>
-</div>
-<!-- Print-only footer (Chrome ke liye fallback branding) -->
-<div class="print-footer" aria-hidden="true">
-  <span class="pf-left">Quran Deep Study</span>
-  <span class="pf-mid"></span>
-  <span class="pf-right">AI-generated study · not a fatwa</span>
-</div>
-<footer class="foot no-print">
-  Quran Deep Study · AI-generated research/teaching material — formal fatwa ya final tafsir edition nahi.
-</footer>
+<div id="ct" class="wrap"></div>
+<div class="pf" aria-hidden="true"></div>
 
 <script>
-/* =========================================================
-   Helpers
-   ========================================================= */
-const $ = (id) => document.getElementById(id);
-const app = $('app');
+(function(){
+'use strict';
+const e=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ct=document.getElementById('ct'),fi=document.getElementById('fi'),lb=document.getElementById('lb'),pb=document.getElementById('pb');
+const P=t=>t?`<p>${e(t)}</p>`:'';
+const B=(l,b,c)=>b?`<div class="blk ${c||''}"><h4>${e(l)}</h4>${b}</div>`:'';
 
-const esc = (s) =>
-  String(s ?? '').replace(/[&<>"']/g, (c) => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-  }[c]));
+function norm(n){let f=String(n||'').trim();if(!f)return'';if(!/\.json$/i.test(f))f+='.json';return f}
 
-const txt = (v) => (v === undefined || v === null ? '' : String(v));
+function loading(){ct.innerHTML=`<div class="st2"><div class="sp"></div><h2>Loading…</h2><p>Study data load ho raha hai.</p></div>`}
 
-/* info block */
-function info(icon, title, body, cls = '') {
-  if (!body) return '';
-  return `
-    <div class="info ${cls}">
-      <div class="info-title">${icon ? esc(icon) + ' ' : ''}${esc(title)}</div>
-      <div class="info-body">${esc(body)}</div>
-    </div>`;
+function errScreen(m,d){ct.innerHTML=`<div class="st2"><h2 class="err">Data load nahi ho paya</h2><p>${e(m)}</p>${d?`<div class="hint"><b>Detail:</b> ${e(d)}</div>`:''}<div class="hint"><b>Check:</b><br>• File <code>my-folder/data/</code> me honi chahiye<br>• URL: <code>index.html?file=NAME.json</code><br>• Local server chalayein: <code>python -m http.server 8000</code></div></div>`}
+
+function picker(){ct.innerHTML=`<div class="st2"><h2>Quran Deep Study</h2><p>Data file ka naam daalein.</p><input id="pi" placeholder="QURAN-DEEP-001_Al-Fatihah_1-7 (1).json"><button class="btn btnp" id="pbtn" style="width:100%">Load Study</button><div class="hint"><b>Example URL:</b><br><code>index.html?file=QURAN-DEEP-001_Al-Fatihah_1-7 (1).json</code></div></div>`;
+const pi=document.getElementById('pi'),pbtn=document.getElementById('pbtn');
+const go=()=>{const v=pi.value.trim();if(!v)return;const u=new URL(location.href);u.searchParams.set('file',v);location.href=u.toString()};
+pbtn.onclick=go;pi.onkeydown=ev=>{if(ev.key==='Enter')go()};pi.focus()}
+
+function word(w){return`<div class="wi"><div class="wh"><span class="wa" dir="rtl">${e(w.arabic)}</span><span class="wt">${e(w.transliteration)}</span><span class="wm">${e(w.meaning)}</span></div><div class="wd">${w.root?`<span><b>Root:</b> ${e(w.root)}</span>`:''}${w.word_form?`<span><b>Form:</b> ${e(w.word_form)}</span>`:''}${w.literal_meaning?`<span><b>Literal:</b> ${e(w.literal_meaning)}</span>`:''}${w.contextual_meaning?`<span><b>Context:</b> ${e(w.contextual_meaning)}</span>`:''}</div></div>`}
+
+function ayah(a){
+const w=(a.important_arabic_words||[]).map(word).join('');
+const qa=(a.qa||[]).map(x=>`<div class="qa"><div class="qq">Q: ${e(x.q)}</div><div class="qa-a">A: ${e(x.a)}</div></div>`).join('');
+const hd=a.hadith?`<div class="ev"><div class="eh"><span class="et">Hadith</span><span class="er">${e(a.hadith.reference||'')}</span><span class="es">${e(a.hadith.status||'')}</span></div><div>${e(a.hadith.summary||'')}</div></div>`:'';
+const sc=a.science?`<div class="ev"><div class="eh"><span class="et">Science</span><span class="es ${e(a.science.status_class||'')}">${e(a.science.status||'')}</span></div><div>${e(a.science.summary||'')}</div></div>`:'';
+const he=a.history_evidence?`<div class="ev"><div class="eh"><span class="et">History / Evidence</span></div><div>${e(a.history_evidence)}</div></div>`:'';
+return`<article class="ac"><header class="ah"><div class="an">${e(a.ayah)}</div><div><div class="rl">Ayah ${e(a.ayah)}</div><div class="rv">${e(a.reference)}</div></div></header><div class="ab"><div class="arb"><div class="ar" dir="rtl">${e(a.arabic)}</div><div class="tr">${e(a.transliteration)}</div><div class="ru">${e(a.roman_urdu)}</div><div class="en">${e(a.english_meaning)}</div></div>${B('Simple',P(a.simple))}${B('Deep',P(a.deep))}<div class="g2">${B('Main Message',P(a.main_message))}${B('Why It Matters',P(a.why_it_matters))}</div>${w?B('Important Arabic Words',`<div class="wl">${w}</div>`):''}${B('Grammar & Rhetoric',P(a.grammar_rhetoric))}${B('Historical Context',P(a.historical_context))}<div class="g2">${B('Common Misunderstandings',P(a.common_misunderstandings),'mis')}${B('What It Does NOT Mean',P(a.what_it_does_not_mean),'mis')}</div>${B('Connected Ayat',P(a.connected_ayat))}${B('Knowledge Status',P(a.knowledge_status))}${(hd||sc||he)?`<div class="blk"><h4>Evidence Layer</h4>${hd}${he}${sc}</div>`:''}${B('Real Life Example',P(a.real_life_example),'inset')}${B('Modern World Connection',P(a.modern_world_connection),'inset')}${B('Forward-Looking',P(a.future_or_forward_looking_context),'inset')}${qa?B('Q & A',qa):''}<div class="g2">${B('Night Reflection',P(a.night_reflection),'ref')}${B('Personal Action',P(a.personal_action),'ref')}</div></div></article>`}
+
+function info(si){const c=si.classification||{};return`<section class="card"><h3>Surah Info</h3><div class="ig"><div class="ii"><div class="k">Name</div><div class="v">${e(si.name_meaning)}</div></div><div class="ii"><div class="k">Class</div><div class="v">${e(c.makki_or_madani||'')}</div></div><div class="ii"><div class="k">Ayat</div><div class="v">${e(c.ayat_count!=null?c.ayat_count:'')}</div></div></div>${P(si.introduction)}${si.what?`<p><b>What:</b> ${e(si.what)}</p>`:''}${si.why?`<p><b>Why:</b> ${e(si.why)}</p>`:''}${si.when_where?`<p><b>When/Where:</b> ${e(si.when_where)}</p>`:''}${si.how_to_study?`<p><b>How to Study:</b> ${e(si.how_to_study)}</p>`:''}${si.known_vs_debated?`<p><b>Known vs Debated:</b> ${e(si.known_vs_debated)}</p>`:''}${(si.themes&&si.themes.length)?`<div class="tags">${si.themes.map(t=>`<span class="tag">${e(t)}</span>`).join('')}</div>`:''}</section>`}
+
+function passage(cp){return`<section class="card"><h3>${e(cp.title||'Complete Passage')}</h3>${cp.instruction?`<p style="color:var(--muted);font-size:13px;margin:0 0 12px">${e(cp.instruction)}</p>`:''}${(cp.ayahs||[]).map(a=>`<div class="pass"><span class="ref">${e(a.reference)}</span><div class="ar" dir="rtl">${e(a.arabic)}</div><div class="tr">${e(a.transliteration)}</div><div class="ru">${e(a.roman_urdu)}</div><div class="en">${e(a.english_meaning)}</div></div>`).join('')}</section>`}
+
+function sections(ss){if(!ss||!ss.length)return'';return`<section class="card"><h3>Study Flow — Overview</h3>${ss.map(s=>`<div class="sec"><div class="sec-h"><span class="sec-t">${e(s.title)}</span><span class="sec-r">${e(s.ayah_range)}</span></div>${s.theme?`<div class="sec-th">${e(s.theme)}</div>`:''}${s.flow?`<p><b>Flow:</b> ${e(s.flow)}</p>`:''}${s.summary?`<p><b>Summary:</b> ${e(s.summary)}</p>`:''}${s.study_note?`<p class="note"><b>Note:</b> ${e(s.study_note)}</p>`:''}</div>`).join('')}</section>`}
+
+function concl(t,c){if(!c)return'';const ms=(c.mindset_changes||[]).map(x=>`<span class="pill">${e(x)}</span>`).join('');const ch=(c.character_lessons||[]).map(x=>`<span class="pill">${e(x)}</span>`).join('');const ac=(c.action_plan||[]).map(a=>`<div class="ai"><div class="aih"><span class="ain">${e(a.action)}</span>${a.frequency?`<span class="aif">${e(a.frequency)}</span>`:''}</div>${a.how?`<p><b>How:</b> ${e(a.how)}</p>`:''}${a.why?`<p><b>Why:</b> ${e(a.why)}</p>`:''}</div>`).join('');
+return`<section class="card"><h3>${e(t)}</h3>${c.complete_summary?`<p>${e(c.complete_summary)}</p>`:''}${c.what_it_teaches?`<p><b>Teaches:</b> ${e(c.what_it_teaches)}</p>`:''}${c.why_it_matters?`<p><b>Why:</b> ${e(c.why_it_matters)}</p>`:''}${c.what_i_should_understand?`<p><b>Understand:</b> ${e(c.what_i_should_understand)}</p>`:''}${c.what_i_should_do?`<p><b>Do:</b> ${e(c.what_i_should_do)}</p>`:''}${c.how_to_apply?`<p><b>How to apply:</b> ${e(c.how_to_apply)}</p>`:''}${c.what_to_avoid?`<p><b>Avoid:</b> ${e(c.what_to_avoid)}</p>`:''}${ms?`<div class="blk"><h4>Mindset Changes</h4><div class="tags">${ms}</div></div>`:''}${ch?`<div class="blk"><h4>Character Lessons</h4><div class="tags">${ch}</div></div>`:''}${ac?`<div class="blk"><h4>Action Plan</h4>${ac}</div>`:''}${c.one_sentence_lesson?`<div class="hb"><div class="hl">One-Sentence Lesson</div>${e(c.one_sentence_lesson)}</div>`:''}${c.one_sentence_action?`<div class="hb" style="margin-top:9px"><div class="hl">One-Sentence Action</div>${e(c.one_sentence_action)}</div>`:''}${c.one_sentence_reminder?`<div class="hb" style="margin-top:9px"><div class="hl">Reminder</div>${e(c.one_sentence_reminder)}</div>`:''}</section>`}
+
+function srcs(ss){if(!ss||!ss.length)return'';return`<section class="card"><h3>Sources</h3>${ss.map(s=>`<div class="si"><div class="st">${e(s.type||'')}</div><div class="stt">${e(s.title||'')}</div>${s.reference?`<div class="sr">${e(s.reference)}</div>`:''}${s.url?`<div class="su2">${e(s.url)}</div>`:''}</div>`).join('')}</section>`}
+
+function prog(p){if(!p)return'';const r=[['Current PDF',p.current_pdf],['Completed Range',p.completed_range],['Next PDF',p.next_pdf_suggested],['Next Range',p.next_range_suggested],['Surah Complete',p.surah_complete?'Yes':'No']].filter(x=>x[1]!=null&&x[1]!=='');if(!r.length)return'';return`<section class="card"><h3>Progress</h3><div class="ig">${r.map(([k,v])=>`<div class="ii"><div class="k">${e(k)}</div><div class="v">${e(v)}</div></div>`).join('')}</div></section>`}
+
+function build(d){
+const pj=d.project||{},si=d.surah_info||{},sr=d.study_range||{},cp=d.complete_passage||{},ss=d.sections||[],aa=d.ayahs||[],pr=d.pdf_range_conclusion||{},sc=d.surah_conclusion||{},so=d.sources||[],pg=d.progress||{};
+const rs=sr.range||`${sr.surah_number||''}:${sr.ayah_start||''}–${sr.ayah_end||''}`;
+return`<header class="dh"><div class="dk">${e(pj.name||'Quran Deep Study')}</div><h1>${e(si.name_meaning||sr.surah_name||'Study')}</h1><div class="dr">Surah ${e(sr.surah_number!=null?sr.surah_number:'')} · Ayat ${e(sr.ayah_start!=null?sr.ayah_start:'')}–${e(sr.ayah_end!=null?sr.ayah_end:'')} · ${e(rs)}</div><div class="dm">${pj.pdf_id?`<span><b>PDF ID:</b> ${e(pj.pdf_id)}</span>`:''}${pj.version?`<span><b>Version:</b> ${e(pj.version)}</span>`:''}${pj.created_at?`<span><b>Created:</b> ${e(pj.created_at)}</span>`:''}${pj.created_by?`<span><b>By:</b> ${e(pj.created_by.type||'')}${pj.created_by.platform?' · '+e(pj.created_by.platform):''}${pj.created_by.model?' · '+e(pj.created_by.model):''}</span>`:''}</div>${pj.human_review_note?`<div class="dn">${e(pj.human_review_note)}</div>`:''}</header>${info(si)}${passage(cp)}${sections(ss)}<div style="text-align:center;margin:26px 0 18px"><h2 style="font-size:19px;color:var(--primary);margin:0">Detailed Ayah Study</h2><div style="font-size:12.5px;color:var(--muted);margin-top:4px">Arabic → transliteration → meaning → context</div></div>${aa.map(ayah).join('')}${concl('PDF Range Conclusion',pr)}${concl('Surah Conclusion',sc)}${srcs(so)}${prog(pg)}`}
+
+function render(d){document.title=(d.surah_info&&d.surah_info.name_meaning)||'Quran Deep Study';ct.innerHTML=build(d);window.scrollTo(0,0)}
+
+async function load(name){
+const f=norm(name);if(!f){picker();return}
+loading();
+const u='../data/'+encodeURIComponent(f);
+try{const r=await fetch(u,{cache:'no-store'});if(!r.ok)throw new Error(`HTTP ${r.status} — ${u}`);const d=await r.json();render(d);fi.value=f}
+catch(x){console.error(x);errScreen(`"${f}" load nahi ho paya.`,x&&x.message?x.message:String(x))}
 }
 
-/* =========================================================
-   Boot
-   ========================================================= */
-function getFileParam() {
-  const params = new URLSearchParams(window.location.search);
-  let f = params.get('file');
-  if (!f) f = 'QURAN-DEEP-001_Al-Fatihah_1-7';
-  return decodeURIComponent(f).replace(/\.json$/i, '').trim();
-}
+lb.onclick=()=>{const v=fi.value.trim();if(!v)return;const u=new URL(location.href);u.searchParams.set('file',v);history.replaceState(null,'',u.toString());load(v)};
+fi.onkeydown=e=>{if(e.key==='Enter')lb.click()};
+pb.onclick=()=>window.print();
 
-async function load(file) {
-  app.innerHTML = '<div class="loading">Loading…</div>';
-  try {
-    const res = await fetch('../data/' + encodeURIComponent(file) + '.json', { cache: 'no-store' });
-    if (!res.ok) throw new Error('HTTP ' + res.status + ' — file not found');
-    const data = await res.json();
-    render(data);
-    document.title = (data.study_range?.surah_name || 'Quran') +
-      ' ' + (data.study_range?.range || '') + ' · Quran Deep Study';
-    $('fileInput').value = file;
-  } catch (err) {
-    app.innerHTML = `
-      <div class="error">
-        <h3 style="margin-top:0">File load nahi ho payi 😕</h3>
-        <p><code>../data/${esc(file)}.json</code></p>
-        <p style="font-size:14px">${esc(err.message)}</p>
-        <p style="font-size:13px;color:#7f1d1d">
-          Check karo: file <b>data/</b> folder ke andar hai? Naam bilkul same hai?
-        </p>
-      </div>`;
-  }
-}
-
-/* =========================================================
-   Renderer
-   ========================================================= */
-function render(d) {
-  const P   = d.project || {};
-  const SR  = d.study_range || {};
-  const SI  = d.surah_info || {};
-  const CP  = d.complete_passage || {};
-  const SEC = Array.isArray(d.sections) ? d.sections : [];
-  const AY  = Array.isArray(d.ayahs) ? d.ayahs : [];
-  const PRC = d.pdf_range_conclusion || {};
-  const SC  = d.surah_conclusion || {};
-  const SRC = Array.isArray(d.sources) ? d.sources : [];
-  const QC  = d.quality_control || {};
-  const PRG = d.progress || {};
-
-  let h = [];
-
-  /* ---------- HERO ---------- */
-  h.push(`
-    <header class="hero">
-      <div class="hero-top">
-        ${P.pdf_id ? `<span class="chip">${esc(P.pdf_id)}</span>` : ''}
-        ${P.version ? `<span class="chip">${esc(P.version)}</span>` : ''}
-        ${SI.classification?.makki_or_madani ? `<span class="chip">${esc(SI.classification.makki_or_madani)}</span>` : ''}
-        ${SI.classification?.ayat_count ? `<span class="chip">${esc(SI.classification.ayat_count)} Ayat</span>` : ''}
-      </div>
-      <h1>${esc(SR.surah_name || '')} <span class="range">${esc(SR.range || '')}</span></h1>
-      <p class="sub">${esc(SI.name_meaning || P.name || '')}</p>
-      <div class="hero-meta">
-        ${SR.is_complete_surah ? '<span>✓ Complete Surah</span>' : ''}
-        ${PRG.completed_range ? `<span>Completed: ${esc(PRG.completed_range)}</span>` : ''}
-        ${PRG.next_range_suggested ? `<span>Next: ${esc(PRG.next_range_suggested)}</span>` : ''}
-      </div>
-    </header>
-  `);
-
-  if (P.human_review_note) {
-    h.push(`<div class="note"><b>Note:</b> ${esc(P.human_review_note)}</div>`);
-  }
-
-  /* ---------- SURAH INFO ---------- */
-  if (Object.keys(SI).length) {
-    h.push(`<div class="section-head"><div class="bar"></div><h2>Surah Info</h2></div>`);
-    h.push('<div class="card">');
-
-    if (SI.introduction) h.push(info('📖', 'Introduction', SI.introduction, 'green'));
-
-    h.push('<div class="grid-2" style="margin-top:14px">');
-    h.push(info('❓', 'What', SI.what));
-    h.push(info('💡', 'Why', SI.why));
-    h.push(info('🕰️', 'When / Where', SI.when_where));
-    h.push(info('📝', 'How to Study', SI.how_to_study));
-    h.push('</div>');
-
-    if (SI.known_vs_debated) {
-      h.push('<div style="margin-top:14px">' + info('⚖️', 'Known vs Debated', SI.known_vs_debated, 'gold') + '</div>');
-    }
-
-    if (Array.isArray(SI.themes) && SI.themes.length) {
-      h.push('<div style="margin-top:14px"><div class="info-title" style="color:var(--accent)">🏷️ Themes</div><div class="tag-list">');
-      SI.themes.forEach(t => h.push(`<span class="tag">${esc(t)}</span>`));
-      h.push('</div></div>');
-    }
-
-    h.push('</div>');
-  }
-
-  /* ---------- COMPLETE PASSAGE ---------- */
-  if (Array.isArray(CP.ayahs) && CP.ayahs.length) {
-    h.push(`<div class="section-head"><div class="bar"></div><h2>${esc(CP.title || 'Complete Passage')}</h2>
-      <span class="count">${CP.ayahs.length} Ayat</span></div>`);
-    if (CP.instruction) {
-      h.push(`<div class="note" style="margin-top:8px">${esc(CP.instruction)}</div>`);
-    }
-    h.push('<div class="card" style="margin-top:14px">');
-    CP.ayahs.forEach(a => {
-      h.push(`
-        <div class="passage-item">
-          <div class="passage-num">${esc(a.ayah)}</div>
-          <div>
-            <p class="arabic">${esc(a.arabic)}</p>
-            ${a.transliteration ? `<p class="translit">${esc(a.transliteration)}</p>` : ''}
-            ${a.roman_urdu ? `<p class="roman">${esc(a.roman_urdu)}</p>` : ''}
-            ${a.english_meaning ? `<p class="english">${esc(a.english_meaning)}</p>` : ''}
-          </div>
-        </div>`);
-    });
-    h.push('</div>');
-  }
-
-  /* ---------- SECTIONS ---------- */
-  if (SEC.length) {
-    h.push(`<div class="section-head"><div class="bar"></div><h2>Study Sections</h2></div>`);
-    SEC.forEach(s => {
-      h.push(`
-        <div class="card">
-          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px">
-            <h3 style="margin:0;font-size:16.5px">${esc(s.title)}</h3>
-            ${s.ayah_range ? `<span class="tag" style="background:var(--accent-soft);border-color:#c7e9e4;color:var(--accent)">Ayat ${esc(s.ayah_range)}</span>` : ''}
-          </div>
-          ${s.theme ? info('🎯', 'Theme', s.theme, 'plain') : ''}
-          <div class="grid-2" style="margin-top:12px">
-            ${info('🔀', 'Flow', s.flow)}
-            ${info('📌', 'Summary', s.summary)}
-          </div>
-          ${s.study_note ? `<div style="margin-top:12px">${info('📎', 'Study Note', s.study_note, 'gold')}</div>` : ''}
-        </div>`);
-    });
-  }
-
-  /* ---------- DETAILED AYAHS ---------- */
-  if (AY.length) {
-    h.push(`<div class="section-head"><div class="bar"></div><h2>Ayah-by-Ayah Deep Study</h2>
-      <span class="count">${AY.length} Ayat</span></div>`);
-    AY.forEach(a => h.push(renderAyah(a)));
-  }
-
-  /* ---------- PDF RANGE CONCLUSION ---------- */
-  if (Object.keys(PRC).length) {
-    h.push(`<div class="section-head"><div class="bar"></div><h2>Range Conclusion</h2></div>`);
-    h.push('<div class="card"><div class="concl-grid">');
-    if (PRC.complete_summary) h.push(info('📚', 'Complete Summary', PRC.complete_summary, 'green'));
-    h.push('<div class="grid-2">');
-    h.push(info('🎓', 'What It Teaches', PRC.what_it_teaches));
-    h.push(info('⭐', 'Why It Matters', PRC.why_it_matters));
-    h.push(info('✅', 'What I Should Do', PRC.what_i_should_do));
-    h.push(info('🛠️', 'How to Apply', PRC.how_to_apply));
-    h.push('</div>');
-    if (PRC.what_to_avoid) h.push(info('🚫', 'What to Avoid', PRC.what_to_avoid, 'red'));
-    if (PRC.one_sentence_reminder) h.push(info('💬', 'One Sentence Reminder', PRC.one_sentence_reminder, 'gold'));
-    h.push('</div></div>');
-  }
-
-  /* ---------- SURAH CONCLUSION ---------- */
-  if (Object.keys(SC).length) {
-    h.push(`<div class="section-head"><div class="bar"></div><h2>Surah Conclusion</h2></div>`);
-    h.push('<div class="card"><div class="concl-grid">');
-    if (SC.complete_summary) h.push(info('📚', 'Complete Summary', SC.complete_summary, 'green'));
-    h.push('<div class="grid-2">');
-    h.push(info('🎓', 'What It Teaches', SC.what_it_teaches));
-    h.push(info('⭐', 'Why It Matters', SC.why_it_matters));
-    h.push(info('🧠', 'What I Should Understand', SC.what_i_should_understand));
-    h.push(info('✅', 'What I Should Do', SC.what_i_should_do));
-    h.push(info('🛠️', 'How to Apply', SC.how_to_apply));
-    h.push(info('🚫', 'What to Avoid', SC.what_to_avoid, 'red'));
-    h.push('</div>');
-
-    if (Array.isArray(SC.mindset_changes) && SC.mindset_changes.length) {
-      h.push('<div style="margin-top:14px"><div class="info-title" style="color:var(--accent)">🔄 Mindset Changes</div><div class="mindset-list">');
-      SC.mindset_changes.forEach(m => h.push(`<span>${esc(m)}</span>`));
-      h.push('</div></div>');
-    }
-
-    if (Array.isArray(SC.character_lessons) && SC.character_lessons.length) {
-      h.push('<div style="margin-top:14px"><div class="info-title" style="color:var(--accent)">🌱 Character Lessons</div><div class="tag-list">');
-      SC.character_lessons.forEach(c => h.push(`<span class="tag">${esc(c)}</span>`));
-      h.push('</div></div>');
-    }
-
-    /* Action plan */
-    if (Array.isArray(SC.action_plan) && SC.action_plan.length) {
-      h.push('<div style="margin-top:18px"><div class="info-title" style="color:var(--accent)">🎯 Action Plan</div>');
-      SC.action_plan.forEach((act, i) => {
-        h.push(`
-          <div class="action-item">
-            <div class="action-idx">${i + 1}</div>
-            <div>
-              <div class="action-title">${esc(act.action)}</div>
-              <div class="action-how">${esc(act.how)}</div>
-              ${act.why ? `<div class="action-why">Why: ${esc(act.why)}</div>` : ''}
-            </div>
-            ${act.frequency ? `<div class="action-freq">${esc(act.frequency)}</div>` : '<div></div>'}
-          </div>`);
-      });
-      h.push('</div>');
-    }
-
-    h.push('<div class="grid-2" style="margin-top:16px">');
-    h.push(info('💬', 'One Sentence Lesson', SC.one_sentence_lesson, 'gold'));
-    h.push(info('⚡', 'One Sentence Action', SC.one_sentence_action, 'gold'));
-    h.push('</div>');
-
-    h.push('</div></div>');
-  }
-
-  /* ---------- SOURCES ---------- */
-  if (SRC.length) {
-    h.push(`<div class="section-head"><div class="bar"></div><h2>Sources</h2>
-      <span class="count">${SRC.length}</span></div>`);
-    h.push('<div class="card">');
-    SRC.forEach(s => {
-      h.push(`
-        <div class="source-item">
-          <div class="source-type">${esc(s.type)}</div>
-          <div>
-            <div class="source-title">${esc(s.title)}</div>
-            ${s.reference ? `<div class="source-ref">${esc(s.reference)}</div>` : ''}
-            ${s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.url)}</a>` : ''}
-          </div>
-        </div>`);
-    });
-    h.push('</div>');
-  }
-
-  /* ---------- QUALITY CONTROL ---------- */
-  if (Object.keys(QC).length) {
-    h.push(`<div class="section-head"><div class="bar"></div><h2>Quality Control</h2></div>`);
-    h.push('<div class="card">');
-    h.push('<div class="qc-grid">');
-    Object.entries(QC).forEach(([k, v]) => {
-      if (v === true) {
-        h.push(`<div class="qc-item"><span class="tick">✓</span><span>${esc(prettyKey(k))}</span></div>`);
-      }
-    });
-    h.push('</div>');
-    if (QC.notes) h.push(`<div style="margin-top:14px">${info('📝', 'Notes', QC.notes, 'plain')}</div>`);
-    if (QC.copyright_safe_meanings && typeof QC.copyright_safe_meanings === 'string') {
-      h.push(`<div style="margin-top:10px">${info('©', 'Copyright', QC.copyright_safe_meanings, 'plain')}</div>`);
-    }
-    h.push('</div>');
-  }
-
-  /* ---------- PROGRESS ---------- */
-  if (Object.keys(PRG).length) {
-    h.push(`<div class="section-head"><div class="bar"></div><h2>Progress</h2></div>`);
-    h.push('<div class="card"><div class="progress-bar">');
-    Object.entries(PRG).forEach(([k, v]) => {
-      h.push(`<div><b>${esc(prettyKey(k))}:</b> ${esc(v)}</div>`);
-    });
-    h.push('</div></div>');
-  }
-
-  app.innerHTML = h.join('');
-}
-
-/* ---------- Single Ayah Card ---------- */
-function renderAyah(a) {
-  const mk = a.markers || {};
-  const sajdah = mk.sajdah || {};
-  const specials = Array.isArray(mk.special_markers) ? mk.special_markers : [];
-  const notes = Array.isArray(mk.special_notes) ? mk.special_notes : [];
-
-  let out = [];
-  out.push('<div class="ayah-card">');
-
-  /* Head */
-  out.push(`
-    <div class="ayah-head">
-      <div class="num">${esc(a.ayah)}</div>
-      <div>
-        <div class="t">Ayah ${esc(a.ayah)}</div>
-        <div class="r">${esc(a.reference)}</div>
-      </div>
-      <div class="markers">
-        ${sajdah.is_sajdah_ayah ? '<span class="mk">🕌 Sajdah Ayah</span>' : ''}
-        ${specials.map(s => `<span class="mk">${esc(s)}</span>`).join('')}
-      </div>
-    </div>
-  `);
-
-  out.push('<div class="ayah-body">');
-
-  /* Arabic block */
-  out.push(`
-    <div class="ayah-arabic-wrap">
-      <p class="arabic">${esc(a.arabic)}</p>
-      ${a.transliteration ? `<p class="translit">${esc(a.transliteration)}</p>` : ''}
-      ${a.roman_urdu ? `<p class="roman">${esc(a.roman_urdu)}</p>` : ''}
-      ${a.english_meaning ? `<p class="english">${esc(a.english_meaning)}</p>` : ''}
-    </div>
-  `);
-
-  /* Simple + Deep */
-  if (a.simple) {
-    out.push(`<div class="simple-box"><span class="lbl">Simple</span>${esc(a.simple)}</div>`);
-  }
-  if (a.deep) {
-    out.push(`<div class="deep-box"><span class="lbl">Deep</span>${esc(a.deep)}</div>`);
-  }
-
-  /* Main message + why */
-  if (a.main_message || a.why_it_matters) {
-    out.push('<div class="msg-row">');
-    out.push(info('🎯', 'Main Message', a.main_message, 'green'));
-    out.push(info('⭐', 'Why It Matters', a.why_it_matters, 'blue'));
-    out.push('</div>');
-  }
-
-  /* Important Arabic words */
-  if (Array.isArray(a.important_arabic_words) && a.important_arabic_words.length) {
-    out.push('<div class="info-title" style="color:var(--accent);margin-bottom:10px">🔤 Important Arabic Words</div>');
-    out.push('<div class="words">');
-    a.important_arabic_words.forEach(w => {
-      out.push(`
-        <div class="word">
-          <div class="word-top">
-            <span class="word-ar">${esc(w.arabic)}</span>
-            <span class="word-tr">${esc(w.transliteration)}</span>
-          </div>
-          <div class="word-body">
-            ${w.meaning ? `<div><b>Meaning:</b> ${esc(w.meaning)}</div>` : ''}
-            ${w.root ? `<div><b>Root:</b> ${esc(w.root)}</div>` : ''}
-            ${w.word_form ? `<div><b>Form:</b> ${esc(w.word_form)}</div>` : ''}
-            ${w.literal_meaning ? `<div><b>Literal:</b> ${esc(w.literal_meaning)}</div>` : ''}
-            ${w.contextual_meaning ? `<div><b>Context:</b> ${esc(w.contextual_meaning)}</div>` : ''}
-          </div>
-        </div>`);
-    });
-    out.push('</div>');
-  }
-
-  /* Grammar + Historical */
-  out.push('<div class="grid-2">');
-  out.push(info('📐', 'Grammar & Rhetoric', a.grammar_rhetoric, 'blue'));
-  out.push(info('🏛️', 'Historical Context', a.historical_context, 'plain'));
-  out.push('</div>');
-
-  /* Misunderstandings + Does not mean */
-  if (a.common_misunderstandings || a.what_it_does_not_mean) {
-    out.push('<div class="grid-2" style="margin-top:12px">');
-    out.push(info('⚠️', 'Common Misunderstandings', a.common_misunderstandings, 'red'));
-    out.push(info('🚫', 'What It Does NOT Mean', a.what_it_does_not_mean, 'red'));
-    out.push('</div>');
-  }
-
-  /* Connected ayat */
-  if (a.connected_ayat) {
-    out.push('<div style="margin-top:12px">' + info('🔗', 'Connected Ayat', a.connected_ayat, 'plain') + '</div>');
-  }
-
-  /* Hadith */
-  if (a.hadith && (a.hadith.summary || a.hadith.reference)) {
-    out.push('<div style="margin-top:12px">' + info('📜', 'Hadith · ' + (a.hadith.reference || ''), a.hadith.summary, 'gold') + '</div>');
-    if (a.hadith.status) {
-      out.push(`<div style="margin-top:6px;font-size:12.5px;color:var(--muted)"><b>Status:</b> ${esc(a.hadith.status)}</div>`);
-    }
-  }
-
-  /* History evidence + Science */
-  if (a.history_evidence || (a.science && a.science.summary)) {
-    out.push('<div class="grid-2" style="margin-top:12px">');
-    out.push(info('🏺', 'History Evidence', a.history_evidence, 'plain'));
-    if (a.science && a.science.summary) {
-      const cls = a.science.status_class === 'status-unsupported' ? 'red'
-                : a.science.status_class === 'status-limited' ? 'gold' : 'plain';
-      out.push(info('🔬', 'Science · ' + (a.science.status || ''), a.science.summary, cls));
-    }
-    out.push('</div>');
-  }
-
-  /* Real life + Modern + Future */
-  if (a.real_life_example || a.modern_world_connection || a.future_or_forward_looking_context) {
-    out.push('<div class="grid-2" style="margin-top:12px">');
-    out.push(info('🌍', 'Real Life Example', a.real_life_example, 'green'));
-    out.push(info('📱', 'Modern World Connection', a.modern_world_connection, 'blue'));
-    out.push('</div>');
-    if (a.future_or_forward_looking_context) {
-      out.push('<div style="margin-top:12px">' + info('🔮', 'Forward Looking', a.future_or_forward_looking_context, 'plain') + '</div>');
-    }
-  }
-
-  /* Knowledge status */
-  if (a.knowledge_status) {
-    out.push('<div style="margin-top:12px">' + info('🧭', 'Knowledge Status', a.knowledge_status, 'gold') + '</div>');
-  }
-
-  /* Q&A */
-  if (Array.isArray(a.qa) && a.qa.length) {
-    out.push('<div class="info-title" style="color:var(--accent);margin:18px 0 10px">❓ Questions & Answers</div>');
-    out.push('<div class="qa-list">');
-    a.qa.forEach(q => {
-      out.push(`
-        <div class="qa-item">
-          <div class="qa-q"><span class="bullet">Q.</span><span>${esc(q.q)}</span></div>
-          <div class="qa-a"><span class="bullet">A.</span><span>${esc(q.a)}</span></div>
-        </div>`);
-    });
-    out.push('</div>');
-  }
-
-  /* Reflection + Action */
-  if (a.night_reflection || a.personal_action) {
-    out.push('<div class="reflect">');
-    out.push(info('🌙', 'Night Reflection', a.night_reflection, 'blue'));
-    out.push(info('⚡', 'Personal Action', a.personal_action, 'green'));
-    out.push('</div>');
-  }
-
-  /* Special notes */
-  if (notes.length) {
-    out.push('<div style="margin-top:12px">' + info('📌', 'Special Notes', notes.join(' · '), 'plain') + '</div>');
-  }
-
-  out.push('</div>'); // ayah-body
-  out.push('</div>'); // ayah-card
-  return out.join('');
-}
-
-/* Pretty key for QC / progress */
-function prettyKey(k) {
-  return String(k)
-    .replace(/_/g, ' ')
-    .replace(/\b\w/g, c => c.toUpperCase());
-}
-
-/* =========================================================
-   Events
-   ========================================================= */
-$('printBtn').addEventListener('click', () => window.print());
-
-$('loadBtn').addEventListener('click', () => {
-  const f = $('fileInput').value.trim().replace(/\.json$/i, '');
-  if (!f) return;
-  const url = new URL(window.location.href);
-  url.searchParams.set('file', f);
-  window.history.replaceState({}, '', url);
-  load(f);
-});
-
-$('fileInput').addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') $('loadBtn').click();
-});
-
-/* =========================================================
-   Start
-   ========================================================= */
-load(getFileParam());
+const fp=new URLSearchParams(location.search).get('file');
+if(fp){fi.value=norm(fp);load(fp)}else{picker()}
+})();
 </script>
 </body>
-</html>
+</html>                    
