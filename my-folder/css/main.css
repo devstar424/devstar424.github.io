@@ -1,9 +1,158 @@
-:root{--ink:#172033;--muted:#647084;--line:#dfe5ee;--paper:#fff;--bg:#eef2f7;--accent:#2d6cdf;--accent2:#173b78;--soft:#f6f8fb;--gold:#b9831d;--shadow:0 18px 50px rgba(25,39,64,.12)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);line-height:1.58}button,input,select{font:inherit}.hidden{display:none!important}
-.site-header{padding:28px max(24px,calc((100vw - 1180px)/2));background:#0b1220;color:#fff;display:flex;justify-content:space-between;align-items:center;gap:24px}.brand-wrap{display:flex;align-items:center;gap:14px}.brand-mark{width:44px;height:44px;border:1px solid rgba(255,255,255,.22);border-radius:12px;display:grid;place-items:center;font-weight:800;letter-spacing:.04em}.eyebrow{font-size:11px;letter-spacing:.18em;opacity:.62}.site-header h1{margin:2px 0 0;font-size:24px}.header-meta{font-size:12px;color:#b9c3d4}
-.library-shell{max-width:1180px;margin:0 auto;padding:32px 24px 60px}.hero-card{background:linear-gradient(135deg,#fff,#f3f7ff);border:1px solid var(--line);border-radius:24px;padding:32px;display:flex;justify-content:space-between;align-items:center;gap:30px;box-shadow:var(--shadow)}.pill{display:inline-block;background:#e8f0ff;color:#2356ae;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:700}.hero-card h2{max-width:760px;font-size:30px;line-height:1.2;margin:14px 0 10px}.hero-card p{max-width:760px;color:var(--muted);margin:0}.hero-stat{min-width:130px;text-align:center;border-left:1px solid var(--line);padding-left:30px}.hero-stat strong{display:block;font-size:42px;line-height:1}.hero-stat span{color:var(--muted);font-size:13px}
-.toolbar-card{display:flex;gap:12px;margin:24px 0}.search-box{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;display:flex;align-items:center;padding:0 14px;gap:10px}.search-box span{font-size:22px;color:var(--muted)}.search-box input{border:0;outline:0;width:100%;padding:13px 0;background:transparent}.toolbar-card select{background:#fff;border:1px solid var(--line);border-radius:14px;padding:0 14px;color:var(--ink)}
-.study-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}.study-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;transition:.18s ease;box-shadow:0 8px 24px rgba(25,39,64,.05)}.study-card:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:#c8d5eb}.card-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.pdf-id{font-size:11px;letter-spacing:.08em;font-weight:800;color:var(--accent)}.range-badge{font-size:11px;background:var(--soft);border:1px solid var(--line);padding:4px 8px;border-radius:8px}.study-card h3{margin:12px 0 4px;font-size:22px}.study-card .subtitle{margin:0;color:var(--muted)}.card-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}.open-link{border:0;background:var(--accent);color:#fff;border-radius:10px;padding:9px 13px;font-weight:700;cursor:pointer}.empty-state{background:#fff;border:1px dashed #bcc7d8;border-radius:16px;padding:28px;text-align:center;color:var(--muted)}.site-footer{text-align:center;padding:24px;color:#7b8798;font-size:12px}
-.study-body{background:#dfe5ec}.study-toolbar{position:sticky;top:0;z-index:20;height:58px;background:rgba(11,18,32,.96);display:flex;align-items:center;gap:8px;padding:8px 14px;color:#fff}.study-toolbar button{border:1px solid rgba(255,255,255,.16);background:#182337;color:#fff;border-radius:9px;padding:8px 12px;cursor:pointer}.study-toolbar button:hover{background:#22314b}.study-toolbar .primary{background:var(--accent);border-color:var(--accent)}.toolbar-title{flex:1;text-align:center;font-size:12px;color:#cbd4e2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.paper-root{padding:28px 0 50px}.paper{width:210mm;min-height:297mm;margin:0 auto 28px;background:var(--paper);position:relative;padding:16mm 16mm 18mm;box-shadow:var(--shadow);overflow:hidden}.page-content{min-height:255mm}.page-footer{position:absolute;left:16mm;right:16mm;bottom:8mm;border-top:1px solid var(--line);padding-top:4mm;display:flex;justify-content:space-between;color:#788396;font-size:8.5pt}.page-title{font-size:28pt;line-height:1.08;margin:0 0 5mm;color:var(--accent2)}.page-kicker{font-size:9pt;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:800}.cover{display:flex;align-items:center}.cover .page-content{display:flex;flex-direction:column;justify-content:center}.cover h1{font-size:38pt;max-width:170mm}.cover .range{font-size:18pt;color:var(--muted)}.cover .cover-rule{width:35mm;height:3px;background:var(--accent);margin:8mm 0}.meta-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10mm}.meta-item{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:10px}.meta-item b{display:block;font-size:8pt;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.meta-item span{display:block;margin-top:2px;font-weight:700}
-.section-label{font-size:9pt;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:800}.lead{font-size:13pt;color:#39465b}.callout{background:#f4f7fb;border-left:4px solid var(--accent);padding:12px 14px;border-radius:0 10px 10px 0;margin:12px 0}.callout.gold{border-left-color:var(--gold)}.toc-list{list-style:none;padding:0;margin:10mm 0}.toc-list li{display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px dotted #c8d0dc}.arabic{font-family:"Noto Naskh Arabic","Amiri","Times New Roman",serif;direction:rtl;text-align:right;font-size:28pt;line-height:1.9;margin:5mm 0}.translit{font-style:italic;font-size:11pt;color:#48556a}.meaning{margin:8px 0}.meaning strong{color:var(--accent2)}.ayah-header{display:flex;align-items:baseline;justify-content:space-between;gap:12px}.ayah-number{font-size:10pt;color:var(--muted);font-weight:800}.depth-box{background:#fbfcfe;border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0}.depth-box h3{font-size:12pt;margin:0 0 6px;color:var(--accent2)}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}.word-table{width:100%;border-collapse:collapse;font-size:9pt;margin-top:8px}.word-table th,.word-table td{border:1px solid var(--line);padding:7px;vertical-align:top;text-align:left}.word-table th{background:var(--soft)}.badge{display:inline-block;font-size:8pt;padding:3px 7px;border-radius:999px;background:#eef3fa;color:#40516a;margin:2px}.status-established{background:#eaf7ee;color:#21733a}.status-limited{background:#fff5dd;color:#8a6411}.status-unsupported{background:#fdecec;color:#9b2d2d}.notes-box{height:35mm;border:1px dashed #aeb9c8;border-radius:10px;margin-top:10px}.qa-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.qa{border:1px solid var(--line);border-radius:10px;padding:10px}.qa b{display:block;margin-bottom:4px}.source-list{font-size:9pt}.source-list li{margin:5px 0}.conclusion-card{background:linear-gradient(135deg,#f3f7ff,#fff);border:1px solid #cad8ee;border-radius:16px;padding:18px}.action-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.error-box{position:fixed;inset:20px;background:#fff;border:2px solid #c33;border-radius:14px;padding:20px;z-index:100;box-shadow:var(--shadow);overflow:auto}
-@media(max-width:900px){.site-header{align-items:flex-start;flex-direction:column}.hero-card{flex-direction:column;align-items:flex-start}.hero-stat{border-left:0;border-top:1px solid var(--line);padding:18px 0 0;width:100%}.paper{transform-origin:top center;width:210mm}.paper-root{overflow-x:auto;padding-bottom:20px}.two-col,.qa-grid,.action-grid{grid-template-columns:1fr}.study-toolbar{gap:5px}.study-toolbar button{padding:7px 9px}.toolbar-title{display:none}}
+/* =========================
+   A4 PAPER SYSTEM
+   ========================= */
+
+:root {
+  --a4-width: 210mm;
+  --a4-height: 297mm;
+
+  --page-padding-top: 16mm;
+  --page-padding-right: 16mm;
+  --page-padding-bottom: 18mm;
+  --page-padding-left: 16mm;
+
+  --content-width: 178mm;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #e9edf2;
+  color: #18202a;
+  font-family: "Noto Sans", Arial, sans-serif;
+}
+
+/* Every rendered PDF page */
+.paper {
+  position: relative;
+
+  width: var(--a4-width);
+  height: var(--a4-height);
+
+  min-width: var(--a4-width);
+  max-width: var(--a4-width);
+
+  min-height: var(--a4-height);
+  max-height: var(--a4-height);
+
+  margin: 12mm auto;
+
+  background: #ffffff;
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  padding:
+    var(--page-padding-top)
+    var(--page-padding-right)
+    var(--page-padding-bottom)
+    var(--page-padding-left);
+
+  page-break-after: always;
+  break-after: page;
+
+  box-shadow: 0 3px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Actual usable content area */
+.paper-content {
+  width: 100%;
+  height: 100%;
+
+  min-height: 0;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* Never allow content to increase page size */
+.paper * {
+  max-width: 100%;
+}
+
+/* Long text should wrap, NOT stretch the sheet */
+.paper p,
+.paper li,
+.paper td,
+.paper th {
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+/* Keep headings attached to following content */
+.paper h1,
+.paper h2,
+.paper h3,
+.paper h4 {
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+/* Avoid splitting individual blocks */
+.study-block,
+.ayah-card,
+.info-card,
+.word-card,
+.qna-card,
+.reflection-card,
+.section-card {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* Footer stays inside A4 page */
+.page-footer {
+  position: absolute;
+  left: 16mm;
+  right: 16mm;
+  bottom: 7mm;
+
+  height: 7mm;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-top: 0.3mm solid #d8dde3;
+
+  font-size: 8pt;
+  color: #66717d;
+}
+
+/* Screen only */
+@media screen {
+  .paper {
+    transform-origin: top center;
+  }
+}
+
+/* Mobile preview */
+@media screen and (max-width: 900px) {
+  body {
+    background: #dfe4ea;
+  }
+
+  .paper {
+    transform: scale(
+      min(
+        1,
+        calc((100vw - 24px) / 210mm)
+      )
+    );
+
+    transform-origin: top center;
+
+    margin-bottom: -80mm;
+  }
+}
