@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quran Deep Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri:wght@400;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14322f; --ink-2:#2d4b48; --muted:#5f7370; --line:#d6e0dd;
+  --tint:#eef4f2; --tint-2:#f6f9f8; --gold:#a67c2e; --gold-dk:#85601c; --gold-soft:#f7f0e0;
+  --warn-bg:#fff3e3; --warn-ln:#e0a85a; --ok:#1f7a55; --ok-bg:#e4f3ec; --bad:#a63a2e; --bad-bg:#fbe9e6;
+  --desk:#dfe5e3;
+  --serif:"Newsreader","Iowan Old Style",Georgia,serif;
+  --sans:"Source Sans 3","Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
+  --arabic:"Amiri Quran","Amiri","Scheherazade New","Noto Naskh Arabic","Traditional Arabic",serif;
+}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;background:var(--desk);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+button,select,input{font:inherit}
+
+/* ---------- Toolbar (screen only) ---------- */
+.bar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:10px 18px;background:var(--ink);color:#fff;box-shadow:0 2px 12px rgba(0,0,0,.18)}
+.brand{display:flex;flex-direction:column;line-height:1.15;margin-right:auto;min-width:0}
+.brand b{font-family:var(--serif);font-size:17px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand small{font-size:12px;color:#b9cfca}
+.bar select{background:#22443f;color:#fff;border:1px solid #3d605a;border-radius:8px;padding:8px 10px;max-width:210px;cursor:pointer}
+.bar select:focus-visible,.btn:focus-visible,.bar a:focus-visible{outline:2px solid #f0cf8a;outline-offset:2px}
+.pill{font-size:12.5px;color:#d7e6e2;background:#22443f;border-radius:99px;padding:6px 11px;white-space:nowrap}
+.tip{font-size:12px;color:#9fbab4;max-width:230px;line-height:1.25}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:9px;padding:9px 16px;font-weight:600;cursor:pointer}
+.btn-primary{background:#e3b863;color:#2a1f08}
+.btn-primary:hover{background:#efc979}
+.btn-ghost{background:#22443f;color:#fff;border:1px solid #3d605a}
+.btn svg{width:18px;height:18px}
+
+/* ---------- Pages ---------- */
+#app{display:flex;flex-direction:column;align-items:center;gap:20px;padding:22px 0 60px;transform-origin:top center}
+.sheet{width:210mm;height:296mm;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.12),0 10px 30px rgba(20,50,47,.14);
+  display:flex;flex-direction:column;padding:10mm 15mm 0;position:relative;overflow:hidden;flex:none}
+.run-head{display:flex;justify-content:space-between;gap:10mm;font-size:7.6pt;color:var(--muted);
+  padding-bottom:2mm;border-bottom:.3mm solid var(--line);height:7mm}
+.sheet-body{flex:1;min-height:0;overflow:hidden;padding-top:5mm;font-size:9.6pt;line-height:1.5}
+.run-foot{height:12mm;display:flex;align-items:center;justify-content:center;gap:3mm;
+  font-size:8.4pt;color:var(--ink-2);font-weight:600;border-top:.3mm solid var(--line)}
+.run-foot i{width:1.6mm;height:1.6mm;background:var(--gold);transform:rotate(45deg);display:inline-block}
+
+/* ---------- Content blocks ---------- */
+.blk{margin:0 0 3.4mm}
+.blk p{margin:0}
+.cover{padding:6mm 0 3mm}
+.cover .kicker{font-size:10pt;font-weight:600;color:var(--gold-dk)}
+.cover h1{font-family:var(--serif);font-weight:600;font-size:40pt;line-height:1.02;margin:2mm 0 1.5mm;letter-spacing:-.01em}
+.cover .sub{font-family:var(--serif);font-style:italic;font-size:15pt;color:var(--ink-2)}
+.cover .rule{height:.8mm;width:26mm;background:var(--gold);margin:5mm 0 4mm}
+.chips{display:flex;flex-wrap:wrap;gap:1.6mm}
+.chip{background:var(--tint);border:.25mm solid var(--line);color:var(--ink-2);border-radius:99px;padding:.8mm 3mm;font-size:8.4pt;font-weight:500}
+.chip.gold{background:var(--gold-soft);border-color:#ead7ab;color:var(--gold-dk)}
+
+.sec-h{display:flex;align-items:baseline;gap:3mm;border-bottom:.5mm solid var(--gold);padding-bottom:1.6mm;margin-bottom:4mm}
+.sec-h h2{font-family:var(--serif);font-size:17pt;font-weight:600;margin:0}
+.sec-h span{font-size:8.6pt;color:var(--muted)}
+.sub-h{font-family:var(--serif);font-size:11.6pt;font-weight:600;margin:1mm 0 0;padding-left:2.6mm;border-left:1mm solid var(--gold)}
+
+.fld h4{margin:0 0 .5mm;font-size:8.6pt;font-weight:700;color:var(--gold-dk)}
+.fld p{color:#1c3330}
+.callout{border-radius:2mm;padding:3mm 3.6mm;background:var(--tint);border-left:1mm solid var(--ink-2)}
+.callout h4{margin:0 0 .6mm;font-size:8.6pt;font-weight:700;color:var(--ink-2)}
+.callout.warn{background:var(--warn-bg);border-left-color:var(--warn-ln)}
+.callout.warn h4{color:#8a5a14}
+.callout.gold{background:var(--gold-soft);border-left-color:var(--gold)}
+.callout.gold h4{color:var(--gold-dk)}
+.callout.big p{font-family:var(--serif);font-size:11.4pt;line-height:1.4}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:3mm}
+
+/* Ayah opener */
+.ayah-open{border:.3mm solid var(--line);border-top:1.2mm solid var(--ink);border-radius:0 0 2.5mm 2.5mm;background:linear-gradient(#f4f8f7,#fff);padding:4mm 5mm 4.2mm}
+.ayah-top{display:flex;align-items:center;gap:3mm;margin-bottom:1mm}
+.medal{width:11mm;height:11mm;border-radius:50%;border:.5mm solid var(--gold);display:grid;place-items:center;
+  font-family:var(--serif);font-weight:600;font-size:12pt;color:var(--gold-dk);background:#fff;flex:none;box-shadow:0 0 0 1mm var(--gold-soft)}
+.ayah-top .ref{font-family:var(--serif);font-size:13pt;font-weight:600;line-height:1.1}
+.ayah-top .ref small{display:block;font-family:var(--sans);font-size:8.2pt;font-weight:500;color:var(--muted)}
+.ayah-top .tags{margin-left:auto;display:flex;gap:1.6mm;flex-wrap:wrap;justify-content:flex-end}
+.ar{font-family:var(--arabic);direction:rtl;text-align:center;line-height:2.15;color:#0e2724}
+.ar.xl{font-size:27pt;margin:2mm 0 1mm}
+.ar.lg{font-size:19pt;line-height:2;text-align:right}
+.tr{font-family:var(--serif);font-style:italic;font-size:11pt;text-align:center;color:var(--ink-2)}
+.mean{display:grid;grid-template-columns:1fr 1fr;gap:3mm;margin-top:3mm}
+.mean div{background:#fff;border:.25mm solid var(--line);border-radius:1.6mm;padding:2mm 3mm}
+.mean h4{margin:0;font-size:7.8pt;font-weight:700;color:var(--gold-dk)}
+.mean p{font-size:9.6pt}
+
+/* Passage rows */
+.pass{display:grid;grid-template-columns:10mm 1fr;gap:3.5mm;padding:2.6mm 0;border-bottom:.25mm dashed var(--line)}
+.pass .num{width:8mm;height:8mm;border-radius:50%;border:.4mm solid var(--gold);display:grid;place-items:center;font-size:9pt;font-weight:700;color:var(--gold-dk);margin-top:2mm}
+.pass .tr{text-align:right;margin-top:-1mm}
+.pass .ml{display:grid;grid-template-columns:1fr 1fr;gap:3mm;margin-top:1.4mm;font-size:9.2pt}
+.pass .ml b{display:block;font-size:7.6pt;color:var(--gold-dk)}
+
+/* Section cards */
+.scard{border:.3mm solid var(--line);border-radius:2.4mm;padding:3.6mm 4.2mm;background:var(--tint-2)}
+.scard header{display:flex;justify-content:space-between;align-items:baseline;gap:3mm;margin-bottom:1.6mm}
+.scard h3{font-family:var(--serif);font-size:13pt;margin:0}
+.scard .fld{margin-top:1.8mm}
+
+/* Words */
+.word{display:grid;grid-template-columns:31mm 1fr;border:.3mm solid var(--line);border-radius:2mm;overflow:hidden}
+.word .w-ar{background:var(--tint);display:grid;place-items:center;padding:2mm}
+.word .w-ar .ar{font-size:19pt;line-height:1.7}
+.word .w-in{padding:2.4mm 3.4mm}
+.word .w-t{font-weight:700;font-size:10.2pt}
+.word .w-t em{font-weight:400;color:var(--ink-2)}
+.word dl{display:grid;grid-template-columns:auto 1fr;gap:.4mm 3mm;margin:1mm 0 0;font-size:8.8pt}
+.word dt{color:var(--gold-dk);font-weight:600}
+.word dd{margin:0}
+.word dd.rt{font-family:var(--arabic);font-size:10.5pt}
+
+/* Hadith / science */
+.hadith{border:.3mm solid #ead7ab;border-left:1.2mm solid var(--gold);background:#fffdf7;border-radius:2mm;padding:2.8mm 3.6mm}
+.hadith .top{display:flex;gap:2.4mm;align-items:center;flex-wrap:wrap;margin-bottom:1mm}
+.hadith .top b{font-family:var(--serif);font-size:10.6pt}
+.badge{font-size:7.8pt;font-weight:600;border-radius:99px;padding:.5mm 2.6mm;background:#e9eeed;color:#41524f}
+.badge.limited{background:#fff0d4;color:#8a5a14}
+.badge.unsupported{background:var(--bad-bg);color:var(--bad)}
+.badge.supported{background:var(--ok-bg);color:var(--ok)}
+.sci{border:.3mm solid var(--line);border-radius:2mm;padding:2.8mm 3.6mm}
+.sci .top{display:flex;gap:2.4mm;align-items:center;margin-bottom:1mm}
+.sci .top b{font-size:8.6pt;color:var(--gold-dk)}
+
+/* Q&A */
+.qa{padding:0 0 0 3mm;border-left:.6mm solid var(--line)}
+.qa .q{font-weight:700;color:var(--ink)}
+.qa .q::before{content:"Q. ";color:var(--gold-dk)}
+.qa .a::before{content:"A. ";color:var(--gold-dk);font-weight:700}
+
+/* Lists */
+.alist{list-style:none;padding:0;margin:0;display:grid;gap:1.4mm}
+.alist li{padding:1.8mm 3mm;background:var(--tint);border-radius:1.6mm;border-left:.8mm solid var(--gold)}
+.acard{border:.3mm solid var(--line);border-radius:2mm;padding:2.6mm 3.6mm;display:grid;grid-template-columns:1fr auto;gap:1mm 3mm}
+.acard b{font-family:var(--serif);font-size:10.8pt}
+.acard .fq{grid-row:1;grid-column:2}
+.acard p{grid-column:1/-1;font-size:9.2pt}
+.src{display:grid;grid-template-columns:auto 1fr;gap:1mm 3.4mm;border-bottom:.25mm solid var(--line);padding:2.2mm 0;align-items:start}
+.src .type{font-size:7.8pt;font-weight:600;background:var(--tint);border-radius:99px;padding:.5mm 2.6mm;white-space:nowrap}
+.src b{font-weight:600}
+.src small{display:block;color:var(--muted);font-size:8.4pt;word-break:break-all}
+.src a{color:var(--ink-2)}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:1.2mm 4mm;font-size:8.8pt}
+.checks span::before{content:"\2713\00a0";color:var(--ok);font-weight:700}
+.checks span.no::before{content:"\2717\00a0";color:var(--bad)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:.8mm 4mm;font-size:9pt}
+.kv dt{color:var(--gold-dk);font-weight:600}.kv dd{margin:0}
+
+/* ---------- Landing / error ---------- */
+.panel{width:min(640px,calc(100% - 28px));margin:40px auto;background:#fff;border-radius:14px;padding:28px 28px 24px;box-shadow:0 10px 30px rgba(20,50,47,.14)}
+.panel h1{font-family:var(--serif);font-size:26px;margin:0 0 4px}
+.panel p{color:var(--ink-2);line-height:1.55;margin:6px 0}
+.panel code{background:var(--tint);padding:2px 6px;border-radius:5px;font-size:13px;word-break:break-all}
+.panel pre{background:var(--ink);color:#e5f1ee;padding:12px 14px;border-radius:9px;overflow:auto;font-size:13px}
+.panel .row{display:flex;gap:8px;margin:14px 0}
+.panel input[type=text]{flex:1;padding:10px 12px;border:1px solid var(--line);border-radius:9px}
+.panel .btn-primary{background:var(--ink);color:#fff}
+.panel .btn-primary:hover{background:var(--ink-2)}
+.flist{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:8px}
+.flist a{display:block;padding:11px 14px;border:1px solid var(--line);border-radius:10px;color:var(--ink);text-decoration:none;font-weight:600}
+.flist a:hover{background:var(--tint);border-color:var(--gold)}
+.flist small{display:block;font-weight:400;color:var(--muted)}
+.loading{text-align:center;padding:90px 0;color:var(--muted)}
+
+/* ---------- Small screens ---------- */
+@media (max-width:640px){
+  .bar{padding:8px 10px;gap:8px}
+  .tip,.pill{display:none}
+  .bar select{max-width:46vw;flex:1}
+  .brand{flex:1 0 100%}
+  .btn span.lbl{display:inline}
+}
+
+/* ---------- PRINT ---------- */
+@page{size:A4;margin:0}
+@media print{
+  html,body{background:#fff}
+  .no-print,.bar{display:none!important}
+  #app{zoom:1!important;display:block;padding:0;gap:0}
+  .sheet{margin:0;box-shadow:none;break-after:page;page-break-after:always;break-inside:avoid}
+  .sheet:last-child{break-after:auto;page-break-after:auto}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="bar no-print" id="bar" hidden>
+  <div class="brand"><b id="docTitle">Quran Deep Study</b><small id="docSub"></small></div>
+  <select id="jump" aria-label="Section par jao"></select>
+  <select id="fileSel" aria-label="Doosri file kholo" hidden></select>
+  <span class="pill" id="pgcount"></span>
+  <span class="tip">Print dialog me: Paper A4, Margins None, Background graphics ON</span>
+  <button class="btn btn-primary" id="printBtn" type="button" title="A4 size me print / PDF save">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="7" rx="1"/></svg>
+    <span class="lbl">Print / PDF</span>
+  </button>
+</header>
+
+<main id="app"><div class="loading">Load ho raha hai…</div></main>
+
+<script>
+(() => {
+'use strict';
+
+const DATA_DIR = '../data/';          // my-folder/ss/index.html  ->  my-folder/data/
+const app = document.getElementById('app');
+const $ = id => document.getElementById(id);
+
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const has = v => v !== null && v !== undefined && String(v).trim() !== '';
+const pretty = k => { const t = String(k).replace(/_/g,' '); return t.charAt(0).toUpperCase() + t.slice(1); };
+
+/* ------------------------------------------------------------------ */
+/*  File name from URL:  index.html?file=QURAN-DEEP-001_Al-Fatihah_1-7 */
+/* ------------------------------------------------------------------ */
+function currentFile(){
+  let f = new URLSearchParams(location.search).get('file');
+  if (!f) return null;
+  f = f.trim().replace(/\.json$/i, '');
+  return /^[\w.\-]+$/.test(f) && !f.includes('..') ? f : null;
+}
+const goTo = f => { location.search = '?file=' + encodeURIComponent(f); };
+
+/* Optional manifest (data/library.json) — shape unknown, parsed defensively */
+async function loadLibrary(){
+  try{
+    const r = await fetch(DATA_DIR + 'library.json', {cache:'no-store'});
+    if(!r.ok) return [];
+    const j = await r.json();
+    let arr = Array.isArray(j) ? j : Object.values(j).find(Array.isArray) || [];
+    return arr.map(e => {
+      if (typeof e === 'string') return {file:e.replace(/^.*\//,'').replace(/\.json$/i,''), label:e};
+      const raw = e.file_name || e.file || e.filename || e.id || e.path || '';
+      const file = String(raw).replace(/^.*\//,'').replace(/\.json$/i,'');
+      const label = e.title || e.name || e.label || file;
+      const note = e.range || e.description || e.pdf_id || '';
+      return file ? {file, label:String(label), note:String(note)} : null;
+    }).filter(Boolean);
+  }catch(_){ return []; }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Block builders                                                     */
+/* ------------------------------------------------------------------ */
+const fld = (label, text) => has(text) ? `<div class="fld"><h4>${esc(label)}</h4><p>${esc(text)}</p></div>` : '';
+const chips = (arr, cls='') => Array.isArray(arr) && arr.length ? `<div class="chips">${arr.map(x=>`<span class="chip ${cls}">${esc(x)}</span>`).join('')}</div>` : '';
+const sciClass = (cls, status) => {
+  const t = `${cls||''} ${status||''}`.toLowerCase();
+  if (t.includes('unsupported')) return 'unsupported';
+  if (t.includes('limited')) return 'limited';
+  if (t.includes('supported') || t.includes('strong')) return 'supported';
+  return '';
+};
+
+function buildBlocks(d){
+  const B = [];
+  const add = (html, o={}) => B.push({html, ...o});
+  const P = d.project||{}, R = d.study_range||{}, S = d.surah_info||{}, G = P.generation_profile||{}, CB = P.created_by||{};
+  const surah = R.surah_name || 'Surah';
+
+  /* ---- Cover ---- */
+  add(`<div class="cover">
+    <div class="kicker">${esc(P.name||'Quran Deep Study')}</div>
+    <h1>${esc(surah)}</h1>
+    <div class="sub">${esc(S.name_meaning||'')}</div>
+    <div class="rule"></div>
+    <div class="chips">
+      ${has(R.surah_number)?`<span class="chip gold">Surah ${esc(R.surah_number)}</span>`:''}
+      ${has(R.range)?`<span class="chip gold">Ayah ${esc(R.range)}</span>`:''}
+      ${has(S.classification?.makki_or_madani)?`<span class="chip">${esc(S.classification.makki_or_madani)}</span>`:''}
+      ${has(S.classification?.ayat_count)?`<span class="chip">${esc(S.classification.ayat_count)} ayat</span>`:''}
+      ${R.is_complete_surah?`<span class="chip">Complete surah</span>`:''}
+      ${has(G.depth_label)?`<span class="chip">${esc(G.depth_label)}</span>`:''}
+    </div></div>`, {newPage:true, anchor:'overview', label:'Overview'});
+
+  add(`<div class="kv">
+      ${has(P.pdf_id)?`<dt>Study ID</dt><dd>${esc(P.pdf_id)}</dd>`:''}
+      ${has(P.version)?`<dt>Version</dt><dd>${esc(P.version)}</dd>`:''}
+      ${has(P.created_at)?`<dt>Created</dt><dd>${esc(P.created_at)}</dd>`:''}
+      ${has(CB.platform)?`<dt>Banaya gaya</dt><dd>${esc([CB.type,CB.platform,CB.model].filter(has).join(' / '))}</dd>`:''}
+      ${has(CB.role)?`<dt>Role</dt><dd>${esc(CB.role)}</dd>`:''}
+      ${CB.human_review!==undefined?`<dt>Human review</dt><dd>${CB.human_review?'Haan':'Nahi'}</dd>`:''}
+      ${has(R.completed_through)?`<dt>Complete hua</dt><dd>${esc(R.completed_through)}</dd>`:''}
+      ${has(R.next_start)?`<dt>Agla start</dt><dd>${esc(R.next_start)}</dd>`:''}
+    </div>`);
+
+  if (has(P.human_review_note)) add(`<div class="callout warn"><h4>Zaroori note</h4><p>${esc(P.human_review_note)}</p></div>`);
+  if (G.language_rule||G.evidence_rule||G.depth_rule)
+    add(`<div class="callout">${fld('Is study ka tareeqa', [G.depth_rule,G.language_rule,G.evidence_rule].filter(has).join(' '))}</div>`);
+
+  /* ---- Surah info ---- */
+  add(`<div class="sec-h"><h2>Surah ka taaruf</h2><span>${esc(surah)}</span></div>`, {keep:true, newPage:true, anchor:'info', label:'Surah ka taaruf'});
+  add(`<div class="callout big gold"><h4>Introduction</h4><p>${esc(S.introduction)}</p></div>`);
+  [['Ye kya hai','what'],['Kyun zaroori hai','why'],['Kab aur kahan','when_where'],['Kaise study karein','how_to_study'],['Jo pakka hai vs jo mukhtalif hai','known_vs_debated']]
+    .forEach(([l,k]) => has(S[k]) && add(`<div class="fld"><h4>${esc(l)}</h4><p>${esc(S[k])}</p></div>`));
+  if (Array.isArray(S.themes) && S.themes.length) add(`<div class="fld"><h4>Main themes</h4>${chips(S.themes,'gold')}</div>`);
+
+  /* ---- Complete passage ---- */
+  const CP = d.complete_passage||{};
+  if (Array.isArray(CP.ayahs) && CP.ayahs.length){
+    add(`<div class="sec-h"><h2>${esc(CP.title||'Poora passage')}</h2><span>${esc(R.range||'')}</span></div>`, {keep:true,newPage:true,anchor:'passage',label:'Poora passage'});
+    if (has(CP.instruction)) add(`<p style="color:var(--ink-2);margin-bottom:2mm">${esc(CP.instruction)}</p>`, {keep:true});
+    CP.ayahs.forEach(a => add(`<div class="pass"><div class="num">${esc(a.ayah)}</div><div>
+        <div class="ar lg" lang="ar">${esc(a.arabic)}</div>
+        <div class="tr">${esc(a.transliteration)}</div>
+        <div class="ml"><div><b>Roman Urdu</b>${esc(a.roman_urdu)}</div><div><b>English</b>${esc(a.english_meaning)}</div></div>
+      </div></div>`, {cls:'nomargin'}));
+  }
+
+  /* ---- Sections ---- */
+  if (Array.isArray(d.sections) && d.sections.length){
+    add(`<div class="sec-h"><h2>Surah ka flow</h2><span>Hisson me samajh</span></div>`, {keep:true, newPage:true, anchor:'sections', label:'Surah ka flow'});
+    d.sections.forEach(s => add(`<div class="scard"><header><h3>${esc(s.title)}</h3><span class="chip gold">Ayah ${esc(s.ayah_range)}</span></header>
+        ${fld('Theme', s.theme)}${fld('Flow', s.flow)}${fld('Summary', s.summary)}${fld('Study note', s.study_note)}</div>`));
+  }
+
+  /* ---- Per-ayah deep study ---- */
+  (d.ayahs||[]).forEach(a => {
+    const n = a.ayah, mk = a.markers||{}, sj = mk.sajdah||{};
+    const flat = x => typeof x === 'string' ? x : Object.values(x||{}).filter(has).join(': ');
+    const tags = [
+      sj.is_sajdah_ayah ? `<span class="chip gold">Sajdah${has(sj.type)?' ('+esc(sj.type)+')':''}</span>` : '',
+      ...(mk.special_markers||[]).map(m => `<span class="chip gold">${esc(flat(m))}</span>`)
+    ].join('');
+    add(`<div class="ayah-open">
+        <div class="ayah-top"><div class="medal">${esc(n)}</div>
+          <div class="ref">Ayah ${esc(a.reference)}<small>${esc(surah)}</small></div>
+          <div class="tags">${tags}</div></div>
+        <div class="ar xl" lang="ar">${esc(a.arabic)}</div>
+        <div class="tr">${esc(a.transliteration)}</div>
+        <div class="mean"><div><h4>Roman Urdu</h4><p>${esc(a.roman_urdu)}</p></div><div><h4>English meaning</h4><p>${esc(a.english_meaning)}</p></div></div>
+      </div>`, {newPage:true, anchor:'ayah-'+n, label:'Ayah '+a.reference});
+    if (has(sj.ruling_note)) add(`<div class="callout warn"><h4>Sajdah note</h4><p>${esc(sj.ruling_note)}</p></div>`);
+    (mk.special_notes||[]).forEach(t => add(`<div class="callout warn"><h4>Special note</h4><p>${esc(flat(t))}</p></div>`));
+
+    if (has(a.main_message)||has(a.why_it_matters))
+      add(`<div class="duo">
+        ${has(a.main_message)?`<div class="callout gold"><h4>Main message</h4><p>${esc(a.main_message)}</p></div>`:''}
+        ${has(a.why_it_matters)?`<div class="callout"><h4>Kyun zaroori hai</h4><p>${esc(a.why_it_matters)}</p></div>`:''}</div>`);
+
+    add(`<div class="sub-h">Samajh: Simple aur Deep</div>`, {keep:true});
+    add(fld('Simple', a.simple)); add(fld('Deep', a.deep));
+
+    if (Array.isArray(a.important_arabic_words) && a.important_arabic_words.length){
+      add(`<div class="sub-h">Important Arabic words</div>`, {keep:true});
+      a.important_arabic_words.forEach(w => add(`<div class="word">
+          <div class="w-ar"><div class="ar" lang="ar">${esc(w.arabic)}</div></div>
+          <div class="w-in"><div class="w-t">${esc(w.transliteration)} <em>— ${esc(w.meaning)}</em></div>
+          <dl>${has(w.root)?`<dt>Root</dt><dd class="rt" lang="ar" dir="ltr">${esc(w.root)}</dd>`:''}
+              ${has(w.word_form)?`<dt>Word form</dt><dd>${esc(w.word_form)}</dd>`:''}
+              ${has(w.literal_meaning)?`<dt>Literal</dt><dd>${esc(w.literal_meaning)}</dd>`:''}
+              ${has(w.contextual_meaning)?`<dt>Context me</dt><dd>${esc(w.contextual_meaning)}</dd>`:''}</dl></div></div>`));
+    }
+
+    add(`<div class="sub-h">Language aur context</div>`, {keep:true});
+    add(fld('Grammar aur rhetoric', a.grammar_rhetoric));
+    add(fld('Historical context', a.historical_context));
+    add(fld('Quran ke connected ayat', a.connected_ayat));
+
+    if (has(a.common_misunderstandings)||has(a.what_it_does_not_mean))
+      add(`<div class="duo">
+        ${has(a.common_misunderstandings)?`<div class="callout warn"><h4>Aksar hone wali galatfehmi</h4><p>${esc(a.common_misunderstandings)}</p></div>`:''}
+        ${has(a.what_it_does_not_mean)?`<div class="callout warn"><h4>Iska matlab ye nahi</h4><p>${esc(a.what_it_does_not_mean)}</p></div>`:''}</div>`);
+
+    add(`<div class="sub-h">Dalail: Hadith, history, science</div>`, {keep:true});
+    const h = a.hadith||{};
+    if (has(h.summary)||has(h.reference))
+      add(`<div class="hadith"><div class="top"><b>${esc(h.reference||'Hadith')}</b>${has(h.status)?`<span class="badge supported">${esc(h.status)}</span>`:''}</div><p>${esc(h.summary)}</p></div>`);
+    add(fld('History / archaeology evidence', a.history_evidence));
+    const sc = a.science||{};
+    if (has(sc.summary))
+      add(`<div class="sci"><div class="top"><b>Science</b>${has(sc.status)?`<span class="badge ${sciClass(sc.status_class,sc.status)}">${esc(sc.status)}</span>`:''}</div><p>${esc(sc.summary)}</p></div>`);
+    add(fld('Knowledge status', a.knowledge_status));
+
+    add(`<div class="sub-h">Zindagi me apply</div>`, {keep:true});
+    add(fld('Real-life example', a.real_life_example));
+    add(fld('Modern world connection', a.modern_world_connection));
+    add(fld('Aage ka context', a.future_or_forward_looking_context));
+
+    if (Array.isArray(a.qa) && a.qa.length){
+      add(`<div class="sub-h">Sawal-Jawab</div>`, {keep:true});
+      a.qa.forEach(x => add(`<div class="qa"><div class="q">${esc(x.q)}</div><div class="a">${esc(x.a)}</div></div>`));
+    }
+    if (has(a.night_reflection)||has(a.personal_action))
+      add(`<div class="duo">
+        ${has(a.night_reflection)?`<div class="callout"><h4>Raat ki reflection</h4><p>${esc(a.night_reflection)}</p></div>`:''}
+        ${has(a.personal_action)?`<div class="callout gold"><h4>Aaj ka personal action</h4><p>${esc(a.personal_action)}</p></div>`:''}</div>`);
+  });
+
+  /* ---- Conclusions ---- */
+  const concl = (obj, title, anchor, label, first) => {
+    if (!obj) return;
+    add(`<div class="sec-h"><h2>${esc(title)}</h2><span>${esc(surah)}</span></div>`, {keep:true, newPage:first, anchor, label});
+    const L = {complete_summary:'Complete summary',what_it_teaches:'Ye kya sikhata hai',why_it_matters:'Kyun zaroori hai',
+      what_i_should_do:'Mujhe kya karna chahiye',what_i_should_understand:'Mujhe kya samajhna chahiye',
+      how_to_apply:'Kaise apply karein',what_to_avoid:'Kin cheezon se bachein'};
+    Object.keys(L).forEach(k => has(obj[k]) && add(k==='complete_summary'
+      ? `<div class="callout big gold"><h4>${L[k]}</h4><p>${esc(obj[k])}</p></div>`
+      : fld(L[k], obj[k])));
+    if (Array.isArray(obj.mindset_changes)&&obj.mindset_changes.length)
+      add(`<div class="fld"><h4>Mindset changes</h4><ul class="alist">${obj.mindset_changes.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`);
+    if (Array.isArray(obj.character_lessons)&&obj.character_lessons.length)
+      add(`<div class="fld"><h4>Character lessons</h4>${chips(obj.character_lessons,'gold')}</div>`);
+    if (Array.isArray(obj.action_plan)&&obj.action_plan.length){
+      add(`<div class="sub-h">Action plan</div>`, {keep:true});
+      obj.action_plan.forEach(x => add(`<div class="acard"><b>${esc(x.action)}</b><span class="chip gold fq">${esc(x.frequency)}</span>
+        <p><b style="font-family:var(--sans);font-size:8.6pt;color:var(--gold-dk)">Kaise: </b>${esc(x.how)}</p>
+        <p><b style="font-family:var(--sans);font-size:8.6pt;color:var(--gold-dk)">Kyun: </b>${esc(x.why)}</p></div>`));
+    }
+    [['one_sentence_reminder','Ek line ka reminder'],['one_sentence_lesson','Ek line ka sabaq'],['one_sentence_action','Ek line ka action']]
+      .forEach(([k,l]) => has(obj[k]) && add(`<div class="callout big"><h4>${l}</h4><p>${esc(obj[k])}</p></div>`));
+  };
+  concl(d.pdf_range_conclusion, 'Is range ka nichod', 'concl-range', 'Range ka nichod', true);
+  concl(d.surah_conclusion, 'Poori Surah ka nichod', 'concl-surah', 'Surah ka nichod', true);
+
+  /* ---- Sources / QC / progress ---- */
+  if (Array.isArray(d.sources) && d.sources.length){
+    add(`<div class="sec-h"><h2>Sources</h2><span>Hawale</span></div>`, {keep:true,newPage:true,anchor:'sources',label:'Sources'});
+    d.sources.forEach(s => add(`<div class="src"><span class="type">${esc(s.type)}</span><div><b>${esc(s.title)}</b>
+      <div style="font-size:9pt;color:var(--ink-2)">${esc(s.reference)}</div>
+      ${has(s.url)?`<small><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.url)}</a></small>`:''}</div></div>`));
+  }
+  const Q = d.quality_control;
+  if (Q){
+    add(`<div class="sub-h" style="margin-top:2mm">Quality control</div>`, {keep:true});
+    const bools = Object.entries(Q).filter(([,v]) => typeof v === 'boolean');
+    if (bools.length) add(`<div class="checks">${bools.map(([k,v])=>`<span class="${v?'':'no'}">${esc(pretty(k))}</span>`).join('')}</div>`);
+    Object.entries(Q).filter(([,v]) => typeof v === 'string' && has(v)).forEach(([k,v]) => add(fld(pretty(k), v)));
+  }
+  const Pg = d.progress;
+  if (Pg){
+    add(`<div class="sub-h">Progress</div>`, {keep:true});
+    add(`<dl class="kv">${Object.entries(Pg).map(([k,v])=>`<dt>${esc(pretty(k))}</dt><dd>${esc(typeof v==='boolean'?(v?'Haan':'Nahi'):v)}</dd>`).join('')}</dl>`);
+  }
+  return B;
+}
+
+/* ------------------------------------------------------------------ */
+/*  A4 pagination: blocks flow into fixed-size sheets                  */
+/* ------------------------------------------------------------------ */
+const overflowed = el => el.scrollHeight > el.clientHeight + 1;
+
+function paginate(blocks, meta){
+  app.style.zoom = 1;
+  app.innerHTML = '';
+  const sheets = [];
+  let cur = null;
+  const body = () => cur.querySelector('.sheet-body');
+  const newSheet = () => {
+    cur = document.createElement('section');
+    cur.className = 'sheet';
+    cur.innerHTML = `<div class="run-head"><span>${esc(meta.left)}</span><span>${esc(meta.right)}</span></div>
+      <div class="sheet-body"></div><div class="run-foot"></div>`;
+    app.appendChild(cur); sheets.push(cur);
+  };
+  blocks.forEach(b => {
+    const el = document.createElement('div');
+    el.className = 'blk ' + (b.cls||'');
+    el.innerHTML = b.html;
+    if (b.keep) el.dataset.keep = '1';
+    if (b.anchor){ el.dataset.anchor = b.anchor; el.dataset.label = b.label || b.anchor; }
+    if (!cur || (b.newPage && body().children.length)) newSheet();
+    body().appendChild(el);
+    if (overflowed(body()) && body().children.length > 1){
+      body().removeChild(el);
+      const moved = [el];
+      while (body().children.length > 1 && body().lastElementChild.dataset.keep){
+        moved.unshift(body().lastElementChild);
+        body().removeChild(body().lastElementChild);
+      }
+      newSheet();
+      moved.forEach(m => body().appendChild(m));
+    }
+  });
+  sheets.forEach((s,i) => {
+    s.querySelector('.run-foot').innerHTML = `<i></i><span>Page ${i+1} / ${sheets.length}</span><i></i>`;
+  });
+  return sheets;
+}
+
+function fit(){
+  const sheetPx = 210 / 25.4 * 96;
+  app.style.zoom = Math.min(1, (window.innerWidth - 20) / sheetPx);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Render                                                             */
+/* ------------------------------------------------------------------ */
+let library = [];
+
+function setupBar(d, sheets){
+  const R = d.study_range||{};
+  $('bar').hidden = false;
+  $('docTitle').textContent = `${R.surah_name||'Surah'} ${R.range||''}`.trim();
+  $('docSub').textContent = d.project?.name || 'Quran Deep Study';
+  $('pgcount').textContent = `A4 / ${sheets.length} pages`;
+  document.title = `${$('docTitle').textContent} - ${$('docSub').textContent}`;
+
+  const jump = $('jump');
+  jump.innerHTML = '<option value="">Section par jao…</option>';
+  sheets.forEach((s, i) => s.querySelectorAll('[data-anchor]').forEach(a => {
+    const o = document.createElement('option');
+    o.value = i; o.textContent = `${a.dataset.label} (p.${i+1})`;
+    jump.appendChild(o);
+  }));
+  jump.onchange = () => {
+    if (jump.value === '') return;
+    sheets[+jump.value].scrollIntoView({behavior:'smooth', block:'start'});
+    jump.value = '';
+  };
+}
+
+function setupFileSelect(file){
+  const sel = $('fileSel');
+  if (library.length < 2) { sel.hidden = true; return; }
+  sel.hidden = false;
+  sel.innerHTML = library.map(l => `<option value="${esc(l.file)}" ${l.file===file?'selected':''}>${esc(l.label)}</option>`).join('');
+  sel.onchange = () => goTo(sel.value);
+}
+
+async function render(d, file){
+  const R = d.study_range||{};
+  const meta = {
+    left: `${d.project?.name||'Quran Deep Study'}  |  ${d.project?.pdf_id||file||''}`,
+    right: `${R.surah_name||''} ${R.range||''}`.trim()
+  };
+  const blocks = buildBlocks(d);
+  let sheets = paginate(blocks, meta);
+  // Fonts change text metrics — re-flow once they are ready
+  if (document.fonts && document.fonts.ready){
+    try{ await document.fonts.ready; sheets = paginate(blocks, meta); }catch(_){}
+  }
+  setupBar(d, sheets);
+  setupFileSelect(file);
+  fit();
+}
+
+function panel(html){ app.innerHTML = `<div class="panel">${html}</div>`; $('bar').hidden = true; app.style.zoom = 1; }
+
+function fileListHtml(){
+  if (!library.length) return '';
+  return `<ul class="flist">${library.map(l =>
+    `<li><a href="?file=${encodeURIComponent(l.file)}">${esc(l.label)}${l.note?`<small>${esc(l.note)}</small>`:''}</a></li>`).join('')}</ul>`;
+}
+
+function showLanding(){
+  panel(`<h1>Quran Deep Study</h1>
+    <p>Kaunsi file kholni hai? File ka naam likho (bina <code>.json</code> ke) ya URL me <code>?file=naam</code> lagao.</p>
+    <form class="row" id="openForm"><input type="text" id="openName" placeholder="QURAN-DEEP-001_Al-Fatihah_1-7" autocomplete="off" aria-label="File ka naam">
+      <button class="btn btn-primary" type="submit">Kholo</button></form>
+    ${fileListHtml()}`);
+  $('openForm').onsubmit = e => { e.preventDefault(); const v = $('openName').value.trim().replace(/\.json$/i,''); if (/^[\w.\-]+$/.test(v)) goTo(v); };
+}
+
+function showError(msg, file){
+  panel(`<h1>File load nahi hui</h1>
+    <p>${esc(msg)}</p>
+    <p>Agar page ko seedha double-click karke (<code>file://</code>) khola hai, to browser JSON read karne nahi deta. <code>my-folder</code> ke andar local server chalao:</p>
+    <pre>cd my-folder
+python -m http.server 8000</pre>
+    <p>Phir kholo: <code>http://localhost:8000/ss/index.html?file=${esc(file||'FILE-NAAM')}</code></p>
+    <p>Ya yahan se JSON file seedhi chun lo:</p>
+    <div class="row"><input type="file" id="pick" accept=".json,application/json" aria-label="JSON file chuno"></div>
+    ${fileListHtml()}`);
+  $('pick').onchange = async e => {
+    const f = e.target.files[0]; if (!f) return;
+    try{ const d = JSON.parse(await f.text()); app.innerHTML=''; await render(d, f.name.replace(/\.json$/i,'')); }
+    catch(err){ showError('Ye file valid JSON nahi lag rahi: ' + err.message, file); }
+  };
+}
+
+async function init(){
+  $('printBtn').onclick = () => window.print();
+  window.addEventListener('resize', fit);
+  window.addEventListener('beforeprint', () => { app.style.zoom = 1; });
+  window.addEventListener('afterprint', fit);
+
+  const file = currentFile();
+  library = await loadLibrary();
+  if (!file){ showLanding(); return; }
+  try{
+    const r = await fetch(DATA_DIR + encodeURIComponent(file) + '.json', {cache:'no-store'});
+    if (!r.ok) throw new Error(`"${file}.json" nahi mili (HTTP ${r.status}).`);
+    const d = await r.json();
+    await render(d, file);
+  }catch(err){
+    showError(err.message || String(err), file);
+  }
+}
+init();
+})();
+</script>
+</body>
+</html>
